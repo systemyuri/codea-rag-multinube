@@ -1,79 +1,330 @@
-# 🧠 CODEA – RAG Serverless Multi-Cloud para Consulta de Pensión de Alimentos en Perú
+# 📚 CODEA RAG – Consultas sobre Pensión de Alimentos en Perú
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Azure](https://img.shields.io/badge/Azure-Functions%20%7C%20Static%20Web%20Apps-0078D4)](https://azure.microsoft.com)
-[![AWS](https://img.shields.io/badge/AWS-S3%20%7C%20Lambda-FF9900)](https://aws.amazon.com)
-[![GCP](https://img.shields.io/badge/GCP-AlloyDB%20%7C%20Cloud%20Run-4285F4)](https://cloud.google.com)
-
-**CODEA** es un asistente legal ciudadano que responde preguntas sobre **pensión de alimentos en Perú**, utilizando un sistema RAG (Retrieval-Augmented Generation) distribuido en tres nubes: **GCP** (base de datos vectorial y microservicios), **AWS** (ingesta de documentos) y **Azure** (orquestador, frontend y LLM).
-
-> 🎯 **Objetivo del proyecto**: Proporcionar una plataforma serverless, escalable y multi-cloud que permita a los ciudadanos obtener respuestas basadas en normas legales oficiales (leyes, decretos, códigos, resoluciones) de forma rápida y confiable.
+[![Arquitectura Multi-Cloud](https://img.shields.io/badge/Arquitectura-Multi--Cloud-blue)](#)
+[![Azure Functions](https://img.shields.io/badge/Azure-Functions-0078D4)](#)
+[![AWS Lambda](https://img.shields.io/badge/AWS-Lambda-FF9900)](#)
+[![GCP Cloud Run](https://img.shields.io/badge/GCP-Cloud%20Run-4285F4)](#)
+[![AlloyDB](https://img.shields.io/badge/GCP-AlloyDB-4285F4)](#)
+[![Azure Static Web Apps](https://img.shields.io/badge/Azure-Static%20Web%20Apps-0078D4)](#)
 
 ---
 
-## 📋 Tabla de contenido
+## 👤 Autor
 
-- [Arquitectura general](#-arquitectura-general)
-- [Tecnologías utilizadas](#-tecnologías-utilizadas)
-- [Requisitos previos](#-requisitos-previos)
-- [Estructura del repositorio](#-estructura-del-repositorio)
-- [Despliegue paso a paso](#-despliegue-paso-a-paso)
-  - [1. GCP – Base de datos vectorial y microservicios](#1-gcp--base-de-datos-vectorial-y-microservicios)
-  - [2. AWS – Ingesta de documentos](#2-aws--ingesta-de-documentos)
-  - [3. Azure – Orquestador y frontend](#3-azure--orquestador-y-frontend)
-- [Frontend – Uso y personalización](#-frontend--uso-y-personalización)
-- [Evaluación y métricas](#-evaluación-y-métricas)
-- [Monitoreo y observabilidad](#-monitoreo-y-observabilidad)
-- [Costos y optimización FinOps](#-costos-y-optimización-finops)
-- [CI/CD con GitHub Actions](#-cicd-con-github-actions)
-- [Contribuciones y soporte](#-contribuciones-y-soporte)
-- [Licencia](#-licencia)
+**David Yurvilca**  
+*Estudiante del Programa de AI/LLM Solution Architect*  
+*Curso: Diseño de Infraestructura Escalable*
 
 ---
 
-## 🏗️ Arquitectura general
+## 📖 Descripción General del Proyecto
 
-![Arquitectura CODEA](docs/arquitectura.mermaid)
+**CODEA** es una plataforma RAG (Retrieval-Augmented Generation) serverless multi‑cloud diseñada para responder preguntas en lenguaje natural sobre la **pensión de alimentos en Perú**. Los ciudadanos pueden realizar consultas y obtener respuestas basadas en normas legales oficiales (leyes, decretos, códigos, resoluciones), con citas textuales de las fuentes.
+
+La plataforma combina lo mejor de tres proveedores cloud:
+
+| Proveedor | Servicios utilizados |
+|-----------|----------------------|
+| **Azure** | Azure Functions (orquestador), Azure OpenAI (embeddings y chat), Azure Static Web Apps (frontend) |
+| **AWS** | S3 (almacenamiento de PDFs), Lambda (ingesta automática) |
+| **GCP** | AlloyDB + pgvector (base de datos vectorial), Cloud Run (chunking y retrieval) |
+
+---
+
+## 🌐 Acceso a la Aplicación
+
+| Componente | URL / Acceso |
+|------------|--------------|
+| **Frontend (Usuario final)** | [https://victorious-tree-02708ac0f.7.azurestaticapps.net/](https://victorious-tree-02708ac0f.7.azurestaticapps.net/) |
+| **API Orquestador (Azure Function)** | `https://[tu-nombre].azurewebsites.net` *(configurar en despliegue)* |
+| **Retrieval Service (GCP Cloud Run)** | `https://retrieval-service-[hash].run.app` *(configurar en despliegue)* |
+| **Chunking Service (GCP Cloud Run)** | `https://chunking-service-[hash].run.app` *(configurar en despliegue)* |
+| **Bucket S3 (Ingesta)** | `s3://codea-docs-ingesta` *(privado)* |
+| **AlloyDB (GCP)** | `[IP_PUBLICA]:5432` *(acceso restringido)* |
+
+> **Nota:** Las URLs marcadas con `(configurar en despliegue)` deben ser reemplazadas con los endpoints reales una vez que los servicios estén desplegados en cada proveedor cloud.
+
+---
+
+## 🎯 Caso de Uso a Solucionar
+
+En Perú, el proceso de pensión de alimentos es un tema jurídico complejo que involucra múltiples normas legales (Código Civil, Código de los Niños y Adolescentes, leyes específicas, decretos, resoluciones). Los ciudadanos que necesitan información sobre este tema enfrentan varias dificultades:
+
+- **Acceso limitado a la información legal**: Las normas están dispersas en diferentes documentos y portales.
+- **Lenguaje jurídico complejo**: Los textos legales son difíciles de entender para el ciudadano promedio.
+- **Actualización constante**: Las normas cambian y es difícil mantenerse al día.
+- **Falta de herramientas accesibles**: No existen plataformas gratuitas y fáciles de usar para consultar este tipo de información.
+
+**CODEA RAG** resuelve estos problemas al:
+
+1. **Centralizar** las normas legales en una base de datos vectorial.
+2. **Permitir consultas en lenguaje natural**, sin necesidad de conocer tecnicismos legales.
+3. **Generar respuestas** con citas textuales de las fuentes, para que el usuario pueda verificar la información.
+4. **Automatizar la ingesta** de nuevos documentos, manteniendo la base de conocimiento actualizada.
+
+---
+
+## 🎥 Video de Presentación
+
+📽️ **Video de presentación del proyecto:**  
+[https://docs.google.com/presentation/d/1pbYLm9DBwf0ocX7UEz78iUbAbPO1VoSt/edit?usp=drive_link&ouid=108325222194450107540&rtpof=true&sd=true](https://docs.google.com/presentation/d/1pbYLm9DBwf0ocX7UEz78iUbAbPO1VoSt/edit?usp=drive_link&ouid=108325222194450107540&rtpof=true&sd=true)
+
+---
+
+## 🏗️ Arquitectura del Sistema
+
+El sistema está compuesto por cuatro componentes principales distribuidos en tres nubes:
 
 ```mermaid
-flowchart TD
-    subgraph "Azure Cloud"
-        A[React Frontend<br/>Azure Static Web Apps]
-        B[Azure Functions<br/>Orquestador]
-        C[Azure OpenAI<br/>Embeddings + Chat]
-        D[Application Insights]
+graph TD
+    subgraph "Usuario"
+        A[Usuario Frontend] --> B[Azure Static Web Apps]
     end
 
-    subgraph "AWS Cloud"
-        E[S3 Bucket<br/>Documentos PDF]
-        F[AWS Lambda<br/>Ingesta]
-        G[API Gateway<br/>Opcional]
+    subgraph "Azure - Orquestación y LLM"
+        B --> C[Azure Functions<br>Orquestador]
+        C --> D[Azure OpenAI<br>Embeddings + GPT-4o]
     end
 
-    subgraph "GCP Cloud"
-        H[AlloyDB pgvector<br/>Vector Store]
-        I[Cloud Run<br/>Chunking Service]
-        J[Cloud Run<br/>Retrieval Service]
-        K[Cloud Logging]
+    subgraph "GCP - Almacenamiento Vectorial y Servicios"
+        C --> E[Retrieval Service<br>Cloud Run]
+        E --> F[(AlloyDB + pgvector)]
+        G[Chunking Service<br>Cloud Run] --> F
     end
 
-    A -->|POST /ask| B
-    B -->|embedding| C
-    B -->|vector query| J
-    J -->|similarity search| H
-    H -->|chunks| J
-    J -->|chunks| B
-    B -->|prompt + chunks| C
-    C -->|answer| B
-    B -->|answer| A
+    subgraph "AWS - Ingesta de Documentos"
+        H[Administrador] --> I[S3 Bucket<br>Subida de PDFs]
+        I --> J[AWS Lambda<br>Trigger de ingesta]
+        J --> G
+    end
 
-    E -->|upload event| F
-    F -->|download PDF| E
-    F -->|texto extraído| I
-    I -->|chunks| F
-    F -->|embedding| C
-    F -->|store vectors| H
+    C --> K[Respuesta al Usuario]
+    F --> E
+```
 
-    D -.->|logs/metrics| B
-    K -.->|logs| I
-    K -.->|logs| J
+
+### Flujo de Datos
+
+## 
+
+1.  Ingesta de Documentos: Un administrador sube un PDF al bucket S3 de AWS.
+    
+2.  Procesamiento: Lambda se activa y envía el PDF al _Chunking Service_ en GCP.
+    
+3.  Vectorización: El servicio fragmenta el texto, genera embeddings (Azure OpenAI) y los almacena en AlloyDB (pgvector).
+    
+4.  Consulta de Usuario: El usuario hace una pregunta desde el frontend (Azure Static Web Apps).
+    
+5.  Orquestación: Azure Function recibe la pregunta y la envía al _Retrieval Service_.
+    
+6.  Búsqueda: El servicio realiza una búsqueda por similitud coseno en AlloyDB y devuelve los fragmentos más relevantes.
+    
+7.  Generación: La Azure Function usa Azure OpenAI para generar una respuesta final con las citas legales.
+    
+8.  Respuesta: El frontend muestra la respuesta al usuario con las fuentes entre corchetes `[1]`, `[2]`, etc.
+
+## 🛠️ Tecnologías Utilizadas
+
+| Componente | Tecnología | Proveedor |
+| --- | --- | --- |
+| Frontend | React + Vite + Tailwind CSS | Azure Static Web Apps |
+| Orquestador | Azure Functions (Python) | Azure |
+| LLM y Embeddings | Azure OpenAI (GPT-4o, text-embedding-3) | Azure |
+| Base de Datos Vectorial | PostgreSQL + pgvector | GCP AlloyDB |
+| Servicios de Chunking y Retrieval | Cloud Run (Python/FastAPI) | GCP |
+| Ingesta de Documentos | AWS Lambda (Python) | AWS |
+| Almacenamiento de Documentos | AWS S3 | AWS |
+| Evaluación | RAGAS Framework | Python |
+| Despliegue | GitHub Actions (CI/CD) | GitHub |
+
+* * *
+
+## 📋 Estructura del Repositorio
+```text
+codea-rag/
+├── .github/workflows/          # CI/CD (opcional)
+├── docs/                       # Documentación adicional
+│   ├── guia-usuario.md         # Guía para el usuario final
+│   ├── guia-administrador.md   # Guía para el administrador
+│   ├── arquitectura.mermaid    # Diagrama de arquitectura (refinado)
+│   ├── costos.md               # Análisis de costos multi-cloud
+│   └── ragas-report.md         # Reporte de evaluación RAGAS
+├── documentos-normas/          # PDFs fuente (normas legales)
+│   ├── administrativa/         # Normas de derecho administrativo
+│   ├── constitución/           # Constitución Política del Perú
+│   ├── leyes/                  # Leyes y decretos legislativos
+│   ├── penal/                  # Normas de derecho penal
+│   └── README.md               # Explicación del formato y organización
+├── frontend/                   # React (Azure Static Web Apps)
+│   ├── src/...
+│   ├── package.json
+│   ├── .env.example
+│   └── README.md               # ✅ Completado
+├── azure-function/             # Orquestador (Azure Functions Python)
+│   ├── function_app.py
+│   ├── host.json
+│   ├── requirements.txt
+│   └── README.md               # ✅ Completado
+├── gcp-services/
+│   ├── chunking-service/       # Fragmentación de texto (Cloud Run)
+│   │   ├── app/...
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   └── README.md           # ✅ Completado
+│   ├── retrieval-service/      # Búsqueda vectorial (Cloud Run)
+│   │   ├── app/...
+│   │   ├── Dockerfile
+│   │   ├── requirements.txt
+│   │   └── README.md           # ✅ Completado
+│   └── README.md               # ⚠️ Pendiente (opcional)
+├── aws-lambda-ingesta/         # Ingesta automática (AWS Lambda)
+│   ├── lambda_function.py
+│   ├── requirements.txt
+│   ├── trust-policy.json
+│   ├── deploy-aws-ingesta.sh
+│   └── README.md               # ✅ Completado
+├── sql/                        # Scripts de base de datos
+│   ├── 01-create-extension-vector.sql
+│   ├── 02-create-chunks-table.sql
+│   ├── 03-create-documentos-metadata-table.sql
+│   └── 04-create-indexes.sql
+├── scripts/                    # Scripts de despliegue
+│   ├── gcp/...
+│   ├── azure/...
+│   └── aws/...
+├── tests/ragas/                # Pruebas de evaluación RAGAS
+│   ├── questions.json
+│   ├── test-rag.ps1
+│   └── evaluate_ragas.py
+├── .gitignore
+├── LICENSE
+└── README.md                   # ✅ Este archivo
+```
+
+## 📄 Documentos Normativos (Fuentes Legales)
+
+Los PDFs fuente se encuentran en la carpeta [`documentos-normas/`](https://documentos-normas/README.md), organizados por área del derecho:
+
+| Carpeta | Contenido |
+| --- | --- |
+| `administrativa/` | Normas de derecho administrativo (resoluciones, decretos, directivas) |
+| `constitución/` | Texto de la Constitución Política del Perú |
+| `leyes/` | Leyes ordinarias, decretos legislativos, decretos de urgencia |
+| `penal/` | Normas de derecho penal y procesal penal |
+
+Cada archivo sigue el formato: `[número o código de la norma]#[Título descriptivo].pdf`  
+Ejemplo: `ley 26872#CONCILIACION.pdf`
+
+Para más detalles, consulta el [README de documentos-normas](https://documentos-normas/README.md).
+
+* * *
+
+## 📖 Documentación Adicional
+
+| Documento | Ubicación | Descripción |
+| --- | --- | --- |
+| 📘 Guía de Usuario | `docs/guia-usuario.md` | Cómo usar la aplicación, ejemplos de preguntas, interpretación de respuestas |
+| 🛠️ Guía de Administrador | `docs/guia-administrador.md` | Despliegue, configuración, monitoreo, solución de problemas |
+| 🏗️ Diagrama de Arquitectura | `docs/arquitectura.mermaid` | Diagrama detallado en Mermaid |
+| 💰 Análisis de Costos | `docs/costos.md` | Estimación de costos mensuales y estrategias FinOps |
+| 📊 Reporte RAGAS | `docs/ragas-report.md` | Resultados de evaluación del sistema RAG (77% de acierto) |
+
+### READMEs por Componente
+
+| Componente | README | Estado |
+| --- | --- | --- |
+| Frontend | `frontend/README.md` | ✅ Completado |
+| Azure Function (orquestador) | `azure-function/README.md` | ✅ Completado |
+| AWS Lambda (ingesta) | `aws-lambda-ingesta/README.md` | ✅ Completado |
+| Chunking Service (GCP) | `gcp-services/chunking-service/README.md` | ✅ Completado |
+| Retrieval Service (GCP) | `gcp-services/retrieval-service/README.md` | ✅ Completado |
+| Documentos Normativos | `documentos-normas/README.md` | ✅ Completado |
+
+* * *
+
+## 🚀 Instalación y Despliegue Rápido
+
+### Prerrequisitos
+
+-   Cuentas en Azure, AWS y GCP con los servicios configurados.
+    
+-   Azure OpenAI con acceso a GPT-4o y text-embedding-3.
+    
+-   AlloyDB en GCP con la extensión `pgvector` habilitada.
+    
+-   Bucket S3 en AWS para la ingesta de documentos.
+    
+-   Herramientas: Git, Node.js (v18+), Python (v3.10+), Azure CLI, AWS CLI, gcloud CLI, Docker.
+    
+
+### Pasos
+
+1.  Clonar el repositorio
+```bash
+git clone https://github.com/tu-usuario/codea-rag.git
+cd codea-rag
+```
+
+2.  Configurar variables de entorno  
+    Crea un archivo `.env` en la raíz con las variables necesarias (consulta los READMEs de cada componente para los detalles).
+    
+3.  Desplegar la base de datos  
+    Ejecuta los scripts SQL en la carpeta `sql/` para crear la extensión `vector`, las tablas y los índices.
+    
+4.  Desplegar los servicios de GCP  
+    Sigue las instrucciones en `gcp-services/chunking-service/README.md` y `gcp-services/retrieval-service/README.md`.
+    
+5.  Desplegar la AWS Lambda  
+    Ejecuta `aws-lambda-ingesta/deploy-aws-ingesta.sh` para desplegar la Lambda y configurar el trigger de S3.
+    
+6.  Desplegar la Azure Function  
+    Sigue las instrucciones en `azure-function/README.md`.
+    
+7.  Desplegar el frontend
+```bash
+cd frontend
+npm install
+npm run build
+# Desplegar con Azure CLI o GitHub Actions
+```
+
+## 🧪 Evaluación y Pruebas
+
+El proyecto incluye un conjunto de pruebas con RAGAS para medir la precisión del sistema:
+
+```bash
+cd tests/ragas
+python evaluate_ragas.py
+```
+### Los resultados actuales muestran un 77% de acierto en las respuestas generadas.
+
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor:
+
+1.  Haz un fork del repositorio.
+    
+2.  Crea una rama para tu característica (`git checkout -b feature/nueva-funcionalidad`).
+    
+3.  Realiza tus cambios y haz commit (`git commit -m 'Añade nueva funcionalidad'`).
+    
+4.  Sube los cambios (`git push origin feature/nueva-funcionalidad`).
+    
+5.  Abre un Pull Request.
+
+##   
+
+* * *
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo la MIT License. Consulta el archivo `LICENSE` para más detalles.
+
+* * *
+
+## 📞 Contacto y Soporte
+
+-   Issues: [Issue Tracker](https://github.com/systemyuri/codea-rag-multinube/issues)
+    
+-   Correo: systemyuri@gmail.com
