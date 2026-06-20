@@ -169,13 +169,13 @@ Estos valores se pueden ajustar según las necesidades del modelo de embeddings 
 Modifica el script `deploy-chunking-service.sh` o edita el comando `gcloud run deploy`:
 
 ```bash
-gcloud run deploy chunking-service \\
-    \--image gcr.io/<PROJECT\_ID\>/chunking-service \\
-    \--platform managed \\
-    \--region us-east1 \\        \# Cambiar región
-    \--memory 1Gi \\             \# Aumentar memoria
-    \--concurrency 100 \\        \# Número de peticiones concurrentes
-    --min-instances 1          \# Mantener una instancia activa (evita cold start)
+gcloud run deploy chunking-service \
+    --image gcr.io/<PROJECT\_ID\>/chunking-service \
+    --platform managed \
+    --region us-east1 \        # Cambiar región
+    --memory 1Gi \             # Aumentar memoria
+    --concurrency 100 \        # Número de peticiones concurrentes
+    --min-instances 1          # Mantener una instancia activa (evita cold start)
 ```
 
 
