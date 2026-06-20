@@ -1,0 +1,5 @@
+azure-functions
+requests
+PyJWT
+psycopg2-binary
+boto3

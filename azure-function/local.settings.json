@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AZURE_OPENAI_ENDPOINT": "https://openai-rag-7048.openai.azure.com",
+    "AZURE_OPENAI_KEY": "4DhrKbT3CsMyi9WEKl178MqI085oNfxXPu3rftVrIDfTvWEokRNpJQQJ99CFACHYHv6XJ3w3AAABACOGmexB",
+    "EMBEDDING_DEPLOYMENT": "embedding3",
+    "CHAT_DEPLOYMENT": "gpt-4o",
+    "RETRIEVAL_URL": "https://retrieval-service-flzlnepzjq-uc.a.run.app"
+  }
+}
