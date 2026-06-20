@@ -4,7 +4,7 @@
 
 Este componente implementa la función AWS Lambda que automatiza la ingesta y procesamiento de documentos PDF para el sistema RAG CODEA.
 
-Flujo de trabajo:
+**Flujo de trabajo**:
 
 1.  Un usuario (o administrador) sube un PDF al bucket S3 `codea-docs-ingesta`.
 2.  El evento `ObjectCreated` activa la función Lambda.
@@ -16,7 +16,10 @@ Flujo de trabajo:
     -   Guarda el fragmento y su vector en la tabla `chunks` de AlloyDB (GCP).
     -   Registra el procesamiento en la tabla `documentos_metadata` (actualiza el campo `processed`).
 
-* * *
+## ✅ Requisitos previos
+
+- **AlloyDB**: Asegúrate de que la tabla `documentos_metadata` exista (script `sql/03-create-documentos-metadata-table.sql`).
+---
 
 ## 📁 Estructura del directorio
 ```bash
