@@ -115,17 +115,17 @@ chmod +x deploy-chunking-service.sh
 ```json
 {
   "text": "Texto completo del documento",
-  "source": "nombre\_del\_archivo.pdf",
-  "has\_articles": null  // opcional: true/false/null (null = detección automática)
+  "source": "nombre_del_archivo.pdf",
+  "has_articles": null  // opcional: true/false/null (null = detección automática)
 }
 ```
 
 Ejemplo con `curl`:
 
 ```bash
-curl \-X POST https://chunking-service-...run.app/chunk \\
-  \-H "Content-Type: application/json" \\
-  \-d '{
+curl -X POST https://chunking-service-...run.app/chunk \
+  -H "Content-Type: application/json" \
+  -d '{
     "text": "Artículo 1. Este es el primer artículo. Artículo 2. Este es el segundo.",
     "source": "prueba.pdf"
   }'
@@ -135,7 +135,7 @@ Respuesta:
 ```json
 
 {
-  "chunks": \[
+  "chunks": [
     {
       "id": "aafb47f1-785b-4227-b0bb-2573c8924cc4",
       "article": "1",
@@ -148,7 +148,7 @@ Respuesta:
       "content": "Artículo 2. Este es el segundo.",
       "source": "prueba.pdf"
     }
-  \]
+  ]
 }
 ```
 * * *
