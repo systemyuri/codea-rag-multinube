@@ -13,7 +13,9 @@
 
 **David Yurvilca**  
 *Estudiante del Programa de AI/LLM Solution Architect*  
-*Curso: Diseño de Infraestructura Escalable*
+*Curso: Diseño de Infraestructura Escalable*  
+*Institución: BSG Institute*  
+*Profesor: Msc, PgP, Andrés Felipe Rojas Parra*
 
 ---
 
@@ -42,8 +44,6 @@ La plataforma combina lo mejor de tres proveedores cloud:
 | **Bucket S3 (Ingesta)** | `s3://codea-docs-ingesta` *(privado)* |
 | **AlloyDB (GCP)** | `[IP_PUBLICA]:5432` *(acceso restringido)* |
 
-> **Nota:** Las URLs marcadas con `(configurar en despliegue)` deben ser reemplazadas con los endpoints reales una vez que los servicios estén desplegados en cada proveedor cloud.
-
 ---
 
 ## 🎯 Caso de Uso a Solucionar
@@ -61,6 +61,16 @@ En Perú, el proceso de pensión de alimentos es un tema jurídico complejo que 
 2. **Permitir consultas en lenguaje natural**, sin necesidad de conocer tecnicismos legales.
 3. **Generar respuestas** con citas textuales de las fuentes, para que el usuario pueda verificar la información.
 4. **Automatizar la ingesta** de nuevos documentos, manteniendo la base de conocimiento actualizada.
+
+### KPIs Definidos
+
+| KPI | Descripción |
+|-----|-------------|
+| **Latencia total del flujo** | Tiempo desde la consulta del usuario hasta la respuesta final. |
+| **Tokens/s en inferencia** | Rendimiento del modelo LLM (Azure OpenAI). |
+| **Costo por 1k tokens** | Costo de operación del LLM y embeddings. |
+| **Tasa de aciertos RAG (RAGAS)** | Precisión del sistema de recuperación y generación (meta ≥ 0.7). |
+| **Cloud egress cost** | Costos de transferencia de datos entre nubes (optimización). |
 
 ---
 
@@ -102,26 +112,50 @@ graph TD
     F --> E
 ```
 
+### Flujo de Datos (Pipeline RAG Distribuido)
 
-### Flujo de Datos
+1.  **Ingesta de Documentos:** Un administrador sube un PDF al bucket S3 de AWS.
+    
+2.  **Procesamiento (AWS Lambda):** Lambda se activa y envía el PDF al _Chunking Service_ en GCP.
+    
+3.  **Chunking (GCP Cloud Run):** El servicio fragmenta el texto en trozos (chunks) con tamaño y solapamiento configurables.
+    
+4.  **Embeddings (Azure OpenAI):** Se generan vectores numéricos (embeddings) para cada chunk.
+    
+5.  **Vector Store (GCP AlloyDB + pgvector):** Los embeddings se almacenan con metadatos.
+    
+6.  **Consulta de Usuario:** El usuario hace una pregunta desde el frontend (Azure Static Web Apps).
+    
+7.  **Orquestación (Azure Functions):** Recibe la pregunta y la envía al _Retrieval Service_.
+    
+8.  **Retrieval (GCP Cloud Run):** Busca los chunks más similares por similitud coseno.
+    
+9.  **Generación (Azure OpenAI):** Se construye un prompt con los chunks recuperados y el LLM genera la respuesta final con citas `[1]`, `[2]`, etc.
+    
+10.  **Respuesta:** El frontend muestra la respuesta al usuario.
 
-## 
 
-1.  Ingesta de Documentos: Un administrador sube un PDF al bucket S3 de AWS.
-    
-2.  Procesamiento: Lambda se activa y envía el PDF al _Chunking Service_ en GCP.
-    
-3.  Vectorización: El servicio fragmenta el texto, genera embeddings (Azure OpenAI) y los almacena en AlloyDB (pgvector).
-    
-4.  Consulta de Usuario: El usuario hace una pregunta desde el frontend (Azure Static Web Apps).
-    
-5.  Orquestación: Azure Function recibe la pregunta y la envía al _Retrieval Service_.
-    
-6.  Búsqueda: El servicio realiza una búsqueda por similitud coseno en AlloyDB y devuelve los fragmentos más relevantes.
-    
-7.  Generación: La Azure Function usa Azure OpenAI para generar una respuesta final con las citas legales.
-    
-8.  Respuesta: El frontend muestra la respuesta al usuario con las fuentes entre corchetes `[1]`, `[2]`, etc.
+## 📋 Cumplimiento de Requisitos del Proyecto (Rúbrica)
+
+A continuación se mapea cada punto obligatorio del proyecto con su estado y el documento donde se desarrolla en detalle:
+
+| # | Componente del Proyecto | Estado | Documento / Sección de Referencia |
+| --- | --- | --- | --- |
+| 1 | **Definición del Caso de Uso (LLM)** | ✅ Completado | Sección "Caso de Uso" y "KPIs" de este README |
+| 2 | **Selección del Modelo + Infraestructura** | ✅ Completado | `docs/seleccion-modelo-infraestructura.md`_(pendiente de crear)_ |
+| 3 | **Patrón de Diseño LLM** | ⏳ Pendiente | `docs/patron-diseno-llm.md`_(pendiente de crear)_ |
+| 4 | **Contenerización (Docker)** | ✅ Parcial | `gcp-services/chunking-service/Dockerfile` y `gcp-services/retrieval-service/Dockerfile`; documentación en `docs/contenizacion.md`_(pendiente)_ |
+| 5 | **Orquestación Serverless Multicloud** | ✅ Completado | READMEs de `azure-function/`, `aws-lambda-ingesta/`, `gcp-services/` |
+| 6 | **Arquitectura Multicloud (Diagrama)** | ✅ Completado | Diagrama Mermaid en este README y `docs/arquitectura.mermaid` |
+| 7 | **Diseño del Pipeline RAG Distribuido** | ✅ Completado | Flujo de datos en este README y `docs/pipeline-rag.md`_(pendiente de detallar)_ |
+| 8 | **Serving del LLM (Azure OpenAI)** | ✅ Completado | `azure-function/README.md` y `docs/serving-llm.md`_(pendiente)_ |
+| 9 | **CI/CD Multinube** | ⏳ Pendiente | `docs/ci-cd.md` y workflows en `.github/workflows/`_(pendiente)_ |
+| 10 | **Optimización de Costos (FinOps)** | ⏳ Pendiente | `docs/costos.md`_(pendiente de crear)_ |
+| 11 | **Observabilidad y Métricas Cross-Cloud** | ⏳ Pendiente | `docs/observabilidad.md`_(pendiente de crear)_ |
+| 12 | **Documentación Final Profesional** | ⏳ Pendiente | Documento integrador de 20-25 páginas (se construirá con todos los docs anteriores)  
+  
+ |
+
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -136,25 +170,33 @@ graph TD
 | Almacenamiento de Documentos | AWS S3 | AWS |
 | Evaluación | RAGAS Framework | Python |
 | Despliegue | GitHub Actions (CI/CD) | GitHub |
+| Observabilidad | Azure App Insights, AWS CloudWatch, GCP Cloud Logging | Multi-cloud |
 
 * * *
 
 ## 📋 Estructura del Repositorio
 ```text
 codea-rag/
-├── .github/workflows/          # CI/CD (opcional)
-├── docs/                       # Documentación adicional
-│   ├── guia-usuario.md         # Guía para el usuario final
-│   ├── guia-administrador.md   # Guía para el administrador
-│   ├── arquitectura.mermaid    # Diagrama de arquitectura (refinado)
-│   ├── costos.md               # Análisis de costos multi-cloud
-│   └── ragas-report.md         # Reporte de evaluación RAGAS
+├── .github/workflows/          # CI/CD (pendiente de definir)
+├── docs/                       # Documentación del proyecto
+│   ├── guia-usuario.md         # ⏳ Pendiente
+│   ├── guia-administrador.md   # ⏳ Pendiente
+│   ├── arquitectura.mermaid    # ✅ Diagrama base (refinar)
+│   ├── costos.md               # ⏳ Pendiente (FinOps)
+│   ├── observabilidad.md       # ⏳ Pendiente
+│   ├── patron-diseno-llm.md    # ⏳ Pendiente
+│   ├── seleccion-modelo-infraestructura.md # ⏳ Pendiente
+│   ├── pipeline-rag.md         # ⏳ Pendiente
+│   ├── contenerizacion.md      # ⏳ Pendiente
+│   ├── ci-cd.md                # ⏳ Pendiente
+│   ├── serving-llm.md          # ⏳ Pendiente
+│   └── ragas-report.md         # ⏳ Pendiente (resultados 77%)
 ├── documentos-normas/          # PDFs fuente (normas legales)
 │   ├── administrativa/         # Normas de derecho administrativo
 │   ├── constitución/           # Constitución Política del Perú
 │   ├── leyes/                  # Leyes y decretos legislativos
 │   ├── penal/                  # Normas de derecho penal
-│   └── README.md               # Explicación del formato y organización
+│   └── README.md               # ✅ Explicación del formato
 ├── frontend/                   # React (Azure Static Web Apps)
 │   ├── src/...
 │   ├── package.json
@@ -223,22 +265,28 @@ Para más detalles, consulta el [README de documentos-normas](https://documento
 
 | Documento | Ubicación | Descripción |
 | --- | --- | --- |
-| 📘 Guía de Usuario | `docs/guia-usuario.md` | Cómo usar la aplicación, ejemplos de preguntas, interpretación de respuestas |
-| 🛠️ Guía de Administrador | `docs/guia-administrador.md` | Despliegue, configuración, monitoreo, solución de problemas |
-| 🏗️ Diagrama de Arquitectura | `docs/arquitectura.mermaid` | Diagrama detallado en Mermaid |
-| 💰 Análisis de Costos | `docs/costos.md` | Estimación de costos mensuales y estrategias FinOps |
-| 📊 Reporte RAGAS | `docs/ragas-report.md` | Resultados de evaluación del sistema RAG (77% de acierto) |
+| 📘 **Guía de Usuario** | `docs/guia-usuario.md` | Cómo usar la aplicación, ejemplos de preguntas, interpretación de respuestas |
+| 🛠️ **Guía de Administrador** | `docs/guia-administrador.md` | Despliegue, configuración, monitoreo, solución de problemas |
+| 🏗️ **Diagrama de Arquitectura** | `docs/arquitectura.mermaid` | Diagrama detallado en Mermaid |
+| 💰 **Análisis de Costos** | `docs/costos.md` | Estimación de costos mensuales, costo por request, estrategias de optimización |
+| 📊 **Reporte RAGAS** | `docs/ragas-report.md` | Resultados de evaluación del sistema RAG (77% de acierto) |
+| 🧩 Patrón de Diseño LLM** | `docs/patron-diseno-llm.md` | Justificación, trade-offs y diagrama del patrón seleccionado |
+| 🐳 **Contenerización** | `docs/contenizacion.md` | Dockerfiles, multi-stage, seguridad (Trivy), buenas prácticas |
+| 🔄 **CI/CD Multinube** | `docs/ci-cd.md` | Pipelines de GitHub Actions, Terraform/Bicep/CloudFormation |
+| 🔍 **Observabilidad Cross-Cloud** | `docs/observabilidad.md` | App Insights, CloudWatch, Cloud Logging, trazabilidad y métricas |
+| ⚙️ **Selección del Modelo** | `docs/seleccion-modelo-infraestructura.md` | Justificación de Azure OpenAI vs Bedrock, latencia, costos |
+| 🧪 **Pipeline RAG Distribuido** | `docs/pipeline-rag.md` | Detalle técnico de chunking, embeddings, retrieval y reranking  |
 
 ### READMEs por Componente
 
 | Componente | README | Estado |
 | --- | --- | --- |
-| Frontend | `frontend/README.md` | ✅ Completado |
-| Azure Function (orquestador) | `azure-function/README.md` | ✅ Completado |
-| AWS Lambda (ingesta) | `aws-lambda-ingesta/README.md` | ✅ Completado |
-| Chunking Service (GCP) | `gcp-services/chunking-service/README.md` | ✅ Completado |
-| Retrieval Service (GCP) | `gcp-services/retrieval-service/README.md` | ✅ Completado |
-| Documentos Normativos | `documentos-normas/README.md` | ✅ Completado |
+| **Frontend** | `frontend/README.md` | ✅ Completado |
+| **Azure Function (orquestador)** | `azure-function/README.md` | ✅ Completado |
+| **AWS Lambda (ingesta)** | `aws-lambda-ingesta/README.md` | ✅ Completado |
+| **Chunking Service (GCP)** | `gcp-services/chunking-service/README.md` | ✅ Completado |
+| **Retrieval Service (GCP)** | `gcp-services/retrieval-service/README.md` | ✅ Completado |
+| **Documentos Normativos** | `documentos-normas/README.md` | ✅ Completado |
 
 * * *
 
@@ -246,13 +294,13 @@ Para más detalles, consulta el [README de documentos-normas](https://documento
 
 ### Prerrequisitos
 
--   Cuentas en Azure, AWS y GCP con los servicios configurados.
+-   Cuentas en **Azure**, **AWS** y **GCP** con los servicios configurados.
     
--   Azure OpenAI con acceso a GPT-4o y text-embedding-3.
+-   **Azure OpenAI** con acceso a GPT-4o y text-embedding-3.
     
--   AlloyDB en GCP con la extensión `pgvector` habilitada.
+-   **AlloyDB** en GCP con la extensión `pgvector` habilitada.
     
--   Bucket S3 en AWS para la ingesta de documentos.
+-   **Bucket S3** en AWS para la ingesta de documentos.
     
 -   Herramientas: Git, Node.js (v18+), Python (v3.10+), Azure CLI, AWS CLI, gcloud CLI, Docker.
     
@@ -296,7 +344,7 @@ El proyecto incluye un conjunto de pruebas con RAGAS para medir la precisión 
 cd tests/ragas
 python evaluate_ragas.py
 ```
-### Los resultados actuales muestran un 77% de acierto en las respuestas generadas.
+### Los resultados actuales muestran un 77% de acierto en las respuestas generadas (cumple con el mínimo de RAGAS ≥ 0.7 exigido).
 
 
 ## 🤝 Contribuciones
