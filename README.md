@@ -77,7 +77,7 @@ En Perú, el proceso de pensión de alimentos es un tema jurídico complejo que 
 ## 🎥 Video de Presentación
 
 📽️ **Video de presentación del proyecto:**  
-[https://docs.google.com/presentation/d/1pbYLm9DBwf0ocX7UEz78iUbAbPO1VoSt/edit?usp=drive_link&ouid=108325222194450107540&rtpof=true&sd=true](https://docs.google.com/presentation/d/1pbYLm9DBwf0ocX7UEz78iUbAbPO1VoSt/edit?usp=drive_link&ouid=108325222194450107540&rtpof=true&sd=true)
+[Presentacion](https://docs.google.com/presentation/d/1pbYLm9DBwf0ocX7UEz78iUbAbPO1VoSt/edit?usp=drive_link&ouid=108325222194450107540&rtpof=true&sd=true)
 
 ---
 
@@ -266,9 +266,9 @@ La documentación completa del proyecto está disponible en la carpeta [`docs/`
 
 | Documento | Ubicación | Descripción |
 | --- | --- | --- |
-| 📘 **Guía de Usuario** | [`docs/guia-usuario.md`](https://docs/guia-usuario.md) | Cómo usar la aplicación, ejemplos de preguntas, interpretación de respuestas. |
-| 🛠️ **Guía de Administrador** | [`docs/guia-administrador.md`](https://docs/guia-administrador.md) | Despliegue, configuración, monitoreo, solución de problemas. |
-| 🏗️ **Arquitectura del Sistema** | [`docs/arquitectura.md`](https://docs/arquitectura.md) | Explicación detallada de la arquitectura multi-cloud, componentes, flujos, red y seguridad. |
+| 📘 **Guía de Usuario** | [`docs/guia-usuario.md`](./docs/guia-usuario.md) | Cómo usar la aplicación, ejemplos de preguntas, interpretación de respuestas. |
+| 🛠️ **Guía de Administrador** | [`docs/guia-administrador.md`](./docs/guia-administrador.md) | Despliegue, configuración, monitoreo, solución de problemas. |
+| 🏗️ **Arquitectura del Sistema** | [`docs/arquitectura.md`](./docs/arquitectura.md) | Explicación detallada de la arquitectura multi-cloud, componentes, flujos, red y seguridad. |
 | 📊 **Diagrama de Arquitectura** | [`docs/arquitectura.mermaid`](https://docs/arquitectura.mermaid) | Diagrama visual en Mermaid (complementa al documento de arquitectura). |
 | 🧩 **Patrón de Diseño LLM** | [`docs/patron-diseno-llm.md`](https://docs/patron-diseno-llm.md) | Justificación, trade-offs y diagrama del patrón Self-Query Retriever. |
 | 🐳 **Contenerización (Docker)** | [`docs/contenizacion.md`](https://docs/contenizacion.md) | Dockerfiles, multi-stage, seguridad (Trivy), buenas prácticas. |
