@@ -29,6 +29,7 @@ echo "Proyecto: $PROJECT_ID"
 echo "Región: $REGION"
 echo "Servicio: $SERVICE_NAME"
 echo "DB Host: $DB_HOST"
+echo "DB Host: $DB_PASSWORD"
 
 # Verificar que gcloud está instalado
 if ! command -v gcloud &> /dev/null; then

@@ -3,6 +3,7 @@ import json
 import logging
 import os
 import random
+import re
 import time
 
 import azure.functions as func
@@ -40,6 +41,40 @@ DB_NAME = os.environ.get("DB_NAME", "postgres")
 DB_PORT = os.environ.get("DB_PORT", "5432")
 
 
+def extraer_filtros(pregunta: str) -> dict:
+    filtros = {}
+    # Patrón más flexible: captura "Ley", "Decreto", etc., y luego números (con guiones)
+    # patron_norma = r"(ley|decreto legislativo|decreto supremo|resolucion administrativa|constitucion politica)\s*([0-9-]+)"
+    # match = re.search(patron_norma, pregunta, re.IGNORECASE)
+    match = re.search(
+        r"(?i)\b(ley|decreto legislativo|decreto supremo|resolucion administrativa|constitucion politica)\s*([0-9-]+)",
+        pregunta,
+    )
+    if match:
+        tipo = match.group(1).strip().upper()
+        numero = match.group(2).strip()
+        # Normalizar el tipo
+        if tipo == "LEY":
+            filtros["norm_code"] = f"LEY {numero}"
+        elif tipo == "DECRETO LEGISLATIVO":
+            filtros["norm_code"] = f"DECRETO LEGISLATIVO {numero}"
+        elif tipo == "DECRETO SUPREMO":
+            filtros["norm_code"] = f"Decreto Supremo {numero}"
+        elif "RESOLUCION" in tipo:
+            filtros["norm_code"] = f"RESOLUCION ADMINISTRATIVA {numero}"
+        elif "CONSTITUCION" in tipo:
+            filtros["norm_code"] = "CONSTITUCION POLITICA 1993"
+        else:
+            filtros["norm_code"] = f"{tipo} {numero}"
+
+    # También buscar títulos entre comillas
+    match_titulo = re.search(r'"(.*?)"', pregunta)
+    if match_titulo:
+        filtros["title_exact"] = match_titulo.group(1).strip()
+
+    return filtros
+
+
 def get_embedding(text, retries=5):
     url = f"{AZURE_OPENAI_ENDPOINT}/openai/deployments/{EMBEDDING_DEPLOYMENT}/embeddings?api-version=2024-10-21"
     headers = {"api-key": AZURE_OPENAI_KEY, "Content-Type": "application/json"}
@@ -56,10 +91,11 @@ def get_embedding(text, retries=5):
     raise Exception("No se pudo obtener embedding después de reintentos")
 
 
-def retrieve_context(vector, limit=20):
+def retrieve_context(vector, limit=20, filtros=None):
     url = f"{RETRIEVAL_URL}/retrieve"
-    logging.info(f"[DEBUG] Llamando a retrieval: {url} con limit={limit}")
     payload = {"vector": vector, "limit": limit}
+    if filtros:
+        payload["filtros"] = filtros
     resp = requests.post(url, json=payload, timeout=30)
     logging.info(f"[DEBUG] Status code: {resp.status_code}")
     logging.info(f"[DEBUG] Respuesta completa: {resp.text[:500]}")
@@ -71,7 +107,12 @@ def retrieve_context(vector, limit=20):
 
 
 def build_prompt(question, chunks):
-    context = "\n\n".join([f"[{c['article']}] {c['content']}" for c in chunks])
+    context_parts = []
+    for c in chunks:
+        article = c.get("article", "Sin artículo")
+        content = c.get("content", "")
+        context_parts.append(f"[{article}] {content}")
+    context = "\n\n".join(context_parts)
     prompt = f"""Eres un asistente legal experto en normas peruanas de alimentos.
 
 **Instrucciones estrictas (sigue estas reglas al pie de la letra):**
@@ -120,12 +161,32 @@ def ask(req: func.HttpRequest) -> func.HttpResponse:
         if not question:
             return func.HttpResponse("Falta 'question' en el cuerpo", status_code=400)
 
-        logging.info(f"Pregunta recibida: {question}")
+        logging.info(f"📝 Pregunta recibida: {question}")
 
+        # Paso 1: Extraer filtros
+        filtros = extraer_filtros(question)
+        logging.info(f"🔍 Filtros extraídos: {filtros}")
+
+        # Paso 2: Generar embedding
+        logging.info("🔄 Generando embedding...")
         vector = get_embedding(question)
-        chunks = retrieve_context(vector, limit=20)
+        logging.info("✅ Embedding generado.")
+
+        # Paso 3: Recuperar chunks
+        logging.info("🔎 Recuperando chunks...")
+        chunks = retrieve_context(vector, limit=20, filtros=filtros)
+        logging.info(f"📦 Número de chunks recuperados: {len(chunks)}")
+
+        # === DEPURACIÓN: Mostrar el primer chunk ===
+        if chunks:
+            logging.info(
+                f"📄 Primer chunk: {json.dumps(chunks[0], ensure_ascii=False)}"
+            )
+        else:
+            logging.warning("⚠️ No se encontraron chunks.")
+
+        # Paso 4: Verificar si hay chunks
         if not chunks:
-            # Devolver respuesta de depuración
             return func.HttpResponse(
                 json.dumps(
                     {
@@ -139,8 +200,15 @@ def ask(req: func.HttpRequest) -> func.HttpResponse:
                 status_code=200,
             )
 
+        # Paso 5: Construir el prompt
+        logging.info("📝 Construyendo prompt...")
         prompt = build_prompt(question, chunks)
+        logging.info(f"📄 Prompt (primeros 200 caracteres): {prompt[:200]}...")
+
+        # Paso 6: Obtener respuesta del chat
+        logging.info("🤖 Llamando a Azure OpenAI...")
         answer = get_chat_completion(prompt)
+        logging.info("✅ Respuesta generada.")
 
         return func.HttpResponse(
             json.dumps({"answer": answer}, ensure_ascii=False),
@@ -148,7 +216,7 @@ def ask(req: func.HttpRequest) -> func.HttpResponse:
             status_code=200,
         )
     except Exception as e:
-        logging.error(f"Error: {str(e)}")
+        logging.error(f"❌ Error en ask: {str(e)}", exc_info=True)
         return func.HttpResponse(
             json.dumps({"error": str(e)}), status_code=500, mimetype="application/json"
         )
