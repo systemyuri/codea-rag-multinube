@@ -135,7 +135,7 @@ graph TD
 10.  Respuesta: El frontend muestra la respuesta al usuario.
      
 
-Para una explicación más detallada de la arquitectura, componentes, red y seguridad, consulta el documento [`docs/arquitectura.md`](https://docs/arquitectura.md) y el diagrama visual en [`docs/arquitectura.mermaid`](https://docs/arquitectura.mermaid).
+Para una explicación más detallada de la arquitectura, componentes, red y seguridad, consulta el documento [`docs/arquitectura.md`](./docs/arquitectura.md) y el diagrama visual en [`docs/arquitectura.mermaid`](./docs/arquitectura.mermaid).
 
 * * *
 
@@ -244,7 +244,7 @@ codea-rag/
 
 ## 📄 Documentos Normativos (Fuentes Legales)
 
-Los PDFs fuente se encuentran en la carpeta [`documentos-normas/`](https://documentos-normas/README.md), organizados por área del derecho:
+Los PDFs fuente se encuentran en la carpeta [`documentos-normas/`](./documentos-normas/README.md), organizados por área del derecho:
 
 | Carpeta | Contenido |
 | --- | --- |
@@ -256,38 +256,38 @@ Los PDFs fuente se encuentran en la carpeta [`documentos-normas/`](https://docu
 Cada archivo sigue el formato: `[número o código de la norma]#[Título descriptivo].pdf`  
 Ejemplo: `ley 26872#CONCILIACION.pdf`
 
-Para más detalles, consulta el [README de documentos-normas](https://documentos-normas/README.md).
+Para más detalles, consulta el [README de documentos-normas](./documentos-normas/README.md).
 
 * * *
 
 ## 📖 Documentación Adicional (Entregables del Proyecto)
 
-La documentación completa del proyecto está disponible en la carpeta [`docs/`](https://docs/). Todos los documentos han sido completados:
+La documentación completa del proyecto está disponible en la carpeta [`docs/`](./docs/). Todos los documentos han sido completados:
 
 | Documento | Ubicación | Descripción |
 | --- | --- | --- |
 | 📘 **Guía de Usuario** | [`docs/guia-usuario.md`](./docs/guia-usuario.md) | Cómo usar la aplicación, ejemplos de preguntas, interpretación de respuestas. |
 | 🛠️ **Guía de Administrador** | [`docs/guia-administrador.md`](./docs/guia-administrador.md) | Despliegue, configuración, monitoreo, solución de problemas. |
 | 🏗️ **Arquitectura del Sistema** | [`docs/arquitectura.md`](./docs/arquitectura.md) | Explicación detallada de la arquitectura multi-cloud, componentes, flujos, red y seguridad. |
-| 📊 **Diagrama de Arquitectura** | [`docs/arquitectura.mermaid`](https://docs/arquitectura.mermaid) | Diagrama visual en Mermaid (complementa al documento de arquitectura). |
-| 🧩 **Patrón de Diseño LLM** | [`docs/patron-diseno-llm.md`](https://docs/patron-diseno-llm.md) | Justificación, trade-offs y diagrama del patrón Self-Query Retriever. |
-| 🐳 **Contenerización (Docker)** | [`docs/contenizacion.md`](https://docs/contenizacion.md) | Dockerfiles, multi-stage, seguridad (Trivy), buenas prácticas. |
-| 🔄 **CI/CD Multinube** | [`docs/ci-cd.md`](https://docs/ci-cd.md) | Scripts de despliegue, propuesta de GitHub Actions y Terraform. |
-| 💰 **Optimización de Costos (FinOps)** | [`docs/costos.md`](https://docs/costos.md) | Estimación de costos mensuales, costo por request, estrategias de optimización. |
-| 🔍 **Observabilidad Cross-Cloud** | [`docs/observabilidad.md`](https://docs/observabilidad.md) | App Insights, CloudWatch, Cloud Logging, trazabilidad y métricas. |
-| 📊 **Reporte RAGAS** | [`docs/ragas-report.md`](https://docs/ragas-report.md) | Resultados de evaluación del sistema RAG (100% de precisión en validación). |
-| 📚 **Índice de Documentación** | [`docs/README.md`](https://docs/README.md) | Mapa de lectura de toda la documentación. |
+| 📊 **Diagrama de Arquitectura** | [`docs/arquitectura.mermaid`](./docs/arquitectura.mermaid) | Diagrama visual en Mermaid (complementa al documento de arquitectura). |
+| 🧩 **Patrón de Diseño LLM** | [`docs/patron-diseno-llm.md`](./docs/patron-diseno-llm.md) | Justificación, trade-offs y diagrama del patrón Self-Query Retriever. |
+| 🐳 **Contenerización (Docker)** | [`docs/contenizacion.md`](./docs/contenizacion.md) | Dockerfiles, multi-stage, seguridad (Trivy), buenas prácticas. |
+| 🔄 **CI/CD Multinube** | [`docs/ci-cd.md`](./docs/ci-cd.md) | Scripts de despliegue, propuesta de GitHub Actions y Terraform. |
+| 💰 **Optimización de Costos (FinOps)** | [`docs/costos.md`](./docs/costos.md) | Estimación de costos mensuales, costo por request, estrategias de optimización. |
+| 🔍 **Observabilidad Cross-Cloud** | [`docs/observabilidad.md`](./docs/observabilidad.md) | App Insights, CloudWatch, Cloud Logging, trazabilidad y métricas. |
+| 📊 **Reporte RAGAS** | [`docs/ragas-report.md`](./docs/ragas-report.md) | Resultados de evaluación del sistema RAG (100% de precisión en validación). |
+| 📚 **Índice de Documentación** | [`docs/README.md`](./docs/README.md) | Mapa de lectura de toda la documentación. |
 
 ### READMEs por Componente
 
 | Componente | README | Estado |
 | --- | --- | --- |
-| **Frontend** | [`frontend/README.md`](https://frontend/README.md) | ✅ Completado |
-| **Azure Function (orquestador)** | [`azure-function/README.md`](https://azure-function/README.md) | ✅ Completado |
-| **AWS Lambda (ingesta)** | [`aws-lambda-ingesta/README.md`](https://aws-lambda-ingesta/README.md) | ✅ Completado |
-| **Chunking Service (GCP)** | [`gcp-services/chunking-service/README.md`](https://gcp-services/chunking-service/README.md) | ✅ Completado |
-| **Retrieval Service (GCP)** | [`gcp-services/retrieval-service/README.md`](https://gcp-services/retrieval-service/README.md) | ✅ Completado |
-| **Documentos Normativos** | [`documentos-normas/README.md`](https://documentos-normas/README.md) | ✅ Completado |
+| **Frontend** | [`frontend/README.md`](./frontend/README.md) | ✅ Completado |
+| **Azure Function (orquestador)** | [`azure-function/README.md`](./azure-function/README.md) | ✅ Completado |
+| **AWS Lambda (ingesta)** | [`aws-lambda-ingesta/README.md`](./aws-lambda-ingesta/README.md) | ✅ Completado |
+| **Chunking Service (GCP)** | [`gcp-services/chunking-service/README.md`](./gcp-services/chunking-service/README.md) | ✅ Completado |
+| **Retrieval Service (GCP)** | [`gcp-services/retrieval-service/README.md`](./gcp-services/retrieval-service/README.md) | ✅ Completado |
+| **Documentos Normativos** | [`documentos-normas/README.md`](./documentos-normas/README.md) | ✅ Completado |
 
 * * *
 
@@ -352,7 +352,7 @@ pip install \-r requirements.txt
 python evaluate\_ragas.py \--sample 20 --no-ragas
 ```
 
-**Resultados:** El sistema ha alcanzado una precisión del 100% en una muestra de 20 preguntas del dominio legal de pensión de alimentos, superando ampliamente el umbral mínimo de 0.7 (70%) exigido por la rúbrica. Para más detalles, consulta el [`docs/ragas-report.md`](https://docs/ragas-report.md).
+**Resultados:** El sistema ha alcanzado una precisión del 100% en una muestra de 20 preguntas del dominio legal de pensión de alimentos, superando ampliamente el umbral mínimo de 0.7 (70%) exigido por la rúbrica. Para más detalles, consulta el [`docs/ragas-report.md`](./docs/ragas-report.md).
 
 * * *
 
