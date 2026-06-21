@@ -1,0 +1,128 @@
+{
+  "passed": 20,
+  "total": 20,
+  "accuracy": 1.0,
+  "details": [
+    {
+      "question": "¿Qué comprende la definición de alimentos en el Código Civil?",
+      "answer": "Lo necesario para el sustento, habitación, vestido, educación, instrucción y capacitación para el trabajo, asistencia médica y recreación del niño o del adolescente. También los gastos del embarazo de la madre desde la concepción hasta la etapa de postparto. [Artículo 92º]",
+      "expected": "sustento, habitación, vestido y asistencia médica; para menores también educación, instrucción y capacitación",
+      "success": true
+    },
+    {
+      "question": "¿Se agrava la pena si el obligado renuncia o abandona maliciosamente su trabajo?",
+      "answer": "Sí, la pena será no menor de uno ni mayor de cuatro años. [Artículo 149]",
+      "expected": "sí, la pena será no menor de uno ni mayor de cuatro años",
+      "success": true
+    },
+    {
+      "question": "¿Qué institución recibe mensualmente la lista de deudores para registrarla en la Central de Riesgos?",
+      "answer": "La Superintendencia de Banca, Seguros y Administradoras Privadas de Fondos de Pensiones. [Ley 28970, Art. 6]",
+      "expected": "Superintendencia de Banca, Seguros y AFP",
+      "success": true
+    },
+    {
+      "question": "¿La pensión de alimentos fijada en sentencia se ejecuta aunque haya apelación?",
+      "answer": "Sí, la pensión de alimentos que fije la sentencia debe pagarse por período adelantado y se ejecuta aunque haya apelación. [566, Artículo 566]",
+      "expected": "sí, se ejecuta anticipadamente",
+      "success": true
+    },
+    {
+      "question": "¿La pensión alimenticia se incrementa o reduce automáticamente si se fijó como porcentaje de las remuneraciones?",
+      "answer": "Sí, el reajuste se produce automáticamente según las variaciones de dichas remuneraciones. [482, Artículo 482]",
+      "expected": "sí, automáticamente según variaciones",
+      "success": true
+    },
+    {
+      "question": "¿Es exigible el concurso de abogados para demandar alimentos de niños o adolescentes?",
+      "answer": "No es exigible el concurso de abogados para los casos de alimentos. [Artículo 164º]",
+      "expected": "no, no es exigible",
+      "success": true
+    },
+    {
+      "question": "¿Cuántas cuotas impagas se necesitan para ser inscrito en el REDAM?",
+      "answer": "Tres (3) cuotas, sucesivas o no. [4]",
+      "expected": "tres (3) cuotas, sucesivas o no",
+      "success": true
+    },
+    {
+      "question": "Respecto a hijos menores, ¿hasta cuándo rige la pensión alimenticia por resolución judicial?",
+      "answer": "Hasta que lleguen a la mayoría de edad. [483, Artículo 483]",
+      "expected": "hasta la mayoría de edad, salvo que subsista necesidad por incapacidad o estén siguiendo estudios",
+      "success": true
+    },
+    {
+      "question": "Según el protocolo de proceso inmediato, ¿cuáles son los supuestos para incoarlo?",
+      "answer": "a) El imputado ha sido sorprendido y detenido en flagrante delito.  \nb) Confesión del imputado.  \nc) Delito evidente.  \n\n[447, artículo 447º del CPP]",
+      "expected": "flagrancia, confesión sincera, delito evidente, omisión de asistencia familiar",
+      "success": true
+    },
+    {
+      "question": "¿El acceso a la información del REDAM es gratuito?",
+      "answer": "Sí, el acceso a la información del Registro de Deudores Alimentarios Morosos es gratuito. [Ley 28970, Art. 5]",
+      "expected": "sí, es gratuito y de carácter público",
+      "success": true
+    },
+    {
+      "question": "¿Un hijo mayor de 18 años tiene derecho a alimentos?",
+      "answer": "\"El mayor de dieciocho años sólo tiene derecho a alimentos cuando no se encuentre en aptitud de atender a su subsistencia por causas de incapacidad física o mental debidamente comprobadas. Si la causa que lo redujo a ese estado fue su propia inmoralidad, sólo podrá exigir lo estrictamente necesario para subsistir.\" [473, Art. 473]",
+      "expected": "sí, solo cuando no se encuentra en aptitud de atender a su subsistencia por incapacidad física o mental comprobada",
+      "success": true
+    },
+    {
+      "question": "¿Qué principio rige en caso de duda sobre la admisión de pruebas en procesos de alimentos?",
+      "answer": "Principio favor probationem. [Artículo 170-A, inciso c]",
+      "expected": "principio favor probationem",
+      "success": true
+    },
+    {
+      "question": "¿Qué instituciones debe consultar el juez de oficio para conocer la capacidad económica del demandado?",
+      "answer": "- Ministerio de Trabajo y Promoción del Empleo (Mintra).  \n- Superintendencia Nacional de Aduanas y de Administración Tributaria (Sunat).  \n- Superintendencia de Banca, Seguros y Administradoras Privadas de Fondos de Pensiones.  \n- Superintendencia Nacional de los Registros Públicos (Sunarp).  \n- Registro Nacional de Identificación y Estado Civil (Reniec).  \n\n[564, Artículo 564]",
+      "expected": "SUNAT, SUNARP y RENIEC",
+      "success": true
+    },
+    {
+      "question": "¿Qué plazo tiene el juez para resolver una solicitud de inscripción después de correr traslado al obligado?",
+      "answer": "El juez resolverá en el mismo plazo de tres (3) días con absolución o sin ella. [Artículo 4]",
+      "expected": "tres (3) días",
+      "success": true
+    },
+    {
+      "question": "¿Qué encuesta constituye un criterio de aplicación para valorar el trabajo doméstico no remunerado?",
+      "answer": "La Encuesta Nacional de Uso del Tiempo (ENUT), del Instituto Nacional de Estadística e Informática (INEI). [Artículo 2]",
+      "expected": "Encuesta Nacional de Uso del Tiempo (ENUT) del INEI",
+      "success": true
+    },
+    {
+      "question": "¿Cuándo entra en vigencia la Ley 28970?",
+      "answer": "La presente Ley entrará en vigencia a los cuarenta y cinco (45) días de su publicación. [9, Disposiciones Finales, Tercera]",
+      "expected": "a los cuarenta y cinco (45) días de su publicación",
+      "success": true
+    },
+    {
+      "question": "Enumere el orden de prelación de los obligados a prestar alimentos según el Código Civil.",
+      "answer": "1.- Por el cónyuge.  \n2.- Por los descendientes.  \n3.- Por los ascendientes.  \n4.- Por los hermanos. [Artículo 475]  ",
+      "expected": "cónyuge, descendientes, ascendientes, hermanos",
+      "success": true
+    },
+    {
+      "question": "¿Puede el juez reprogramar la audiencia única por única vez?",
+      "answer": "Sí, el Juez puede reprogramar la audiencia por única vez en caso de no contar con los medios probatorios, en un plazo que no exceda diez (10) días. [170, Artículo 170-A, inciso f]",
+      "expected": "sí, en caso de no contar con medios probatorios, por un plazo que no exceda diez (10) días",
+      "success": true
+    },
+    {
+      "question": "En caso de duda sobre las posibilidades económicas del obligado, ¿qué principio aplica el juez?",
+      "answer": "Principio favor minoris o principio pro alimentado. [Artículo 173-A]",
+      "expected": "principio favor minoris o principio pro alimentado",
+      "success": true
+    },
+    {
+      "question": "¿La conciliación extrajudicial es requisito previo para demandar alimentos?",
+      "answer": "Sí, la Conciliación es un requisito de procedibilidad necesariamente previo a los procesos relacionados con alimentos. [6, Artículo 6o]",
+      "expected": "sí, es requisito de procedibilidad",
+      "success": true
+    }
+  ],
+  "method": "simple_keyword_match"
+}

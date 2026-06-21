@@ -1,0 +1,128 @@
+{
+  "passed": 14,
+  "total": 20,
+  "accuracy": 0.7,
+  "details": [
+    {
+      "question": "¿Qué institución recibe mensualmente la lista de deudores para registrarla en la Central de Riesgos?",
+      "answer": "La Superintendencia de Banca, Seguros y Administradoras Privadas de Fondos de Pensiones. [Ley 28970, Art. 6]",
+      "expected": "Superintendencia de Banca, Seguros y AFP",
+      "success": true
+    },
+    {
+      "question": "¿Qué plazo tiene el juez para resolver una solicitud de inscripción después de correr traslado al obligado?",
+      "answer": "El juez resolverá en el mismo plazo con absolución o sin ella. [Artículo 4]",
+      "expected": "tres (3) días",
+      "success": false
+    },
+    {
+      "question": "Enumere el orden de prelación de los obligados a prestar alimentos según el Código Civil.",
+      "answer": "1. Los cónyuges.  \n2. Los ascendientes y descendientes.  \n3. Los hermanos. [Artículo 474]  \n\n1. Por el cónyuge.  \n2. Por los descendientes.  \n3. Por los ascendientes.  \n4. Por los hermanos. [Artículo 475]  \n\n1. Los hermanos mayores de edad.  \n2. Los abuelos.  \n3. Los parientes colaterales hasta el tercer grado.  \n4. Otros responsables del niño o del adolescente. [Artículo 93º]  ",
+      "expected": "cónyuge, descendientes, ascendientes, hermanos",
+      "success": true
+    },
+    {
+      "question": "¿Puede el juez reprogramar la audiencia única por única vez?",
+      "answer": "Sí, el Juez puede reprogramar la audiencia por única vez en caso de no contar con los medios probatorios, en un plazo que no exceda diez (10) días. [170, Artículo 170-A, inciso f]",
+      "expected": "sí, en caso de no contar con medios probatorios, por un plazo que no exceda diez (10) días",
+      "success": true
+    },
+    {
+      "question": "¿En qué plazo el juez debe solicitar informes a SUNAT, SUNARP y RENIEC para conocer la capacidad económica del demandado?",
+      "answer": "No se encontró información en los documentos disponibles.",
+      "expected": "plazo no mayor de siete (7) días",
+      "success": false
+    },
+    {
+      "question": "Según el protocolo de proceso inmediato, ¿cuáles son los supuestos para incoarlo?",
+      "answer": "a) El imputado ha sido sorprendido y detenido en flagrante delito, en cualquiera de los supuestos del artículo 447º del CPP.  \nb) Confesión del imputado.  \nc) Delito evidente. [Protocolo de Actuación Interinstitucional, Disposiciones Generales, 1.3]",
+      "expected": "flagrancia, confesión sincera, delito evidente, omisión de asistencia familiar",
+      "success": true
+    },
+    {
+      "question": "¿Qué sanción recibe el funcionario público que omite comunicar que un trabajador está en el REDAM?",
+      "answer": "Destitución, sin perjuicio de la responsabilidad civil que corresponda. [Artículo 8]",
+      "expected": "falta administrativa grave sancionada con destitución",
+      "success": false
+    },
+    {
+      "question": "¿La apelación contra la resolución que ordena la inscripción tiene efecto suspensivo?",
+      "answer": "No, la apelación contra la resolución que ordena la inscripción no tiene efecto suspensivo. [Artículo 4]",
+      "expected": "no, es sin efecto suspensivo",
+      "success": true
+    },
+    {
+      "question": "Respecto a hijos menores, ¿hasta cuándo rige la pensión alimenticia por resolución judicial?",
+      "answer": "Esta deja de regir al llegar aquéllos a la mayoría de edad. [483, Artículo 483]",
+      "expected": "hasta la mayoría de edad, salvo que subsista necesidad por incapacidad o estén siguiendo estudios",
+      "success": false
+    },
+    {
+      "question": "¿La pensión alimenticia se incrementa o reduce automáticamente si se fijó como porcentaje de las remuneraciones?",
+      "answer": "Sí, el reajuste se produce automáticamente según las variaciones de dichas remuneraciones. [482]",
+      "expected": "sí, automáticamente según variaciones",
+      "success": true
+    },
+    {
+      "question": "¿Qué materias de derecho de familia se someten a conciliación?",
+      "answer": "Alimentos, régimen de visitas y violencia familiar. [Ley 28970, Art. 9]",
+      "expected": "alimentos, régimen de visitas y violencia familiar",
+      "success": true
+    },
+    {
+      "question": "¿Qué concepto debe considerar el juez como un aporte económico al fijar alimentos según la Ley 30550?",
+      "answer": "\"El trabajo doméstico no remunerado realizado por alguno de los obligados para el cuidado y desarrollo del alimentista\". [481, Artículo 481]",
+      "expected": "trabajo doméstico no remunerado",
+      "success": true
+    },
+    {
+      "question": "¿Qué encuesta constituye un criterio de aplicación para valorar el trabajo doméstico no remunerado?",
+      "answer": "La Encuesta Nacional de Uso del Tiempo (ENUT), del Instituto Nacional de Estadística e Informática (INEI). [Artículo 2]",
+      "expected": "Encuesta Nacional de Uso del Tiempo (ENUT) del INEI",
+      "success": true
+    },
+    {
+      "question": "Según el Código de los Niños y Adolescentes, ¿qué conceptos adicionales incluyen los alimentos respecto del Código Civil?",
+      "answer": "La educación, instrucción, capacitación para el trabajo, asistencia médica y recreación del niño o del adolescente, así como los gastos del embarazo de la madre desde la concepción hasta la etapa de postparto. [92, Art. 92º]",
+      "expected": "recreación, gastos del embarazo desde la concepción hasta postparto",
+      "success": true
+    },
+    {
+      "question": "¿Cuál es el plazo para contestar la demanda en proceso sumarísimo de alimentos?",
+      "answer": "Cinco (5) días. [Artículo 168, Artículo 554]",
+      "expected": "cinco (5) días",
+      "success": true
+    },
+    {
+      "question": "¿Qué plazo tiene el fiscal para emitir el requerimiento acusatorio una vez incoado el proceso inmediato?",
+      "answer": "\"No se encontró información en los documentos disponibles.\"",
+      "expected": "no mayor de 24 horas",
+      "success": false
+    },
+    {
+      "question": "En la demanda de alimentos, ¿es obligatorio especificar si el demandado es trabajador dependiente o independiente?",
+      "answer": "No, la no consignación de esta información no determina, en ningún caso, la inadmisibilidad o la improcedencia de la demanda. [Artículo 164-A]",
+      "expected": "no, la no consignación no determina inadmisibilidad",
+      "success": true
+    },
+    {
+      "question": "¿Es exigible el concurso de abogados para demandar alimentos de niños o adolescentes?",
+      "answer": "No es exigible el concurso de abogados para los casos de alimentos. [Artículo 164º]",
+      "expected": "no, no es exigible",
+      "success": true
+    },
+    {
+      "question": "¿El acceso a la información del REDAM es gratuito?",
+      "answer": "Sí, el acceso a la información del Registro de Deudores Alimentarios es gratuito. [Ley 28970, Art. 5]",
+      "expected": "sí, es gratuito y de carácter público",
+      "success": true
+    },
+    {
+      "question": "¿El recurso de apelación contra la sentencia en alimentos tiene efecto suspensivo?",
+      "answer": "\"No se encontró información en los documentos disponibles.\"",
+      "expected": "no, es sin efecto suspensivo",
+      "success": false
+    }
+  ],
+  "method": "simple_keyword_match"
+}

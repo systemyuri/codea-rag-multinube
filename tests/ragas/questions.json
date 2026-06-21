@@ -1,0 +1,331 @@
+[
+  {
+    "question": "¿Qué órgano del Poder Judicial administra el Registro de Deudores Alimentarios Morosos?",
+    "expectedAnswer": "Órgano de Gobierno del Poder Judicial",
+    "expectedArticles": "Ley 28970, Art. 1",
+    "category": "definicion",
+    "active": true
+  },
+  {
+    "question": "¿Cuántas cuotas impagas se necesitan para ser inscrito en el REDAM?",
+    "expectedAnswer": "tres (3) cuotas, sucesivas o no",
+    "expectedArticles": "Ley 28970, Art. 1",
+    "category": "condiciones",
+    "active": true
+  },
+  {
+    "question": "¿Qué contenido debe tener el 'Certificado de Registro Positivo'?",
+    "expectedAnswer": "nombre completo, DNI, fotografía, monto adeudado y órgano jurisdiccional",
+    "expectedArticles": "Ley 28970, Art. 2(b)",
+    "category": "contenido",
+    "active": true
+  },
+  {
+    "question": "¿Qué plazo tiene el juez para resolver una solicitud de inscripción después de correr traslado al obligado?",
+    "expectedAnswer": "tres (3) días",
+    "expectedArticles": "Ley 28970, Art. 4",
+    "category": "plazo",
+    "active": true
+  },
+  {
+    "question": "¿La apelación contra la resolución que ordena la inscripción tiene efecto suspensivo?",
+    "expectedAnswer": "no, es sin efecto suspensivo",
+    "expectedArticles": "Ley 28970, Art. 4",
+    "category": "recurso",
+    "active": true
+  },
+  {
+    "question": "¿El acceso a la información del REDAM es gratuito?",
+    "expectedAnswer": "sí, es gratuito y de carácter público",
+    "expectedArticles": "Ley 28970, Art. 5",
+    "category": "acceso",
+    "active": true
+  },
+  {
+    "question": "¿Qué institución recibe mensualmente la lista de deudores para registrarla en la Central de Riesgos?",
+    "expectedAnswer": "Superintendencia de Banca, Seguros y AFP",
+    "expectedArticles": "Ley 28970, Art. 6",
+    "category": "entidad",
+    "active": true
+  },
+  {
+    "question": "¿Qué sanción recibe el funcionario público que omite comunicar que un trabajador está en el REDAM?",
+    "expectedAnswer": "falta administrativa grave sancionada con destitución",
+    "expectedArticles": "Ley 28970, Art. 8",
+    "category": "sancion",
+    "active": true
+  },
+  {
+    "question": "¿Dentro de cuántos días debe el órgano jurisdiccional remitir el oficio para retención o embargo al recibir la comunicación?",
+    "expectedAnswer": "cinco (5) días",
+    "expectedArticles": "Ley 28970, Art. 9",
+    "category": "plazo",
+    "active": true
+  },
+  {
+    "question": "¿Cuándo entra en vigencia la Ley 28970?",
+    "expectedAnswer": "a los cuarenta y cinco (45) días de su publicación",
+    "expectedArticles": "Ley 28970, Disposición Final Tercera",
+    "category": "vigencia",
+    "active": true
+  },
+  {
+    "question": "¿Qué concepto debe considerar el juez como un aporte económico al fijar alimentos según la Ley 30550?",
+    "expectedAnswer": "trabajo doméstico no remunerado",
+    "expectedArticles": "Ley 30550, Art. 1",
+    "category": "concepto",
+    "active": true
+  },
+  {
+    "question": "¿Qué encuesta constituye un criterio de aplicación para valorar el trabajo doméstico no remunerado?",
+    "expectedAnswer": "Encuesta Nacional de Uso del Tiempo (ENUT) del INEI",
+    "expectedArticles": "Ley 30550, Art. 2",
+    "category": "referencia",
+    "active": true
+  },
+  {
+    "question": "En la demanda de alimentos, ¿es obligatorio especificar si el demandado es trabajador dependiente o independiente?",
+    "expectedAnswer": "no, la no consignación no determina inadmisibilidad",
+    "expectedArticles": "Ley 31464, Art. 164-A",
+    "category": "procedimiento",
+    "active": true
+  },
+  {
+    "question": "¿Dentro de cuántos días debe realizarse la audiencia única después de notificada la demanda?",
+    "expectedAnswer": "diez (10) días",
+    "expectedArticles": "Ley 31464, Art. 167-A(c)",
+    "category": "plazo",
+    "active": true
+  },
+  {
+    "question": "¿Cuál es el plazo para que el demandado conteste la demanda de alimentos?",
+    "expectedAnswer": "cinco (5) días",
+    "expectedArticles": "Ley 31464, Art. 168",
+    "category": "plazo",
+    "active": true
+  },
+  {
+    "question": "¿Qué principio rige en caso de duda sobre la admisión de pruebas en procesos de alimentos?",
+    "expectedAnswer": "principio favor probationem",
+    "expectedArticles": "Ley 31464, Art. 170-A(c)",
+    "category": "principio",
+    "active": true
+  },
+  {
+    "question": "Si el demandado no concurre a la audiencia única, ¿qué hace el juez?",
+    "expectedAnswer": "emite sentencia en el mismo acto atendiendo la prueba actuada",
+    "expectedArticles": "Ley 31464, Art. 170-A(d)",
+    "category": "procedimiento",
+    "active": true
+  },
+  {
+    "question": "En caso de duda sobre las posibilidades económicas del obligado, ¿qué principio aplica el juez?",
+    "expectedAnswer": "principio favor minoris o principio pro alimentado",
+    "expectedArticles": "Ley 31464, Art. 173-A",
+    "category": "principio",
+    "active": true
+  },
+  {
+    "question": "¿El recurso de apelación contra la sentencia en alimentos tiene efecto suspensivo?",
+    "expectedAnswer": "no, es sin efecto suspensivo",
+    "expectedArticles": "Ley 31464 (modifica art. 178 Código Niños y Adolescentes)",
+    "category": "recurso",
+    "active": true
+  },
+  {
+    "question": "¿En qué plazo el juez debe solicitar informes a SUNAT, SUNARP y RENIEC para conocer la capacidad económica del demandado?",
+    "expectedAnswer": "plazo no mayor de siete (7) días",
+    "expectedArticles": "Ley 31464 (modifica art. 564 CPC)",
+    "category": "plazo",
+    "active": true
+  },
+  {
+    "question": "¿Qué comprende la definición de alimentos en el Código Civil?",
+    "expectedAnswer": "sustento, habitación, vestido y asistencia médica; para menores también educación, instrucción y capacitación",
+    "expectedArticles": "Código Civil, Art. 472",
+    "category": "definicion",
+    "active": true
+  },
+  {
+    "question": "¿Un hijo mayor de 18 años tiene derecho a alimentos?",
+    "expectedAnswer": "sí, solo cuando no se encuentra en aptitud de atender a su subsistencia por incapacidad física o mental comprobada",
+    "expectedArticles": "Código Civil, Art. 473",
+    "category": "derecho",
+    "active": true
+  },
+  {
+    "question": "Enumere el orden de prelación de los obligados a prestar alimentos según el Código Civil.",
+    "expectedAnswer": "cónyuge, descendientes, ascendientes, hermanos",
+    "expectedArticles": "Código Civil, Art. 475",
+    "category": "orden",
+    "active": true
+  },
+  {
+    "question": "¿La pensión alimenticia se incrementa o reduce automáticamente si se fijó como porcentaje de las remuneraciones?",
+    "expectedAnswer": "sí, automáticamente según variaciones",
+    "expectedArticles": "Código Civil, Art. 482",
+    "category": "ajuste",
+    "active": true
+  },
+  {
+    "question": "¿Cuándo puede el obligado pedir la exoneración de alimentos?",
+    "expectedAnswer": "disminuyen sus ingresos poniendo en peligro su propia subsistencia o desaparece el estado de necesidad",
+    "expectedArticles": "Código Civil, Art. 483",
+    "category": "extincion",
+    "active": true
+  },
+  {
+    "question": "Respecto a hijos menores, ¿hasta cuándo rige la pensión alimenticia por resolución judicial?",
+    "expectedAnswer": "hasta la mayoría de edad, salvo que subsista necesidad por incapacidad o estén siguiendo estudios",
+    "expectedArticles": "Código Civil, Art. 483",
+    "category": "duracion",
+    "active": true
+  },
+  {
+    "question": "¿Qué tipo de proceso se aplica a los alimentos según el Código Procesal Civil?",
+    "expectedAnswer": "proceso sumarísimo",
+    "expectedArticles": "CPC, Art. 546(1)",
+    "category": "procedimiento",
+    "active": true
+  },
+  {
+    "question": "¿Qué jueces son competentes para conocer procesos de alimentos?",
+    "expectedAnswer": "Jueces de Paz Letrados, Jueces de Familia, Jueces del Niño y del Adolescente",
+    "expectedArticles": "CPC, Art. 547",
+    "category": "competencia",
+    "active": true
+  },
+  {
+    "question": "¿Cuál es el plazo para contestar la demanda en proceso sumarísimo de alimentos?",
+    "expectedAnswer": "cinco (5) días",
+    "expectedArticles": "CPC, Art. 554",
+    "category": "plazo",
+    "active": true
+  },
+  {
+    "question": "¿Dentro de cuántos días debe realizarse la audiencia única después de contestada la demanda?",
+    "expectedAnswer": "diez (10) días siguientes",
+    "expectedArticles": "CPC, Art. 554",
+    "category": "plazo",
+    "active": true
+  },
+  {
+    "question": "¿Qué instituciones debe consultar el juez de oficio para conocer la capacidad económica del demandado?",
+    "expectedAnswer": "SUNAT, SUNARP y RENIEC",
+    "expectedArticles": "CPC, Art. 564 (modificado por Ley 31464)",
+    "category": "entidades",
+    "active": true
+  },
+  {
+    "question": "¿La pensión de alimentos fijada en sentencia se ejecuta aunque haya apelación?",
+    "expectedAnswer": "sí, se ejecuta anticipadamente",
+    "expectedArticles": "CPC, Art. 566",
+    "category": "ejecucion",
+    "active": true
+  },
+  {
+    "question": "¿Qué plazo tiene el obligado para pagar después de notificado para ejecución?",
+    "expectedAnswer": "no se especifica plazo, pero ante incumplimiento el juez remite copias al Fiscal",
+    "expectedArticles": "CPC, Art. 566-A",
+    "category": "plazo",
+    "active": true
+  },
+  {
+    "question": "¿El demandante de alimentos está exonerado del pago de tasas judiciales?",
+    "expectedAnswer": "sí, siempre que el monto de la pensión alimenticia demandada no exceda de veinte (20) Unidades de Referencia Procesal",
+    "expectedArticles": "CPC, Art. 562 (Ley 26846)",
+    "category": "beneficio",
+    "active": true
+  },
+  {
+    "question": "Según el Código de los Niños y Adolescentes, ¿qué conceptos adicionales incluyen los alimentos respecto del Código Civil?",
+    "expectedAnswer": "recreación, gastos del embarazo desde la concepción hasta postparto",
+    "expectedArticles": "Código Niños y Adolescentes, Art. 92",
+    "category": "definicion",
+    "active": true
+  },
+  {
+    "question": "En ausencia de los padres, ¿quién presta alimentos en primer orden según el Código de los Niños?",
+    "expectedAnswer": "los hermanos mayores de edad",
+    "expectedArticles": "Código Niños y Adolescentes, Art. 93",
+    "category": "orden",
+    "active": true
+  },
+  {
+    "question": "¿Es exigible el concurso de abogados para demandar alimentos de niños o adolescentes?",
+    "expectedAnswer": "no, no es exigible",
+    "expectedArticles": "Código Niños y Adolescentes, Art. 164",
+    "category": "procedimiento",
+    "active": true
+  },
+  {
+    "question": "¿Qué medida cautelar debe disponer el auto admisorio en demanda de alimentos de niño o adolescente?",
+    "expectedAnswer": "asignación anticipada de alimentos",
+    "expectedArticles": "Código Niños y Adolescentes, Art. 167-A(f)",
+    "category": "medida cautelar",
+    "active": true
+  },
+  {
+    "question": "¿Puede el juez reprogramar la audiencia única por única vez?",
+    "expectedAnswer": "sí, en caso de no contar con medios probatorios, por un plazo que no exceda diez (10) días",
+    "expectedArticles": "Código Niños y Adolescentes, Art. 170-A(f)",
+    "category": "audiencia",
+    "active": true
+  },
+  {
+    "question": "¿La conciliación extrajudicial es requisito previo para demandar alimentos?",
+    "expectedAnswer": "sí, es requisito de procedibilidad",
+    "expectedArticles": "Ley de Conciliación, Arts. 6 y 9",
+    "category": "conciliacion",
+    "active": true
+  },
+  {
+    "question": "¿Qué materias de derecho de familia se someten a conciliación?",
+    "expectedAnswer": "alimentos, régimen de visitas y violencia familiar",
+    "expectedArticles": "Ley de Conciliación, Art. 9",
+    "category": "conciliacion",
+    "active": true
+  },
+  {
+    "question": "¿El acta de conciliación con acuerdo tiene mérito de título de ejecución?",
+    "expectedAnswer": "sí, se ejecuta mediante proceso de ejecución de resoluciones judiciales",
+    "expectedArticles": "Ley de Conciliación, Art. 18",
+    "category": "conciliacion",
+    "active": true
+  },
+  {
+    "question": "¿Cuál es la pena por omitir el pago de alimentos establecido en resolución judicial?",
+    "expectedAnswer": "pena privativa de libertad no mayor de tres años, o prestación de servicio comunitario de veinte a cincuentidós jornadas; si simula otra obligación, renuncia o abandona maliciosamente su trabajo, la pena será no menor de uno ni mayor de cuatro años; si resulta lesión grave o muerte, la pena será no menor de dos ni mayor de cuatro años (lesión grave) y no menor de tres ni mayor de seis años (muerte)",
+    "expectedArticles": "Decreto Legislativo 635, Art. 149",
+    "category": "penal",
+    "active": true
+  },
+  {
+    "question": "¿Se agrava la pena si el obligado renuncia o abandona maliciosamente su trabajo?",
+    "expectedAnswer": "sí, la pena será no menor de uno ni mayor de cuatro años",
+    "expectedArticles": "Decreto Legislativo 635, Art. 149 segundo párrafo",
+    "category": "penal",
+    "active": true
+  },
+  {
+    "question": "¿Qué resolvió la RA 331-2018-CE-PJ sobre los formularios de demanda de alimentos?",
+    "expectedAnswer": "aprobar la actualización de dos formularios: uno para niños, niñas y adolescentes; otro para mayores de edad",
+    "expectedArticles": "Resolución Administrativa 331-2018-CE-PJ",
+    "category": "administrativo",
+    "active": true
+  },
+  {
+    "question": "Según el protocolo de proceso inmediato, ¿cuáles son los supuestos para incoarlo?",
+    "expectedAnswer": "flagrancia, confesión sincera, delito evidente, omisión de asistencia familiar",
+    "expectedArticles": "Decreto Supremo 029-2025-JUS, Protocolo, Paso 01",
+    "category": "penal",
+    "active": true
+  },
+  {
+    "question": "¿Qué plazo tiene el fiscal para emitir el requerimiento acusatorio una vez incoado el proceso inmediato?",
+    "expectedAnswer": "no mayor de 24 horas",
+    "expectedArticles": "Decreto Supremo 029-2025-JUS, Paso 04",
+    "category": "plazo",
+    "active": true
+  }
+]

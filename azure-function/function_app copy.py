@@ -177,25 +177,41 @@ def ask(req: func.HttpRequest) -> func.HttpResponse:
         chunks = retrieve_context(vector, limit=20, filtros=filtros)
         logging.info(f"📦 Número de chunks recuperados: {len(chunks)}")
 
-        prompt = build_prompt(question, chunks)
-        answer = get_chat_completion(prompt)
+        # === DEPURACIÓN: Mostrar el primer chunk ===
+        if chunks:
+            logging.info(
+                f"📄 Primer chunk: {json.dumps(chunks[0], ensure_ascii=False)}"
+            )
+        else:
+            logging.warning("⚠️ No se encontraron chunks.")
 
-        chunks_serializable = []
-        for c in chunks:
-            if hasattr(c, "__dict__"):
-                chunks_serializable.append(c.__dict__)
-            else:
-                chunks_serializable.append(c)
+        # Paso 4: Verificar si hay chunks
+        if not chunks:
+            return func.HttpResponse(
+                json.dumps(
+                    {
+                        "answer": "No se encontraron fragmentos relevantes.",
+                        "debug_retrieval_url": RETRIEVAL_URL,
+                        "debug_chunks": chunks,
+                    },
+                    ensure_ascii=False,
+                ),
+                mimetype="application/json",
+                status_code=200,
+            )
+
+        # Paso 5: Construir el prompt
+        logging.info("📝 Construyendo prompt...")
+        prompt = build_prompt(question, chunks)
+        logging.info(f"📄 Prompt (primeros 200 caracteres): {prompt[:200]}...")
+
+        # Paso 6: Obtener respuesta del chat
+        logging.info("🤖 Llamando a Azure OpenAI...")
+        answer = get_chat_completion(prompt)
+        logging.info("✅ Respuesta generada.")
 
         return func.HttpResponse(
-            json.dumps(
-                {
-                    "answer": answer,
-                    "chunks": chunks_serializable,  # ← NUEVO
-                },
-                ensure_ascii=False,
-                default=str,
-            ),
+            json.dumps({"answer": answer}, ensure_ascii=False),
             mimetype="application/json",
             status_code=200,
         )
