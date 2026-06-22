@@ -1,7 +1,3 @@
----
-title: "Arquitectura Multi‑Cloud de CODEA RAG"
----
-
 graph TB
     subgraph "👤 Usuario"
         U[Usuario Final]
@@ -48,63 +44,18 @@ graph TB
         F3[Respuesta Generada]
     end
 
-    %% Conexiones del flujo de consulta
     U -->|Pregunta| FE
-    FE -->|1. POST /ask| ORCH
-    ORCH -->|2. Embedding| LLM
+    FE -->|"1. POST /ask"| ORCH
+    ORCH -->|"2. Embedding"| LLM
     LLM -->|Vector| ORCH
-    ORCH -->|3. POST /retrieve<br/>(vector + filtros)| RETRIEVAL
-    RETRIEVAL -->|4. Consulta SQL| VDB
+    ORCH -->|"3. POST /retrieve (vector y filtros)"| RETRIEVAL
+    RETRIEVAL -->|"4. Consulta SQL"| VDB
     VDB -->|Chunks| RETRIEVAL
     RETRIEVAL -->|Chunks| ORCH
-    ORCH -->|5. Prompt + Chunks| LLM
-    LLM -->|6. Respuesta| ORCH
-    ORCH -->|7. Respuesta| FE
-    FE -->|8. Respuesta| U
+    ORCH -->|"5. Prompt + Chunks"| LLM
+    LLM -->|"6. Respuesta"| ORCH
+    ORCH -->|"7. Respuesta"| FE
+    FE -->|"8. Respuesta"| U
 
-    %% Conexiones del flujo de ingesta
-    LAMBDA -->|POST /chunk<br/>(PDF + metadatos)| CHUNK
-    CHUNK -->|Chunks + embeddings| VDB
-
-    %% Seguridad
-    subgraph "🔐 Seguridad"
-        JWT[JWT Authentication]
-        IAM[AWS IAM Roles]
-        SA[GCP Service Accounts]
-        PE[Azure Private Endpoints]
-    end
-    
-    ORCH -.-> JWT
-    LAMBDA -.-> IAM
-    CHUNK -.-> SA
-    RETRIEVAL -.-> SA
-    FE -.-> JWT
-    ORCH -.-> PE
-
-    %% Observabilidad Cross-Cloud
-    subgraph "📊 Observabilidad Cross-Cloud"
-        AZURE_LOGS[Azure Log Analytics]
-        AWS_LOGS[AWS CloudWatch]
-        GCP_LOGS[GCP Cloud Logging]
-    end
-    
-    ORCH --> AZURE_LOGS
-    LAMBDA --> AWS_LOGS
-    RETRIEVAL --> GCP_LOGS
-    CHUNK --> GCP_LOGS
-    VDB --> GCP_LOGS
-
-    %% Estilos
-    classDef azure fill:#0078D4,color:white,stroke:#005A9E
-    classDef aws fill:#FF9900,color:white,stroke:#CC7A00
-    classDef gcp fill:#4285F4,color:white,stroke:#2A56C6
-    classDef user fill:#6C757D,color:white,stroke:#495057
-    classDef security fill:#28A745,color:white,stroke:#1E7E34
-    classDef observability fill:#17A2B8,color:white,stroke:#117A8B
-
-    class FE,ORCH,LLM,AI,PE azure
-    class S3,LAMBDA,IAM aws
-    class CHUNK,RETRIEVAL,VDB,LOGS,SA gcp
-    class U,A user
-    class JWT,SA,IAM,PE security
-    class AZURE_LOGS,AWS_LOGS,GCP_LOGS observability
+    LAMBDA -->|"POST /chunk (PDF y metadatos)"| CHUNK
+    CHUNK -->|"Chunks + embeddings"| VDB
