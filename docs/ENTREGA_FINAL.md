@@ -546,6 +546,8 @@ El diagrama completo está disponible en [`docs/arquitectura.mermaid`](https://
 -   Frontend: [https://victorious-tree-02708ac0f.7.azurestaticapps.net/](https://victorious-tree-02708ac0f.7.azurestaticapps.net/)
     
 -   Presentación en PDF: [Enlace de descarga PDF](https://drive.google.com/file/d/1Cza5BRx7KEZBkCjPRVGT3bfByS-k0Uxl/view?usp=drive_link)
+
+-   Presentación en Video: [Enlace de descarga Video](https://vik1ngfile.site/f/p6ClJszp3l)
     
 -   Repositorio GitHub: [https://github.com/systemyuri/codea-rag-multinube](https://github.com/systemyuri/codea-rag-multinube)
     
