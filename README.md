@@ -307,7 +307,7 @@ La documentación completa del proyecto está disponible en la carpeta [`docs/`
 1.  Clonar el repositorio
     
 ```bash
-git clone https://github.com/tu-usuario/codea-rag.git
+git clone https://github.com/systemyuri/codea-rag-multinube.git
 cd codea-rag
 ```
 
