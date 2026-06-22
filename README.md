@@ -74,10 +74,14 @@ En Perú, el proceso de pensión de alimentos es un tema jurídico complejo que 
 
 ---
 
-## 🎥 Video de Presentación
+## 🎥 Presentación
+
+📽️ **Presentación PDF del proyecto:**  
+[Presentacion en PDF](https://drive.google.com/file/d/1Cza5BRx7KEZBkCjPRVGT3bfByS-k0Uxl/view?usp=drive_link)
 
 📽️ **Video de presentación del proyecto:**  
-[Presentacion](https://docs.google.com/presentation/d/1pbYLm9DBwf0ocX7UEz78iUbAbPO1VoSt/edit?usp=drive_link&ouid=108325222194450107540&rtpof=true&sd=true)
+[Presentacion en Video](https://docs.google.com/presentation/d/1pbYLm9DBwf0ocX7UEz78iUbAbPO1VoSt/edit?usp=drive_link&ouid=108325222194450107540&rtpof=true&sd=true)
+
 
 ---
 
