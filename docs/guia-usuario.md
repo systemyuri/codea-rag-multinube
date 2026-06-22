@@ -68,7 +68,7 @@ Usa leyes, decretos, resoluciones y códigos peruanos relacionados con pensión 
 Actualmente, CODEA está especializado en pensión de alimentos. Puede responder preguntas generales, pero su precisión es mayor en este tema.
 
 **¿Cómo puedo reportar un error o sugerir una mejora?**  
-Puedes escribir a `codea@example.com` o reportar un problema en el [Issue Tracker](https://github.com/tu-usuario/codea-rag/issues).
+Puedes escribir a `codea@example.com` o reportar un problema en el [Issue Tracker](https://github.com/systemyuri/codea-rag-multinube/issues).
 
 ---
 

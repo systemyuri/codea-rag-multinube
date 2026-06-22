@@ -72,7 +72,7 @@ codea-rag/
 |---------|--------|
 | **Frontend desplegado** | [https://victorious-tree-02708ac0f.7.azurestaticapps.net/](https://victorious-tree-02708ac0f.7.azurestaticapps.net/) |
 | **Video de presentación** | [Enlace a Google Slides](https://docs.google.com/presentation/d/1pbYLm9DBwf0ocX7UEz78iUbAbPO1VoSt/edit?usp=drive_link&ouid=108325222194450107540&rtpof=true&sd=true) |
-| **Repositorio GitHub** | [https://github.com/tu-usuario/codea-rag](https://github.com/tu-usuario/codea-rag) |
+| **Repositorio GitHub** | [https://github.com/systemyuri/codea-rag-multinube](https://github.com/systemyuri/codea-rag-multinube) |
 
 ---
 

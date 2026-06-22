@@ -39,7 +39,7 @@ frontend/
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/tu-usuario/codea-rag.git
+git clone https://github.com/systemyuri/codea-rag-multinube.git
 cd codea-rag/frontend
 ```
 
