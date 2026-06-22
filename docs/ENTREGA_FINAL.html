@@ -1,1262 +1,1913 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc 3.10" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>document</title>
-  <style>
-    /* Default styles provided by pandoc.
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc 3.10" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>document</title>
+    <style>
+      /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    html {
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 12px;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-    }
-    @media print {
       html {
-        background-color: white;
+        color: #1a1a1a;
+        background-color: #fdfdfd;
       }
       body {
+        margin: 0 auto;
+        max-width: 36em;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        hyphens: auto;
+        overflow-wrap: break-word;
+        text-rendering: optimizeLegibility;
+        font-kerning: normal;
+      }
+      @media (max-width: 600px) {
+        body {
+          font-size: 0.9em;
+          padding: 12px;
+        }
+        h1 {
+          font-size: 1.8em;
+        }
+      }
+      @media print {
+        html {
+          background-color: white;
+        }
+        body {
+          background-color: transparent;
+          color: black;
+          font-size: 12pt;
+        }
+        p,
+        h2,
+        h3 {
+          orphans: 3;
+          widows: 3;
+        }
+        h2,
+        h3,
+        h4 {
+          page-break-after: avoid;
+        }
+      }
+      p {
+        margin: 1em 0;
+      }
+      a {
+        color: #1a1a1a;
+      }
+      a:visited {
+        color: #1a1a1a;
+      }
+      img {
+        max-width: 100%;
+      }
+      svg {
+        height: auto;
+        max-width: 100%;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-top: 1.4em;
+      }
+      h5,
+      h6 {
+        font-size: 1em;
+        font-style: italic;
+      }
+      h6 {
+        font-weight: normal;
+      }
+      ol,
+      ul {
+        padding-left: 1.7em;
+        margin-top: 1em;
+      }
+      li > ol,
+      li > ul {
+        margin-top: 0;
+      }
+      blockquote {
+        margin: 1em 0 1em 1.7em;
+        padding-left: 1em;
+        border-left: 2px solid #e6e6e6;
+        color: #606060;
+      }
+      code {
+        white-space: pre-wrap;
+        font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
+        font-size: 85%;
+        margin: 0;
+        hyphens: manual;
+      }
+      pre {
+        margin: 1em 0;
+        overflow: auto;
+      }
+      pre code {
+        padding: 0;
+        overflow: visible;
+        overflow-wrap: normal;
+      }
+      .sourceCode {
         background-color: transparent;
-        color: black;
-        font-size: 12pt;
+        overflow: visible;
       }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
+      hr {
+        border: none;
+        border-top: 1px solid #1a1a1a;
+        height: 1px;
+        margin: 1em 0;
       }
-      h2, h3, h4 {
-        page-break-after: avoid;
+      table {
+        margin: 1em 0;
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: auto;
+        display: block;
+        font-variant-numeric: lining-nums tabular-nums;
       }
-    }
-    p {
-      margin: 1em 0;
-    }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    svg {
-      height: auto;
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      white-space: pre-wrap;
-      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-      font-size: 85%;
-      margin: 0;
-      hyphens: manual;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      border: none;
-      border-top: 1px solid #1a1a1a;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: 1.5em;}
-    div.column{flex: auto;}
-    @media screen {
-    div.columns{gap: min(4vw, 1.5em);}
-    div.column{overflow-x: auto;}
-    }
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
+      table caption {
+        margin-bottom: 0.75em;
+      }
+      tbody {
+        margin-top: 0.5em;
+        border-top: 1px solid #1a1a1a;
+        border-bottom: 1px solid #1a1a1a;
+      }
+      th {
+        border-top: 1px solid #1a1a1a;
+        padding: 0.25em 0.5em 0.25em 0.5em;
+      }
+      td {
+        padding: 0.125em 0.5em 0.25em 0.5em;
+      }
+      header {
+        margin-bottom: 4em;
+        text-align: center;
+      }
+      #TOC li {
+        list-style: none;
+      }
+      #TOC ul {
+        padding-left: 1.3em;
+      }
+      #TOC > ul {
+        padding-left: 0;
+      }
+      #TOC a:not(:hover) {
+        text-decoration: none;
+      }
+      span.smallcaps {
+        font-variant: small-caps;
+      }
+      div.columns {
+        display: flex;
+        gap: 1.5em;
+      }
+      div.column {
+        flex: auto;
+      }
+      @media screen {
+        div.columns {
+          gap: min(4vw, 1.5em);
+        }
+        div.column {
+          overflow-x: auto;
+        }
+      }
+      div.hanging-indent {
+        margin-left: 1.5em;
+        text-indent: -1.5em;
+      }
+      /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
+      ul.task-list[class] {
+        list-style: none;
+      }
+      ul.task-list li input[type="checkbox"] {
+        font-size: inherit;
+        width: 0.8em;
+        margin: 0 0.8em 0.2em -1.6em;
+        vertical-align: middle;
+      }
+      .display.math {
+        display: block;
+        text-align: center;
+        margin: 0.5rem auto;
+      }
+      /* CSS for syntax highlighting */
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      pre > code.sourceCode {
+        white-space: pre;
+        position: relative;
+      }
+      pre > code.sourceCode > span {
+        display: inline-block;
+        line-height: 1.25;
+      }
+      pre > code.sourceCode > span:empty {
+        height: 1.2em;
+      }
+      .sourceCode {
+        overflow: visible;
+      }
+      code.sourceCode > span {
+        color: inherit;
+        text-decoration: inherit;
+      }
+      div.sourceCode {
+        margin: 1em 0;
+      }
+      pre.sourceCode {
+        margin: 0;
+      }
+      @media screen {
+        div.sourceCode {
+          overflow: auto;
+        }
+      }
+      @media print {
+        pre > code.sourceCode {
+          white-space: pre-wrap;
+        }
+        pre > code.sourceCode > span {
+          text-indent: -5em;
+          padding-left: 5em;
+        }
+      }
+      pre.numberSource code {
+        counter-reset: source-line 0;
+      }
+      pre.numberSource code > span {
+        position: relative;
+        left: -4em;
+        counter-increment: source-line;
+      }
+      pre.numberSource code > span > a:first-child::before {
+        content: counter(source-line);
+        position: relative;
+        left: -1em;
+        text-align: right;
+        vertical-align: baseline;
+        border: none;
+        display: inline-block;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 0 4px;
+        width: 4em;
         color: #aaaaaa;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {  background-color: #f8f8f8; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ef2929; } /* Alert */
-    code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #204a87; } /* Attribute */
-    code span.bn { color: #0000cf; } /* BaseN */
-    code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4e9a06; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #8f5902; font-style: italic; } /* Comment */
-    code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-    code span.dt { color: #204a87; } /* DataType */
-    code span.dv { color: #0000cf; } /* DecVal */
-    code span.er { color: #a40000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #0000cf; } /* Float */
-    code span.fu { color: #204a87; font-weight: bold; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-    code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-    code span.ot { color: #8f5902; } /* Other */
-    code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-    code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
-    code span.ss { color: #4e9a06; } /* SpecialString */
-    code span.st { color: #4e9a06; } /* String */
-    code span.va { color: #000000; } /* Variable */
-    code span.vs { color: #4e9a06; } /* VerbatimString */
-    code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
-  
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'default',
-      securityLevel: 'loose'
-    });
-    window.addEventListener('load', function() {
-      var converted = new Set();
+      pre.numberSource {
+        margin-left: 3em;
+        border-left: 1px solid #aaaaaa;
+        padding-left: 4px;
+      }
+      div.sourceCode {
+        background-color: #f8f8f8;
+      }
+      @media screen {
+        pre > code.sourceCode > span > a:first-child::before {
+          text-decoration: underline;
+        }
+      }
+      code span.al {
+        color: #ef2929;
+      } /* Alert */
+      code span.an {
+        color: #8f5902;
+        font-weight: bold;
+        font-style: italic;
+      } /* Annotation */
+      code span.at {
+        color: #204a87;
+      } /* Attribute */
+      code span.bn {
+        color: #0000cf;
+      } /* BaseN */
+      code span.cf {
+        color: #204a87;
+        font-weight: bold;
+      } /* ControlFlow */
+      code span.ch {
+        color: #4e9a06;
+      } /* Char */
+      code span.cn {
+        color: #8f5902;
+      } /* Constant */
+      code span.co {
+        color: #8f5902;
+        font-style: italic;
+      } /* Comment */
+      code span.cv {
+        color: #8f5902;
+        font-weight: bold;
+        font-style: italic;
+      } /* CommentVar */
+      code span.do {
+        color: #8f5902;
+        font-weight: bold;
+        font-style: italic;
+      } /* Documentation */
+      code span.dt {
+        color: #204a87;
+      } /* DataType */
+      code span.dv {
+        color: #0000cf;
+      } /* DecVal */
+      code span.er {
+        color: #a40000;
+        font-weight: bold;
+      } /* Error */
+      code span.ex {
+      } /* Extension */
+      code span.fl {
+        color: #0000cf;
+      } /* Float */
+      code span.fu {
+        color: #204a87;
+        font-weight: bold;
+      } /* Function */
+      code span.im {
+      } /* Import */
+      code span.in {
+        color: #8f5902;
+        font-weight: bold;
+        font-style: italic;
+      } /* Information */
+      code span.kw {
+        color: #204a87;
+        font-weight: bold;
+      } /* Keyword */
+      code span.op {
+        color: #ce5c00;
+        font-weight: bold;
+      } /* Operator */
+      code span.ot {
+        color: #8f5902;
+      } /* Other */
+      code span.pp {
+        color: #8f5902;
+        font-style: italic;
+      } /* Preprocessor */
+      code span.sc {
+        color: #ce5c00;
+        font-weight: bold;
+      } /* SpecialChar */
+      code span.ss {
+        color: #4e9a06;
+      } /* SpecialString */
+      code span.st {
+        color: #4e9a06;
+      } /* String */
+      code span.va {
+        color: #000000;
+      } /* Variable */
+      code span.vs {
+        color: #4e9a06;
+      } /* VerbatimString */
+      code span.wa {
+        color: #8f5902;
+        font-weight: bold;
+        font-style: italic;
+      } /* Warning */
+    </style>
 
-      document.querySelectorAll('pre').forEach(function(pre) {
-        var code = pre.querySelector('code');
-        var preHasMermaid = pre.className && pre.className.indexOf('mermaid') !== -1;
-        var codeHasMermaid =
-          code &&
-          (code.className || '').match(/(?:^|\s)(?:mermaid|language-mermaid)(?:\s|$)/);
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "default",
+        securityLevel: "loose",
+      });
+      window.addEventListener("load", function () {
+        var converted = new Set();
 
-        if (preHasMermaid || codeHasMermaid) {
-          var div = document.createElement('div');
-          div.className = 'mermaid';
-          div.textContent = code ? code.textContent : pre.textContent;
-          if (pre.parentNode) {
-            if (code) {
-              converted.add(code);
+        document.querySelectorAll("pre").forEach(function (pre) {
+          var code = pre.querySelector("code");
+          var preHasMermaid =
+            pre.className && pre.className.indexOf("mermaid") !== -1;
+          var codeHasMermaid =
+            code &&
+            (code.className || "").match(
+              /(?:^|\s)(?:mermaid|language-mermaid)(?:\s|$)/,
+            );
+
+          if (preHasMermaid || codeHasMermaid) {
+            var div = document.createElement("div");
+            div.className = "mermaid";
+            div.textContent = code ? code.textContent : pre.textContent;
+            if (pre.parentNode) {
+              if (code) {
+                converted.add(code);
+              }
+              pre.parentNode.replaceChild(div, pre);
             }
-            pre.parentNode.replaceChild(div, pre);
           }
-        }
+        });
+
+        // Handle rare cases where mermaid markup exists without a <pre> wrapper
+        document.querySelectorAll("code").forEach(function (code) {
+          var hasMermaid =
+            (code.className || "").indexOf("mermaid") !== -1 ||
+            (code.className || "").indexOf("language-mermaid") !== -1;
+          if (!hasMermaid || converted.has(code)) {
+            return;
+          }
+          var wrapper = document.createElement("div");
+          wrapper.className = "mermaid";
+          wrapper.textContent = code.textContent;
+          if (code.parentNode) {
+            code.parentNode.replaceChild(wrapper, code);
+            converted.add(wrapper);
+          }
+        });
+
+        setTimeout(function () {
+          mermaid.init(undefined, document.querySelectorAll(".mermaid"));
+        }, 100);
       });
-
-      // Handle rare cases where mermaid markup exists without a <pre> wrapper
-      document.querySelectorAll('code').forEach(function(code) {
-        var hasMermaid = (code.className || '').indexOf('mermaid') !== -1 || (code.className || '').indexOf('language-mermaid') !== -1;
-        if (!hasMermaid || converted.has(code)) {
-          return;
-        }
-        var wrapper = document.createElement('div');
-        wrapper.className = 'mermaid';
-        wrapper.textContent = code.textContent;
-        if (code.parentNode) {
-          code.parentNode.replaceChild(wrapper, code);
-          converted.add(wrapper);
-        }
-      });
-
-      setTimeout(function() {
-        mermaid.init(undefined, document.querySelectorAll('.mermaid'));
-      }, 100);
-    });
-  </script>
-
-  <style>
-  body {
-      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-      line-height: 1.5;
-      color: #333;
-      background-color: #fafafa;
-      margin: 0 !important;
-      padding: 20px !important;
-      font-size: 14px;
-  }
-
-  table {
-      border-collapse: collapse;
-      min-width: 60%;
-      max-width: 100%;
-      margin: 20px 0;
-      background: white;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  }
-
-  table tr th {
-      background-color: #143452;
-      color: white;
-      padding: 12px 15px;
-      text-align: left;
-      font-weight: 500;
-  }
-
-  .table-http th,
-  .table-http td,
-  table th,
-  table td {
-      word-break: break-word;
-      overflow-wrap: anywhere;
-      white-space: normal;
-  }
-
-  .tr-break {
-      background-color: #2d79b717 !important;
-  }
-
-  .tr-break td {
-      padding: 8px 12px;
-      font-size: 12px;
-      font-weight: bold;
-  }
-
-  table tr td {
-      padding: 12px 15px;
-      border-bottom: 1px solid #ecf0f1;
-  }
-
-  table tr:last-child td {
-      border-bottom: none;
-  }
-
-  table tr:nth-child(even) {
-      background-color: #f8f9fa;
-  }
-
-  .highlight {
-      background-color: #fff3cd !important;
-  }
-
-  a {
-      font-size: 14px;
-  }
-
-  code {
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-family: 'Monaco', 'Consolas', monospace;
-      background: #fff8e4;
-      color: #c99a0d;
-      font-size: 13px;
-  }
-
-  pre code {
-      background-color: transparent;
-  }
-
-  pre {
-      background-color: #000;
-      color: #f8f8f2;
-      padding: 20px;
-      border-radius: 6px;
-      border-left: 4px solid #3498db;
-      overflow-x: auto;
-  }
-
-  pre code.language-php,
-  pre code.language-sql,
-  pre code.language-javascript,
-  pre code.language-bash,
-  pre code.language-shell {
-    background-color: #282c34 !important;
-    color: #abb2bf;
-  }
-
-  /* Syntax Highlighting */
-  code span.kw { color: #c678dd; font-weight: bold; } /* Keyword */
-  code span.dt { color: #e5c07b; } /* Datatype */
-  code span.dv { color: #d19a66; } /* Decimal Value */
-  code span.bn { color: #d19a66; } /* Base N */
-  code span.fl { color: #d19a66; } /* Float */
-  code span.ch { color: #98c379; } /* Char */
-  code span.st { color: #98c379; } /* String */
-  code span.co { color: #5c6370; font-style: italic; } /* Comment */
-  code span.ot { color: #e06c75; } /* Other */
-  code span.al { color: #e06c75; font-weight: bold; } /* Alert */
-  code span.fu { color: #61afef; } /* Function */
-  code span.er { color: #e06c75; font-weight: bold; } /* Error */
-  code span.wa { color: #e06c75; font-style: italic; } /* Warning */
-  code span.cn { color: #d19a66; } /* Constant */
-  code span.sc { color: #e5c07b; } /* Special Char */
-  code span.vs { color: #98c379; } /* Verbatim String */
-  code span.ss { color: #98c379; } /* Special String */
-  code span.im { color: #c678dd; } /* Import */
-  code span.va { color: #e06c75; } /* Variable */
-  code span.cf { color: #c678dd; } /* Control Flow */
-  code span.op { color: #56b6c2; } /* Operator */
-  code span.bu { color: #e5c07b; } /* BuiltIn */
-  code span.ex { color: #d19a66; } /* Extension */
-  code span.pp { color: #e5c07b; } /* Preprocessor */
-  code span.at { color: #d19a66; } /* Attribute */
-  code span.do { color: #5c6370; font-style: italic; } /* Documentation */
-  code span.an { color: #5c6370; font-style: italic; } /* Annotation */
-  code span.cv { color: #5c6370; font-style: italic; } /* Comment Var */
-  code span.in { color: #5c6370; font-style: italic; } /* Information */
-
-  ul, ol {
-      margin: 15px 0;
-      padding-left: 30px;
-  }
-
-  li {
-      margin-bottom: 8px;
-  }
-
-  blockquote {
-      background-color: #fff3cd;
-      border-left: 4px solid #ffc107;
-      padding: 15px 20px;
-      margin: 20px 0;
-      border-radius: 4px;
-      color: #856404;
-  }
-
-  pre code.language-json {
-    background-color: #0d1117 !important;
-    color: #58a6ff !important;
-    display: block;
-    font-size: 14px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: -15px;
-  }
-
-  .table-http code {
-      font-size: 12px;
-  }
-
-  .table-http th:nth-child(1),.table-http td:nth-child(1) { width: 8%; }  /* HTTP Method */
-  .table-http th:nth-child(2),.table-http td:nth-child(2) { width: 15%; } /* URL */
-  .table-http th:nth-child(3),.table-http td:nth-child(3) { width: 19%; } /* Mô tả */
-  .table-http th:nth-child(4),.table-http td:nth-child(4) { width: 43%; } /* RewriteRule */
-  .table-http th:nth-child(5),.table-http td:nth-child(5) { width: 15%; } /* Ví dụ */
-
-  pre, pre.sourceCode {
-      background-color: #c0c4c73b;
-  }
-
-  .sourceCode {
-      overflow: auto;
-  }
-
-  /* Pandoc highlight overrides */
-  pre.sourceCode {
-      background: #f7f7f7;
-      border: 1px solid #e0e0e0;
-      padding: 16px;
-      border-radius: 6px;
-  }
-  .sourceCode code {
-      font-family: 'Monaco', 'Consolas', monospace;
-      font-size: 13px;
-      padding: unset !important;
-  }
-  .sourceCode .kw { color: #2a8ad4; font-weight: 700; }    /* keywords */
-  .sourceCode .cf { color: #2a8ad4; font-weight: 700; }    /* control flow */
-  .sourceCode .dt { color: #070707; }                      /* data types */
-  .sourceCode .fu { color: #8b5cf6; }                     /* functions */
-  .sourceCode .op { color: #2a8ad4; }                     /* operators */
-  .sourceCode .st { color: #0aa370; }                     /* strings */
-  .sourceCode .dv,                                     /* decimal values */
-  .sourceCode .bn { color: #c18401; }                     /* numbers */
-  .sourceCode .fl { color: #c18401; }                     /* floats */
-  .sourceCode .ch { color: #0aa370; }                     /* chars */
-  .sourceCode .co { color: #6a737d; font-style: italic; } /* comments */
-  .sourceCode .va { color: #444; }                        /* variables */
-  .sourceCode .cn { color: #c18401; font-weight: 700; }   /* constants */
-  .sourceCode .al { color: #d73a49; font-weight: 700; }   /* alerts */
-  .sourceCode .an { color: #d73a49; font-weight: 700; }   /* annotations */
-  .sourceCode .at { color: #005cc5; }                     /* attributes */
-  .sourceCode .im { color: #005cc5; }                     /* imports */
-
-  #TOC {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 20px 0;
-  }
-
-  #TOC > ul {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  #TOC ul {
-    list-style: none;
-    padding-left: 20px;
-  }
-
-  #TOC li {
-    margin: 8px 0;
-  }
-
-  #TOC a {
-    text-decoration: none;
-    color: #0066cc;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-
-  #TOC a:hover {
-    color: #004499;
-    text-decoration: underline;
-  }
-
-  #TOC > ul > li > a {
-    font-size: 1.1em;
-    font-weight: 600;
-    color: #333;
-  }
-
-  #TOC ul ul a {
-    font-size: 0.95em;
-    color: #555;
-  }
-
-  hr {
-      background: #cacaca;
-  }
-
-  .w-50 {
-      width: 50%;
-  }
-
-  .w-100 {
-      width: 100%;
-  }
-
-  .max-w-100 {
-      max-width: 100% !important;
-  }
-
-  .shadow-xs {
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  }
-
-  a {
-      font-size: 14px;
-  }
-
-  code {
-      padding: 2px 6px;
-      border-radius: 3px;
-      font-family: 'Monaco', 'Consolas', monospace;
-      background: #fff8e4;
-      color: #c99a0d;
-      font-size: 13px;
-  }
-
-  pre code {
-      background-color: transparent;
-  }
-
-  pre {
-      background-color: #000;
-      color: #f8f8f2;
-      padding: 20px;
-      border-radius: 6px;
-      border-left: 4px solid #3498db;
-      overflow-x: auto;
-  }
-
-  pre.sourceCode {
-      border-left: 4px solid #3498db;
-  }
-
-  pre code.language-php,
-  pre code.language-sql,
-  pre code.language-javascript,
-  pre code.language-bash,
-  pre code.language-shell {
-    background-color: #282c34 !important;
-    color: #abb2bf;
-  }
-
-  /* Syntax Highlighting */
-  code span.kw { color: #c678dd; font-weight: bold; } /* Keyword */
-  code span.dt { color: #e5c07b; } /* Datatype */
-  code span.dv { color: #d19a66; } /* Decimal Value */
-  code span.bn { color: #d19a66; } /* Base N */
-  code span.fl { color: #d19a66; } /* Float */
-  code span.ch { color: #98c379; } /* Char */
-  code span.st { color: #98c379; } /* String */
-  code span.co { color: #5c6370; font-style: italic; } /* Comment */
-  code span.ot { color: #e06c75; } /* Other */
-  code span.al { color: #e06c75; font-weight: bold; } /* Alert */
-  code span.fu { color: #61afef; } /* Function */
-  code span.er { color: #e06c75; font-weight: bold; } /* Error */
-  code span.wa { color: #e06c75; font-style: italic; } /* Warning */
-  code span.cn { color: #d19a66; } /* Constant */
-  code span.sc { color: #e5c07b; } /* Special Char */
-  code span.vs { color: #98c379; } /* Verbatim String */
-  code span.ss { color: #98c379; } /* Special String */
-  code span.im { color: #c678dd; } /* Import */
-  code span.va { color: #e06c75; } /* Variable */
-  code span.cf { color: #c678dd; } /* Control Flow */
-  code span.op { color: #56b6c2; } /* Operator */
-  code span.bu { color: #e5c07b; } /* BuiltIn */
-  code span.ex { color: #d19a66; } /* Extension */
-  code span.pp { color: #e5c07b; } /* Preprocessor */
-  code span.at { color: #d19a66; } /* Attribute */
-  code span.do { color: #5c6370; font-style: italic; } /* Documentation */
-  code span.an { color: #5c6370; font-style: italic; } /* Annotation */
-  code span.cv { color: #5c6370; font-style: italic; } /* Comment Var */
-  code span.in { color: #5c6370; font-style: italic; } /* Information */
-
-  ul, ol {
-      margin: 15px 0;
-      padding-left: 30px;
-  }
-
-  li {
-      margin-bottom: 8px;
-  }
-
-  blockquote {
-      background-color: #fff3cd;
-      border-left: 4px solid #ffc107;
-      padding: 15px 20px;
-      margin: 20px 0;
-      border-radius: 4px;
-      color: #856404;
-  }
-
-  pre code.language-json {
-    background-color: #0d1117 !important;
-    color: #58a6ff !important;
-    display: block;
-    font-size: 14px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: -15px;
-  }
-
-  .table-http code {
-      font-size: 12px;
-  }
-
-  .table-http th:nth-child(1),.table-http td:nth-child(1) { width: 8%; }  /* HTTP Method */
-  .table-http th:nth-child(2),.table-http td:nth-child(2) { width: 15%; } /* URL */
-  .table-http th:nth-child(3),.table-http td:nth-child(3) { width: 19%; } /* Mô tả */
-  .table-http th:nth-child(4),.table-http td:nth-child(4) { width: 43%; } /* RewriteRule */
-  .table-http th:nth-child(5),.table-http td:nth-child(5) { width: 15%; } /* Ví dụ */
-
-  pre, pre.sourceCode {
-      background-color: #c0c4c73b;
-  }
-
-  .sourceCode {
-      overflow: auto;
-  }
-
-  /* Pandoc highlight overrides */
-  pre.sourceCode {
-      background: #f7f7f7;
-      border: 1px solid #e0e0e0;
-      padding: 16px;
-      border-radius: 6px;
-      border-left: 4px solid #3498db;
-  }
-  .sourceCode code {
-      font-family: 'Monaco', 'Consolas', monospace;
-      font-size: 13px;
-  }
-  .sourceCode .kw { color: #2a8ad4; font-weight: 700; }    /* keywords */
-  .sourceCode .cf { color: #2a8ad4; font-weight: 700; }    /* control flow */
-  .sourceCode .dt { color: #070707; }                      /* data types */
-  .sourceCode .fu { color: #8b5cf6; }                     /* functions */
-  .sourceCode .op { color: #2a8ad4; }                     /* operators */
-  .sourceCode .st { color: #0aa370; }                     /* strings */
-  .sourceCode .dv,                                     /* decimal values */
-  .sourceCode .bn { color: #c18401; }                     /* numbers */
-  .sourceCode .fl { color: #c18401; }                     /* floats */
-  .sourceCode .ch { color: #0aa370; }                     /* chars */
-  .sourceCode .co { color: #6a737d; font-style: italic; } /* comments */
-  .sourceCode .va { color: #444; }                        /* variables */
-  .sourceCode .cn { color: #c18401; font-weight: 700; }   /* constants */
-  .sourceCode .al { color: #d73a49; font-weight: 700; }   /* alerts */
-  .sourceCode .an { color: #d73a49; font-weight: 700; }   /* annotations */
-  .sourceCode .at { color: #005cc5; }                     /* attributes */
-  .sourceCode .im { color: #005cc5; }                     /* imports */
-
-  #TOC {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 20px 0;
-  }
-
-  #TOC > ul {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  #TOC ul {
-    list-style: none;
-    padding-left: 20px;
-  }
-
-  #TOC li {
-    margin: 8px 0;
-  }
-
-  #TOC a {
-    text-decoration: none;
-    color: #0066cc;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-
-  #TOC a:hover {
-    color: #004499;
-    text-decoration: underline;
-  }
-
-  #TOC > ul > li > a {
-    font-size: 1.1em;
-    font-weight: 600;
-    color: #333;
-  }
-
-  #TOC ul ul a {
-    font-size: 0.95em;
-    color: #555;
-  }
-
-  hr {
-      background: #cacaca;
-  }
-
-  .w-50 {
-      width: 50%;
-  }
-
-  .w-100 {
-      width: 100%;
-  }
-
-  .max-w-100 {
-      max-width: 100% !important;
-  }
-
-  .shadow-xs {
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  }
-
-  </style>
-</head>
-<body>
-<nav id="TOC" role="doc-toc">
-<ul>
-<li><a
-href="#codea-rag-plataforma-serverless-multicloud-para-consultas-sobre-pensión-de-alimentos-en-perú"
-id="toc-codea-rag-plataforma-serverless-multicloud-para-consultas-sobre-pensión-de-alimentos-en-perú">📚
-CODEA RAG – Plataforma Serverless Multi‑Cloud para Consultas sobre
-Pensión de Alimentos en Perú</a>
-<ul>
-<li><a href="#índice" id="toc-índice">📋 Índice</a></li>
-<li><a href="#resumen-ejecutivo" id="toc-resumen-ejecutivo">1. Resumen
-Ejecutivo</a></li>
-<li><a href="#introducción-y-caso-de-uso"
-id="toc-introducción-y-caso-de-uso">2. Introducción y Caso de Uso</a>
-<ul>
-<li><a href="#contexto-del-problema" id="toc-contexto-del-problema">2.1
-Contexto del Problema</a></li>
-<li><a href="#solución-propuesta" id="toc-solución-propuesta">2.2
-Solución Propuesta</a></li>
-<li><a href="#kpis-definidos" id="toc-kpis-definidos">2.3 KPIs
-Definidos</a></li>
-</ul></li>
-<li><a href="#arquitectura-del-sistema"
-id="toc-arquitectura-del-sistema">3. Arquitectura del Sistema</a>
-<ul>
-<li><a href="#visión-general" id="toc-visión-general">3.1 Visión
-General</a></li>
-<li><a href="#diagrama-de-arquitectura"
-id="toc-diagrama-de-arquitectura">3.2 Diagrama de Arquitectura</a></li>
-<li><a href="#flujo-de-datos-pipeline-rag-distribuido"
-id="toc-flujo-de-datos-pipeline-rag-distribuido"> 3.3 Flujo de Datos
-(Pipeline RAG Distribuido)</a></li>
-</ul></li>
-<li><a href="#patrón-de-diseño-llm-implementado"
-id="toc-patrón-de-diseño-llm-implementado">4. Patrón de Diseño LLM
-Implementado</a>
-<ul>
-<li><a href="#patrón-seleccionado" id="toc-patrón-seleccionado">4.1
-Patrón Seleccionado</a></li>
-<li><a href="#justificación-técnica" id="toc-justificación-técnica">4.2
-Justificación Técnica</a></li>
-<li><a href="#diagrama-del-patrón-en-el-pipeline"
-id="toc-diagrama-del-patrón-en-el-pipeline">4.3 Diagrama del Patrón en
-el Pipeline</a></li>
-<li><a href="#código-de-referencia-extracción-de-filtros"
-id="toc-código-de-referencia-extracción-de-filtros">4.4 Código de
-Referencia (Extracción de Filtros)</a></li>
-</ul></li>
-<li><a href="#contenerización-con-docker"
-id="toc-contenerización-con-docker">5. Contenerización con Docker</a>
-<ul>
-<li><a href="#componentes-contenerizados"
-id="toc-componentes-contenerizados">5.1 Componentes
-Contenerizados</a></li>
-<li><a href="#buenas-prácticas-aplicadas"
-id="toc-buenas-prácticas-aplicadas">5.2 Buenas Prácticas
-Aplicadas</a></li>
-<li><a href="#ejemplo-de-dockerfile-retrieval-service"
-id="toc-ejemplo-de-dockerfile-retrieval-service">5.3 Ejemplo de
-Dockerfile (Retrieval Service)</a></li>
-<li><a href="#despliegue-en-cloud-run"
-id="toc-despliegue-en-cloud-run">5.4 Despliegue en Cloud Run</a></li>
-</ul></li>
-<li><a href="#cicd-multinube" id="toc-cicd-multinube">6. CI/CD
-Multinube</a>
-<ul>
-<li><a href="#estado-actual" id="toc-estado-actual">6.1 Estado
-Actual</a></li>
-<li><a href="#propuesta-de-integración-con-github-actions"
-id="toc-propuesta-de-integración-con-github-actions">6.2 Propuesta de
-Integración con GitHub Actions</a></li>
-<li><a href="#ejemplo-de-workflow-fragmento"
-id="toc-ejemplo-de-workflow-fragmento">6.3 Ejemplo de Workflow
-(Fragmento)</a></li>
-<li><a href="#infraestructura-como-código-terraform"
-id="toc-infraestructura-como-código-terraform">6.4 Infraestructura como
-Código (Terraform)</a></li>
-</ul></li>
-<li><a href="#optimización-de-costos-finops"
-id="toc-optimización-de-costos-finops">7. Optimización de Costos
-(FinOps)</a>
-<ul>
-<li><a href="#costo-mensual-estimado-sin-optimizar"
-id="toc-costo-mensual-estimado-sin-optimizar">7.1 Costo Mensual Estimado
-(Sin Optimizar)</a></li>
-<li><a href="#estrategias-de-optimización"
-id="toc-estrategias-de-optimización">7.2 Estrategias de
-Optimización</a></li>
-<li><a href="#costo-optimizado" id="toc-costo-optimizado">7.3 Costo
-Optimizado</a></li>
-</ul></li>
-<li><a href="#observabilidad-crosscloud"
-id="toc-observabilidad-crosscloud">8. Observabilidad Cross‑Cloud</a>
-<ul>
-<li><a href="#herramientas-por-proveedor"
-id="toc-herramientas-por-proveedor">8.1 Herramientas por
-Proveedor</a></li>
-<li><a href="#métricas-clave" id="toc-métricas-clave">8.2 Métricas
-Clave</a></li>
-<li><a href="#trazabilidad-del-flujo"
-id="toc-trazabilidad-del-flujo">8.3 Trazabilidad del Flujo</a></li>
-</ul></li>
-<li><a href="#evaluación-y-resultados"
-id="toc-evaluación-y-resultados">9. Evaluación y Resultados</a>
-<ul>
-<li><a href="#metodología-de-prueba" id="toc-metodología-de-prueba">9.1
-Metodología de Prueba</a></li>
-<li><a href="#resultados" id="toc-resultados">9.2 Resultados</a></li>
-<li><a href="#detalle-por-pregunta-muestra"
-id="toc-detalle-por-pregunta-muestra">9.3 Detalle por Pregunta
-(Muestra)</a></li>
-<li><a href="#análisis-de-fortalezas"
-id="toc-análisis-de-fortalezas">9.4 Análisis de Fortalezas</a></li>
-<li><a href="#limitaciones-del-método"
-id="toc-limitaciones-del-método">9.5 Limitaciones del Método</a></li>
-<li><a href="#mejoras-futuras" id="toc-mejoras-futuras">9.6 Mejoras
-Futuras</a></li>
-</ul></li>
-<li><a href="#conclusiones-y-próximos-pasos"
-id="toc-conclusiones-y-próximos-pasos">10. Conclusiones y Próximos
-Pasos</a>
-<ul>
-<li><a href="#conclusiones" id="toc-conclusiones">10.1
-Conclusiones</a></li>
-<li><a href="#próximos-pasos" id="toc-próximos-pasos">10.2 Próximos
-Pasos</a></li>
-</ul></li>
-<li><a href="#anexos" id="toc-anexos">11. Anexos</a>
-<ul>
-<li><a href="#enlaces-a-documentación-completa"
-id="toc-enlaces-a-documentación-completa">11.1 Enlaces a Documentación
-Completa</a></li>
-<li><a href="#diagrama-de-arquitectura-mermaid"
-id="toc-diagrama-de-arquitectura-mermaid">11.2 Diagrama de Arquitectura
-(Mermaid)</a></li>
-<li><a href="#acceso-a-la-aplicación"
-id="toc-acceso-a-la-aplicación">11.3 Acceso a la Aplicación</a></li>
-</ul></li>
-<li><a href="#agradecimientos" id="toc-agradecimientos">📌
-Agradecimientos</a></li>
-</ul></li>
-</ul>
-</nav>
-<h1
-id="codea-rag-plataforma-serverless-multicloud-para-consultas-sobre-pensión-de-alimentos-en-perú">📚
-CODEA RAG – Plataforma Serverless Multi‑Cloud para Consultas sobre
-Pensión de Alimentos en Perú</h1>
-<p><strong>Proyecto Final – Diseño de Infraestructura
-Escalable</strong><br />
-<strong>Programa de AI/LLM Solution Architect</strong><br />
-<strong>BSG Institute</strong></p>
-<hr />
-<p><strong>Autor:</strong> David Yurvilca<br />
-<strong>Profesor:</strong> Msc, PgP, Andrés Felipe Rojas Parra<br />
-<strong>Fecha:</strong> Junio 2026<br />
-<strong>Versión:</strong> 1.0 (Entrega Final)</p>
-<hr />
-<h2 id="índice">📋 Índice</h2>
-<ol type="1">
-<li><a href="#1-resumen-ejecutivo">Resumen Ejecutivo</a></li>
-<li><a href="#2-introducción-y-caso-de-uso">Introducción y Caso de
-Uso</a></li>
-<li><a href="#3-arquitectura-del-sistema">Arquitectura del
-Sistema</a></li>
-<li><a href="#4-patrón-de-diseño-llm-implementado">Patrón de Diseño LLM
-Implementado</a></li>
-<li><a href="#5-contenerización-con-docker">Contenerización con
-Docker</a></li>
-<li><a href="#6-cicd-multinube">CI/CD Multinube</a></li>
-<li><a href="#7-optimización-de-costos-finops">Optimización de Costos
-(FinOps)</a></li>
-<li><a href="#8-observabilidad-cross‑cloud">Observabilidad
-Cross‑Cloud</a></li>
-<li><a href="#9-evaluación-y-resultados">Evaluación y
-Resultados</a></li>
-<li><a href="#10-conclusiones-y-próximos-pasos">Conclusiones y Próximos
-Pasos</a></li>
-<li><a href="#11-anexos">Anexos</a></li>
-</ol>
-<hr />
-<h2 id="resumen-ejecutivo">1. Resumen Ejecutivo</h2>
-<p><strong>CODEA RAG</strong> es una plataforma serverless multi‑cloud
-diseñada para responder preguntas en lenguaje natural sobre la pensión
-de alimentos en Perú. Utiliza un enfoque de <strong>Retrieval-Augmented
-Generation (RAG)</strong> distribuido entre tres proveedores cloud:</p>
-<ul>
-<li><strong>Microsoft Azure:</strong> Frontend, orquestación, LLM y
-observabilidad.</li>
-<li><strong>Amazon Web Services (AWS):</strong> Ingesta y almacenamiento
-de documentos.</li>
-<li><strong>Google Cloud Platform (GCP):</strong> Procesamiento de
-texto, búsqueda vectorial y base de datos.</li>
-</ul>
-<p>El sistema implementa el patrón de diseño <strong>RAG Básico +
-Self-Query Retriever</strong>, combinando búsqueda semántica con filtros
-por metadatos, alcanzando una <strong>precisión del 100%</strong> en las
-pruebas de validación y un costo mensual optimizado de <strong>~$111.75
-USD</strong>.</p>
-<hr />
-<h2 id="introducción-y-caso-de-uso">2. Introducción y Caso de Uso</h2>
-<h3 id="contexto-del-problema">2.1 Contexto del Problema</h3>
-<p>En Perú, el proceso de pensión de alimentos es un tema jurídico
-complejo que involucra múltiples normas legales (Código Civil, Código de
-los Niños y Adolescentes, leyes específicas, decretos, resoluciones).
-Los ciudadanos que necesitan información sobre este tema enfrentan
-varias dificultades:</p>
-<ul>
-<li><strong>Acceso limitado a la información legal:</strong> Las normas
-están dispersas en diferentes documentos y portales.</li>
-<li><strong>Lenguaje jurídico complejo:</strong> Los textos legales son
-difíciles de entender para el ciudadano promedio.</li>
-<li><strong>Actualización constante:</strong> Las normas cambian y es
-difícil mantenerse al día.</li>
-<li><strong>Falta de herramientas accesibles:</strong> No existen
-plataformas gratuitas y fáciles de usar para consultar este tipo de
-información.</li>
-</ul>
-<h3 id="solución-propuesta">2.2 Solución Propuesta</h3>
-<p><strong>CODEA RAG</strong> resuelve estos problemas mediante:</p>
-<ol type="1">
-<li><strong>Centralización</strong> de las normas legales en una base de
-datos vectorial.</li>
-<li><strong>Consultas en lenguaje natural</strong>, sin necesidad de
-tecnicismos legales.</li>
-<li><strong>Respuestas con citas textuales</strong> de las fuentes
-originales.</li>
-<li><strong>Automatización de la ingesta</strong> de nuevos
-documentos.</li>
-</ol>
-<h3 id="kpis-definidos">2.3 KPIs Definidos</h3>
-<table>
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 37%" />
-<col style="width: 48%" />
-</colgroup>
-<thead>
-<tr>
-<th>KPI</th>
-<th>Descripción</th>
-<th>Valor Alcanzado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Latencia total del flujo</strong></td>
-<td>Tiempo desde la consulta hasta la respuesta final.</td>
-<td>~3.25 segundos</td>
-</tr>
-<tr>
-<td><strong>Tokens/s en inferencia</strong></td>
-<td>Rendimiento del modelo LLM (Azure OpenAI).</td>
-<td>15 tokens/s</td>
-</tr>
-<tr>
-<td><strong>Costo por 1k tokens</strong></td>
-<td>Costo de operación del LLM y embeddings.</td>
-<td>$0.60</td>
-</tr>
-<tr>
-<td><strong>Tasa de aciertos RAG</strong></td>
-<td>Precisión del sistema de recuperación y generación.</td>
-<td>100% (validación)</td>
-</tr>
-<tr>
-<td><strong>Cloud egress cost</strong></td>
-<td>Costos de transferencia de datos entre nubes.</td>
-<td>Optimizado con caching</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="arquitectura-del-sistema">3. Arquitectura del Sistema</h2>
-<h3 id="visión-general">3.1 Visión General</h3>
-<p>CODEA RAG es una plataforma serverless multi‑cloud compuesta por los
-siguientes componentes:</p>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 66%" />
-</colgroup>
-<thead>
-<tr>
-<th>Proveedor</th>
-<th>Servicios utilizados</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Azure</strong></td>
-<td>Azure Functions (orquestador), Azure OpenAI (embeddings y chat),
-Azure Static Web Apps (frontend)</td>
-</tr>
-<tr>
-<td><strong>AWS</strong></td>
-<td>S3 (almacenamiento de PDFs), Lambda (ingesta automática)</td>
-</tr>
-<tr>
-<td><strong>GCP</strong></td>
-<td>AlloyDB + pgvector (base de datos vectorial), Cloud Run (chunking y
-retrieval)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="diagrama-de-arquitectura">3.2 Diagrama de Arquitectura</h3>
-<div class="mermaid">
-graph TB
-    subgraph &quot;👤 Usuario&quot;
-        U[Usuario Final]
-        A[Administrador]
-    end
-
-    subgraph &quot;☁️ Microsoft Azure&quot;
-        direction TB
-        FE[Azure Static Web Apps&lt;br/&gt;Frontend React]
-        ORCH[Azure Functions&lt;br/&gt;Orquestador RAG]
-        LLM[Azure OpenAI&lt;br/&gt;GPT-4o + Embeddings]
-        AI[Application Insights&lt;br/&gt;Observabilidad]
-        
-        FE --&gt; ORCH
-        ORCH --&gt; LLM
-        ORCH --&gt; AI
-    end
-
-    subgraph &quot;☁️ Amazon Web Services&quot;
-        direction TB
-        S3[AWS S3&lt;br/&gt;Almacenamiento de PDFs]
-        LAMBDA[AWS Lambda&lt;br/&gt;Ingesta Automática]
-        
-        A --&gt;|Sube PDF| S3
-        S3 --&gt;|Evento| LAMBDA
-    end
-
-    subgraph &quot;☁️ Google Cloud Platform&quot;
-        direction TB
-        CHUNK[Cloud Run&lt;br/&gt;Chunking Service]
-        RETRIEVAL[Cloud Run&lt;br/&gt;Retrieval Service]
-        VDB[(AlloyDB + pgvector&lt;br/&gt;Base de Datos Vectorial)]
-        LOGS[Cloud Logging &amp; Monitoring&lt;br/&gt;Observabilidad]
-        
-        CHUNK --&gt; VDB
-        RETRIEVAL --&gt; VDB
-        RETRIEVAL --&gt; LOGS
-    end
-
-    subgraph &quot;🔀 Flujos de Datos&quot;
-        direction LR
-        F1[Consulta del Usuario]
-        F2[Ingesta de Documentos]
-        F3[Respuesta Generada]
-    end
-
-    U --&gt;|Pregunta| FE
-    FE --&gt;|&quot;1. POST /ask&quot;| ORCH
-    ORCH --&gt;|&quot;2. Embedding&quot;| LLM
-    LLM --&gt;|Vector| ORCH
-    ORCH --&gt;|&quot;3. POST /retrieve (vector y filtros)&quot;| RETRIEVAL
-    RETRIEVAL --&gt;|&quot;4. Consulta SQL&quot;| VDB
-    VDB --&gt;|Chunks| RETRIEVAL
-    RETRIEVAL --&gt;|Chunks| ORCH
-    ORCH --&gt;|&quot;5. Prompt + Chunks&quot;| LLM
-    LLM --&gt;|&quot;6. Respuesta&quot;| ORCH
-    ORCH --&gt;|&quot;7. Respuesta&quot;| FE
-    FE --&gt;|&quot;8. Respuesta&quot;| U
-
-    LAMBDA --&gt;|&quot;POST /chunk (PDF y metadatos)&quot;| CHUNK
-    CHUNK --&gt;|&quot;Chunks + embeddings&quot;| VDB
-</div>
-<h3 id="flujo-de-datos-pipeline-rag-distribuido"> 3.3 Flujo de Datos
-(Pipeline RAG Distribuido)</h3>
-<ol type="1">
-<li><p><strong>Ingesta de Documentos:</strong> Un administrador sube un
-PDF al bucket S3 de AWS con metadatos
-(<code>hash</code>, <code>title</code>, <code>norm_code</code>).</p></li>
-<li><p><strong>Procesamiento (AWS Lambda):</strong> Lambda se activa,
-valida el hash (evita duplicados) y envía el PDF al <em>Chunking
-Service</em> en GCP.</p></li>
-<li><p><strong>Chunking (GCP Cloud Run):</strong> El servicio extrae el
-texto, lo fragmenta en chunks, genera embeddings (Azure OpenAI) y los
-almacena en AlloyDB.</p></li>
-<li><p><strong>Consulta de Usuario:</strong> El usuario escribe una
-pregunta desde el frontend (Azure Static Web Apps).</p></li>
-<li><p><strong>Self-Query:</strong> La Azure Function extrae filtros
-(<code>norm_code</code>, <code>title</code>) de la pregunta usando
-expresiones regulares.</p></li>
-<li><p><strong>Orquestación:</strong> La Azure Function genera un
-embedding de la pregunta y envía el vector + filtros al <em>Retrieval
-Service</em>.</p></li>
-<li><p><strong>Retrieval (GCP Cloud Run):</strong> Realiza una búsqueda
-por similitud coseno en AlloyDB aplicando los filtros, devolviendo los
-chunks más relevantes.</p></li>
-<li><p><strong>Generación:</strong> La Azure Function construye un
-prompt con los chunks recuperados y la pregunta original, y lo envía a
-Azure OpenAI (GPT-4o).</p></li>
-<li><p><strong>Respuesta:</strong> El LLM genera la respuesta final con
-citas <code>[Ley 27337, Art. 164]</code> y el frontend la muestra al
-usuario.</p></li>
-</ol>
-<hr />
-<h2 id="patrón-de-diseño-llm-implementado">4. Patrón de Diseño LLM
-Implementado</h2>
-<h3 id="patrón-seleccionado">4.1 Patrón Seleccionado</h3>
-<p><strong>Patrón principal:</strong> <em>RAG Básico + Self-Query
-Retriever</em><br />
-<strong>Patrón secundario:</strong> <em>Guardrail de
-Ingesta</em> (control de duplicados y validación de documentos)</p>
-<h3 id="justificación-técnica">4.2 Justificación Técnica</h3>
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr>
-<th>Criterio</th>
-<th>Evaluación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Latencia</strong></td>
-<td>El Self-Query Retriever añade un paso de extracción de filtros
-(regex, &lt; 5ms) y una cláusula <code>WHERE</code> en la consulta SQL.
-Impacto mínimo (~+10% en tiempo de retrieval).</td>
-</tr>
-<tr>
-<td><strong>Costo</strong></td>
-<td>No se invoca un LLM para extraer filtros, por lo que el costo
-adicional es nulo.</td>
-</tr>
-<tr>
-<td><strong>Calidad</strong></td>
-<td>El filtrado por metadatos elimina chunks irrelevantes, mejorando la
-precisión. Resultado: 100% de precisión en validación.</td>
-</tr>
-<tr>
-<td><strong>Seguridad</strong></td>
-<td>El guardrail de ingesta previene la subida de documentos corruptos o
-duplicados.</td>
-</tr>
-<tr>
-<td><strong>Complejidad</strong></td>
-<td>Implementación simple: regex para extracción y filtros SQL. No
-requiere infraestructura adicional.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="diagrama-del-patrón-en-el-pipeline">4.3 Diagrama del Patrón en
-el Pipeline</h3>
-<div class="mermaid">
-sequenceDiagram
-    participant User as Usuario
-    participant Frontend as Frontend (Azure)
-    participant Orchestrator as Orquestador (Azure Functions)
-    participant Retrieval as Retrieval Service (GCP Cloud Run)
-    participant VectorDB as AlloyDB (pgvector)
-    participant LLM as Azure OpenAI
-
-    User-&gt;&gt;Frontend: Pregunta en lenguaje natural
-    Frontend-&gt;&gt;Orchestrator: POST /ask {question}
-
-    Note over Orchestrator: Self-Query Retriever
-    Orchestrator-&gt;&gt;Orchestrator: extraer_filtros(question)
-    Orchestrator-&gt;&gt;Orchestrator: generate_embedding(question)
-
-    Orchestrator-&gt;&gt;Retrieval: POST /retrieve {vector, filtros}
-    Retrieval-&gt;&gt;VectorDB: SELECT ... WHERE norm_code ILIKE &#39;%LEY 27337%&#39;
-    VectorDB--&gt;&gt;Retrieval: Chunks filtrados
-    Retrieval--&gt;&gt;Orchestrator: {chunks}
-
-    Orchestrator-&gt;&gt;Orchestrator: build_prompt(question, chunks)
-    Orchestrator-&gt;&gt;LLM: chat_completion(prompt)
-    LLM--&gt;&gt;Orchestrator: Respuesta generada
-
-    Orchestrator--&gt;&gt;Frontend: {answer}
-    Frontend--&gt;&gt;User: Respuesta con citas
-</div>
-<h3 id="código-de-referencia-extracción-de-filtros">4.4 Código de
-Referencia (Extracción de Filtros)</h3>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+    </script>
+
+    <style>
+      body {
+        font-family:
+          "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP",
+          sans-serif;
+        line-height: 1.5;
+        color: #333;
+        background-color: #fafafa;
+        margin: 0 !important;
+        padding: 20px !important;
+        font-size: 14px;
+      }
+
+      table {
+        border-collapse: collapse;
+        min-width: 60%;
+        max-width: 100%;
+        margin: 20px 0;
+        background: white;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+
+      table tr th {
+        background-color: #143452;
+        color: white;
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: 500;
+      }
+
+      .table-http th,
+      .table-http td,
+      table th,
+      table td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        white-space: normal;
+      }
+
+      .tr-break {
+        background-color: #2d79b717 !important;
+      }
+
+      .tr-break td {
+        padding: 8px 12px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      table tr td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #ecf0f1;
+      }
+
+      table tr:last-child td {
+        border-bottom: none;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f8f9fa;
+      }
+
+      .highlight {
+        background-color: #fff3cd !important;
+      }
+
+      a {
+        font-size: 14px;
+      }
+
+      code {
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Monaco", "Consolas", monospace;
+        background: #fff8e4;
+        color: #c99a0d;
+        font-size: 13px;
+      }
+
+      pre code {
+        background-color: transparent;
+      }
+
+      pre {
+        background-color: #000;
+        color: #f8f8f2;
+        padding: 20px;
+        border-radius: 6px;
+        border-left: 4px solid #3498db;
+        overflow-x: auto;
+      }
+
+      pre code.language-php,
+      pre code.language-sql,
+      pre code.language-javascript,
+      pre code.language-bash,
+      pre code.language-shell {
+        background-color: #282c34 !important;
+        color: #abb2bf;
+      }
+
+      /* Syntax Highlighting */
+      code span.kw {
+        color: #c678dd;
+        font-weight: bold;
+      } /* Keyword */
+      code span.dt {
+        color: #e5c07b;
+      } /* Datatype */
+      code span.dv {
+        color: #d19a66;
+      } /* Decimal Value */
+      code span.bn {
+        color: #d19a66;
+      } /* Base N */
+      code span.fl {
+        color: #d19a66;
+      } /* Float */
+      code span.ch {
+        color: #98c379;
+      } /* Char */
+      code span.st {
+        color: #98c379;
+      } /* String */
+      code span.co {
+        color: #5c6370;
+        font-style: italic;
+      } /* Comment */
+      code span.ot {
+        color: #e06c75;
+      } /* Other */
+      code span.al {
+        color: #e06c75;
+        font-weight: bold;
+      } /* Alert */
+      code span.fu {
+        color: #61afef;
+      } /* Function */
+      code span.er {
+        color: #e06c75;
+        font-weight: bold;
+      } /* Error */
+      code span.wa {
+        color: #e06c75;
+        font-style: italic;
+      } /* Warning */
+      code span.cn {
+        color: #d19a66;
+      } /* Constant */
+      code span.sc {
+        color: #e5c07b;
+      } /* Special Char */
+      code span.vs {
+        color: #98c379;
+      } /* Verbatim String */
+      code span.ss {
+        color: #98c379;
+      } /* Special String */
+      code span.im {
+        color: #c678dd;
+      } /* Import */
+      code span.va {
+        color: #e06c75;
+      } /* Variable */
+      code span.cf {
+        color: #c678dd;
+      } /* Control Flow */
+      code span.op {
+        color: #56b6c2;
+      } /* Operator */
+      code span.bu {
+        color: #e5c07b;
+      } /* BuiltIn */
+      code span.ex {
+        color: #d19a66;
+      } /* Extension */
+      code span.pp {
+        color: #e5c07b;
+      } /* Preprocessor */
+      code span.at {
+        color: #d19a66;
+      } /* Attribute */
+      code span.do {
+        color: #5c6370;
+        font-style: italic;
+      } /* Documentation */
+      code span.an {
+        color: #5c6370;
+        font-style: italic;
+      } /* Annotation */
+      code span.cv {
+        color: #5c6370;
+        font-style: italic;
+      } /* Comment Var */
+      code span.in {
+        color: #5c6370;
+        font-style: italic;
+      } /* Information */
+
+      ul,
+      ol {
+        margin: 15px 0;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      blockquote {
+        background-color: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 4px;
+        color: #856404;
+      }
+
+      pre code.language-json {
+        background-color: #0d1117 !important;
+        color: #58a6ff !important;
+        display: block;
+        font-size: 14px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin: -15px;
+      }
+
+      .table-http code {
+        font-size: 12px;
+      }
+
+      .table-http th:nth-child(1),
+      .table-http td:nth-child(1) {
+        width: 8%;
+      } /* HTTP Method */
+      .table-http th:nth-child(2),
+      .table-http td:nth-child(2) {
+        width: 15%;
+      } /* URL */
+      .table-http th:nth-child(3),
+      .table-http td:nth-child(3) {
+        width: 19%;
+      } /* Mô tả */
+      .table-http th:nth-child(4),
+      .table-http td:nth-child(4) {
+        width: 43%;
+      } /* RewriteRule */
+      .table-http th:nth-child(5),
+      .table-http td:nth-child(5) {
+        width: 15%;
+      } /* Ví dụ */
+
+      pre,
+      pre.sourceCode {
+        background-color: #c0c4c73b;
+      }
+
+      .sourceCode {
+        overflow: auto;
+      }
+
+      /* Pandoc highlight overrides */
+      pre.sourceCode {
+        background: #f7f7f7;
+        border: 1px solid #e0e0e0;
+        padding: 16px;
+        border-radius: 6px;
+      }
+      .sourceCode code {
+        font-family: "Monaco", "Consolas", monospace;
+        font-size: 13px;
+        padding: unset !important;
+      }
+      .sourceCode .kw {
+        color: #2a8ad4;
+        font-weight: 700;
+      } /* keywords */
+      .sourceCode .cf {
+        color: #2a8ad4;
+        font-weight: 700;
+      } /* control flow */
+      .sourceCode .dt {
+        color: #070707;
+      } /* data types */
+      .sourceCode .fu {
+        color: #8b5cf6;
+      } /* functions */
+      .sourceCode .op {
+        color: #2a8ad4;
+      } /* operators */
+      .sourceCode .st {
+        color: #0aa370;
+      } /* strings */
+      .sourceCode .dv,                                     /* decimal values */
+  .sourceCode .bn {
+        color: #c18401;
+      } /* numbers */
+      .sourceCode .fl {
+        color: #c18401;
+      } /* floats */
+      .sourceCode .ch {
+        color: #0aa370;
+      } /* chars */
+      .sourceCode .co {
+        color: #6a737d;
+        font-style: italic;
+      } /* comments */
+      .sourceCode .va {
+        color: #444;
+      } /* variables */
+      .sourceCode .cn {
+        color: #c18401;
+        font-weight: 700;
+      } /* constants */
+      .sourceCode .al {
+        color: #d73a49;
+        font-weight: 700;
+      } /* alerts */
+      .sourceCode .an {
+        color: #d73a49;
+        font-weight: 700;
+      } /* annotations */
+      .sourceCode .at {
+        color: #005cc5;
+      } /* attributes */
+      .sourceCode .im {
+        color: #005cc5;
+      } /* imports */
+
+      #TOC {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      #TOC > ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      #TOC ul {
+        list-style: none;
+        padding-left: 20px;
+      }
+
+      #TOC li {
+        margin: 8px 0;
+      }
+
+      #TOC a {
+        text-decoration: none;
+        color: #0066cc;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      #TOC a:hover {
+        color: #004499;
+        text-decoration: underline;
+      }
+
+      #TOC > ul > li > a {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #333;
+      }
+
+      #TOC ul ul a {
+        font-size: 0.95em;
+        color: #555;
+      }
+
+      hr {
+        background: #cacaca;
+      }
+
+      .w-50 {
+        width: 50%;
+      }
+
+      .w-100 {
+        width: 100%;
+      }
+
+      .max-w-100 {
+        max-width: 100% !important;
+      }
+
+      .shadow-xs {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+
+      a {
+        font-size: 14px;
+      }
+
+      code {
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Monaco", "Consolas", monospace;
+        background: #fff8e4;
+        color: #c99a0d;
+        font-size: 13px;
+      }
+
+      pre code {
+        background-color: transparent;
+      }
+
+      pre {
+        background-color: #000;
+        color: #f8f8f2;
+        padding: 20px;
+        border-radius: 6px;
+        border-left: 4px solid #3498db;
+        overflow-x: auto;
+      }
+
+      pre.sourceCode {
+        border-left: 4px solid #3498db;
+      }
+
+      pre code.language-php,
+      pre code.language-sql,
+      pre code.language-javascript,
+      pre code.language-bash,
+      pre code.language-shell {
+        background-color: #282c34 !important;
+        color: #abb2bf;
+      }
+
+      /* Syntax Highlighting */
+      code span.kw {
+        color: #c678dd;
+        font-weight: bold;
+      } /* Keyword */
+      code span.dt {
+        color: #e5c07b;
+      } /* Datatype */
+      code span.dv {
+        color: #d19a66;
+      } /* Decimal Value */
+      code span.bn {
+        color: #d19a66;
+      } /* Base N */
+      code span.fl {
+        color: #d19a66;
+      } /* Float */
+      code span.ch {
+        color: #98c379;
+      } /* Char */
+      code span.st {
+        color: #98c379;
+      } /* String */
+      code span.co {
+        color: #5c6370;
+        font-style: italic;
+      } /* Comment */
+      code span.ot {
+        color: #e06c75;
+      } /* Other */
+      code span.al {
+        color: #e06c75;
+        font-weight: bold;
+      } /* Alert */
+      code span.fu {
+        color: #61afef;
+      } /* Function */
+      code span.er {
+        color: #e06c75;
+        font-weight: bold;
+      } /* Error */
+      code span.wa {
+        color: #e06c75;
+        font-style: italic;
+      } /* Warning */
+      code span.cn {
+        color: #d19a66;
+      } /* Constant */
+      code span.sc {
+        color: #e5c07b;
+      } /* Special Char */
+      code span.vs {
+        color: #98c379;
+      } /* Verbatim String */
+      code span.ss {
+        color: #98c379;
+      } /* Special String */
+      code span.im {
+        color: #c678dd;
+      } /* Import */
+      code span.va {
+        color: #e06c75;
+      } /* Variable */
+      code span.cf {
+        color: #c678dd;
+      } /* Control Flow */
+      code span.op {
+        color: #56b6c2;
+      } /* Operator */
+      code span.bu {
+        color: #e5c07b;
+      } /* BuiltIn */
+      code span.ex {
+        color: #d19a66;
+      } /* Extension */
+      code span.pp {
+        color: #e5c07b;
+      } /* Preprocessor */
+      code span.at {
+        color: #d19a66;
+      } /* Attribute */
+      code span.do {
+        color: #5c6370;
+        font-style: italic;
+      } /* Documentation */
+      code span.an {
+        color: #5c6370;
+        font-style: italic;
+      } /* Annotation */
+      code span.cv {
+        color: #5c6370;
+        font-style: italic;
+      } /* Comment Var */
+      code span.in {
+        color: #5c6370;
+        font-style: italic;
+      } /* Information */
+
+      ul,
+      ol {
+        margin: 15px 0;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      blockquote {
+        background-color: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 4px;
+        color: #856404;
+      }
+
+      pre code.language-json {
+        background-color: #0d1117 !important;
+        color: #58a6ff !important;
+        display: block;
+        font-size: 14px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin: -15px;
+      }
+
+      .table-http code {
+        font-size: 12px;
+      }
+
+      .table-http th:nth-child(1),
+      .table-http td:nth-child(1) {
+        width: 8%;
+      } /* HTTP Method */
+      .table-http th:nth-child(2),
+      .table-http td:nth-child(2) {
+        width: 15%;
+      } /* URL */
+      .table-http th:nth-child(3),
+      .table-http td:nth-child(3) {
+        width: 19%;
+      } /* Mô tả */
+      .table-http th:nth-child(4),
+      .table-http td:nth-child(4) {
+        width: 43%;
+      } /* RewriteRule */
+      .table-http th:nth-child(5),
+      .table-http td:nth-child(5) {
+        width: 15%;
+      } /* Ví dụ */
+
+      pre,
+      pre.sourceCode {
+        background-color: #c0c4c73b;
+      }
+
+      .sourceCode {
+        overflow: auto;
+      }
+
+      /* Pandoc highlight overrides */
+      pre.sourceCode {
+        background: #f7f7f7;
+        border: 1px solid #e0e0e0;
+        padding: 16px;
+        border-radius: 6px;
+        border-left: 4px solid #3498db;
+      }
+      .sourceCode code {
+        font-family: "Monaco", "Consolas", monospace;
+        font-size: 13px;
+      }
+      .sourceCode .kw {
+        color: #2a8ad4;
+        font-weight: 700;
+      } /* keywords */
+      .sourceCode .cf {
+        color: #2a8ad4;
+        font-weight: 700;
+      } /* control flow */
+      .sourceCode .dt {
+        color: #070707;
+      } /* data types */
+      .sourceCode .fu {
+        color: #8b5cf6;
+      } /* functions */
+      .sourceCode .op {
+        color: #2a8ad4;
+      } /* operators */
+      .sourceCode .st {
+        color: #0aa370;
+      } /* strings */
+      .sourceCode .dv,                                     /* decimal values */
+  .sourceCode .bn {
+        color: #c18401;
+      } /* numbers */
+      .sourceCode .fl {
+        color: #c18401;
+      } /* floats */
+      .sourceCode .ch {
+        color: #0aa370;
+      } /* chars */
+      .sourceCode .co {
+        color: #6a737d;
+        font-style: italic;
+      } /* comments */
+      .sourceCode .va {
+        color: #444;
+      } /* variables */
+      .sourceCode .cn {
+        color: #c18401;
+        font-weight: 700;
+      } /* constants */
+      .sourceCode .al {
+        color: #d73a49;
+        font-weight: 700;
+      } /* alerts */
+      .sourceCode .an {
+        color: #d73a49;
+        font-weight: 700;
+      } /* annotations */
+      .sourceCode .at {
+        color: #005cc5;
+      } /* attributes */
+      .sourceCode .im {
+        color: #005cc5;
+      } /* imports */
+
+      #TOC {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      #TOC > ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      #TOC ul {
+        list-style: none;
+        padding-left: 20px;
+      }
+
+      #TOC li {
+        margin: 8px 0;
+      }
+
+      #TOC a {
+        text-decoration: none;
+        color: #0066cc;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      #TOC a:hover {
+        color: #004499;
+        text-decoration: underline;
+      }
+
+      #TOC > ul > li > a {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #333;
+      }
+
+      #TOC ul ul a {
+        font-size: 0.95em;
+        color: #555;
+      }
+
+      hr {
+        background: #cacaca;
+      }
+
+      .w-50 {
+        width: 50%;
+      }
+
+      .w-100 {
+        width: 100%;
+      }
+
+      .max-w-100 {
+        max-width: 100% !important;
+      }
+
+      .shadow-xs {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="TOC" role="doc-toc">
+      <ul>
+        <li>
+          <a
+            href="#codea-rag-plataforma-serverless-multicloud-para-consultas-sobre-pensión-de-alimentos-en-perú"
+            id="toc-codea-rag-plataforma-serverless-multicloud-para-consultas-sobre-pensión-de-alimentos-en-perú"
+            >📚 CODEA RAG – Plataforma Serverless Multi‑Cloud para Consultas
+            sobre Pensión de Alimentos en Perú</a
+          >
+          <ul>
+            <li><a href="#índice" id="toc-índice">📋 Índice</a></li>
+            <li>
+              <a href="#resumen-ejecutivo" id="toc-resumen-ejecutivo"
+                >1. Resumen Ejecutivo</a
+              >
+            </li>
+            <li>
+              <a
+                href="#introducción-y-caso-de-uso"
+                id="toc-introducción-y-caso-de-uso"
+                >2. Introducción y Caso de Uso</a
+              >
+              <ul>
+                <li>
+                  <a
+                    href="#contexto-del-problema"
+                    id="toc-contexto-del-problema"
+                    >2.1 Contexto del Problema</a
+                  >
+                </li>
+                <li>
+                  <a href="#solución-propuesta" id="toc-solución-propuesta"
+                    >2.2 Solución Propuesta</a
+                  >
+                </li>
+                <li>
+                  <a href="#kpis-definidos" id="toc-kpis-definidos"
+                    >2.3 KPIs Definidos</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="#arquitectura-del-sistema"
+                id="toc-arquitectura-del-sistema"
+                >3. Arquitectura del Sistema</a
+              >
+              <ul>
+                <li>
+                  <a href="#visión-general" id="toc-visión-general"
+                    >3.1 Visión General</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#diagrama-de-arquitectura"
+                    id="toc-diagrama-de-arquitectura"
+                    >3.2 Diagrama de Arquitectura</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#flujo-de-datos-pipeline-rag-distribuido"
+                    id="toc-flujo-de-datos-pipeline-rag-distribuido"
+                    > 3.3 Flujo de Datos (Pipeline RAG Distribuido)</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="#patrón-de-diseño-llm-implementado"
+                id="toc-patrón-de-diseño-llm-implementado"
+                >4. Patrón de Diseño LLM Implementado</a
+              >
+              <ul>
+                <li>
+                  <a href="#patrón-seleccionado" id="toc-patrón-seleccionado"
+                    >4.1 Patrón Seleccionado</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#justificación-técnica"
+                    id="toc-justificación-técnica"
+                    >4.2 Justificación Técnica</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#diagrama-del-patrón-en-el-pipeline"
+                    id="toc-diagrama-del-patrón-en-el-pipeline"
+                    >4.3 Diagrama del Patrón en el Pipeline</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#código-de-referencia-extracción-de-filtros"
+                    id="toc-código-de-referencia-extracción-de-filtros"
+                    >4.4 Código de Referencia (Extracción de Filtros)</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="#contenerización-con-docker"
+                id="toc-contenerización-con-docker"
+                >5. Contenerización con Docker</a
+              >
+              <ul>
+                <li>
+                  <a
+                    href="#componentes-contenerizados"
+                    id="toc-componentes-contenerizados"
+                    >5.1 Componentes Contenerizados</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#buenas-prácticas-aplicadas"
+                    id="toc-buenas-prácticas-aplicadas"
+                    >5.2 Buenas Prácticas Aplicadas</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#ejemplo-de-dockerfile-retrieval-service"
+                    id="toc-ejemplo-de-dockerfile-retrieval-service"
+                    >5.3 Ejemplo de Dockerfile (Retrieval Service)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#despliegue-en-cloud-run"
+                    id="toc-despliegue-en-cloud-run"
+                    >5.4 Despliegue en Cloud Run</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#cicd-multinube" id="toc-cicd-multinube"
+                >6. CI/CD Multinube</a
+              >
+              <ul>
+                <li>
+                  <a href="#estado-actual" id="toc-estado-actual"
+                    >6.1 Estado Actual</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#propuesta-de-integración-con-github-actions"
+                    id="toc-propuesta-de-integración-con-github-actions"
+                    >6.2 Propuesta de Integración con GitHub Actions</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#ejemplo-de-workflow-fragmento"
+                    id="toc-ejemplo-de-workflow-fragmento"
+                    >6.3 Ejemplo de Workflow (Fragmento)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#infraestructura-como-código-terraform"
+                    id="toc-infraestructura-como-código-terraform"
+                    >6.4 Infraestructura como Código (Terraform)</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="#optimización-de-costos-finops"
+                id="toc-optimización-de-costos-finops"
+                >7. Optimización de Costos (FinOps)</a
+              >
+              <ul>
+                <li>
+                  <a
+                    href="#costo-mensual-estimado-sin-optimizar"
+                    id="toc-costo-mensual-estimado-sin-optimizar"
+                    >7.1 Costo Mensual Estimado (Sin Optimizar)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#estrategias-de-optimización"
+                    id="toc-estrategias-de-optimización"
+                    >7.2 Estrategias de Optimización</a
+                  >
+                </li>
+                <li>
+                  <a href="#costo-optimizado" id="toc-costo-optimizado"
+                    >7.3 Costo Optimizado</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="#observabilidad-crosscloud"
+                id="toc-observabilidad-crosscloud"
+                >8. Observabilidad Cross‑Cloud</a
+              >
+              <ul>
+                <li>
+                  <a
+                    href="#herramientas-por-proveedor"
+                    id="toc-herramientas-por-proveedor"
+                    >8.1 Herramientas por Proveedor</a
+                  >
+                </li>
+                <li>
+                  <a href="#métricas-clave" id="toc-métricas-clave"
+                    >8.2 Métricas Clave</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#trazabilidad-del-flujo"
+                    id="toc-trazabilidad-del-flujo"
+                    >8.3 Trazabilidad del Flujo</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="#evaluación-y-resultados"
+                id="toc-evaluación-y-resultados"
+                >9. Evaluación y Resultados</a
+              >
+              <ul>
+                <li>
+                  <a
+                    href="#metodología-de-prueba"
+                    id="toc-metodología-de-prueba"
+                    >9.1 Metodología de Prueba</a
+                  >
+                </li>
+                <li>
+                  <a href="#resultados" id="toc-resultados">9.2 Resultados</a>
+                </li>
+                <li>
+                  <a
+                    href="#detalle-por-pregunta-muestra"
+                    id="toc-detalle-por-pregunta-muestra"
+                    >9.3 Detalle por Pregunta (Muestra)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#análisis-de-fortalezas"
+                    id="toc-análisis-de-fortalezas"
+                    >9.4 Análisis de Fortalezas</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#limitaciones-del-método"
+                    id="toc-limitaciones-del-método"
+                    >9.5 Limitaciones del Método</a
+                  >
+                </li>
+                <li>
+                  <a href="#mejoras-futuras" id="toc-mejoras-futuras"
+                    >9.6 Mejoras Futuras</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="#conclusiones-y-próximos-pasos"
+                id="toc-conclusiones-y-próximos-pasos"
+                >10. Conclusiones y Próximos Pasos</a
+              >
+              <ul>
+                <li>
+                  <a href="#conclusiones" id="toc-conclusiones"
+                    >10.1 Conclusiones</a
+                  >
+                </li>
+                <li>
+                  <a href="#próximos-pasos" id="toc-próximos-pasos"
+                    >10.2 Próximos Pasos</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#anexos" id="toc-anexos">11. Anexos</a>
+              <ul>
+                <li>
+                  <a
+                    href="#enlaces-a-documentación-completa"
+                    id="toc-enlaces-a-documentación-completa"
+                    >11.1 Enlaces a Documentación Completa</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#diagrama-de-arquitectura-mermaid"
+                    id="toc-diagrama-de-arquitectura-mermaid"
+                    >11.2 Diagrama de Arquitectura (Mermaid)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#acceso-a-la-aplicación"
+                    id="toc-acceso-a-la-aplicación"
+                    >11.3 Acceso a la Aplicación</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#agradecimientos" id="toc-agradecimientos"
+                >📌 Agradecimientos</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <h1
+      id="codea-rag-plataforma-serverless-multicloud-para-consultas-sobre-pensión-de-alimentos-en-perú"
+    >
+      📚 CODEA RAG – Plataforma Serverless Multi‑Cloud para Consultas sobre
+      Pensión de Alimentos en Perú
+    </h1>
+    <p>
+      <strong>Proyecto Final – Diseño de Infraestructura Escalable</strong
+      ><br />
+      <strong>Programa de AI/LLM Solution Architect</strong><br />
+      <strong>BSG Institute</strong>
+    </p>
+    <hr />
+    <p>
+      <strong>Autor:</strong> David Yurvilca<br />
+      <strong>Profesor:</strong> Msc, PgP, Andrés Felipe Rojas Parra<br />
+      <strong>Fecha:</strong> Junio 2026<br />
+      <strong>Versión:</strong> 1.0 (Entrega Final)
+    </p>
+    <hr />
+    <h2 id="índice">📋 Índice</h2>
+    <ol type="1">
+      <li><a href="#1-resumen-ejecutivo">Resumen Ejecutivo</a></li>
+      <li>
+        <a href="#2-introducción-y-caso-de-uso">Introducción y Caso de Uso</a>
+      </li>
+      <li>
+        <a href="#3-arquitectura-del-sistema">Arquitectura del Sistema</a>
+      </li>
+      <li>
+        <a href="#4-patrón-de-diseño-llm-implementado"
+          >Patrón de Diseño LLM Implementado</a
+        >
+      </li>
+      <li>
+        <a href="#5-contenerización-con-docker">Contenerización con Docker</a>
+      </li>
+      <li><a href="#6-cicd-multinube">CI/CD Multinube</a></li>
+      <li>
+        <a href="#7-optimización-de-costos-finops"
+          >Optimización de Costos (FinOps)</a
+        >
+      </li>
+      <li>
+        <a href="#8-observabilidad-cross‑cloud">Observabilidad Cross‑Cloud</a>
+      </li>
+      <li><a href="#9-evaluación-y-resultados">Evaluación y Resultados</a></li>
+      <li>
+        <a href="#10-conclusiones-y-próximos-pasos"
+          >Conclusiones y Próximos Pasos</a
+        >
+      </li>
+      <li><a href="#11-anexos">Anexos</a></li>
+    </ol>
+    <hr />
+    <h2 id="resumen-ejecutivo">1. Resumen Ejecutivo</h2>
+    <p>
+      <strong>CODEA RAG</strong> es una plataforma serverless multi‑cloud
+      diseñada para responder preguntas en lenguaje natural sobre la pensión de
+      alimentos en Perú. Utiliza un enfoque de
+      <strong>Retrieval-Augmented Generation (RAG)</strong> distribuido entre
+      tres proveedores cloud:
+    </p>
+    <ul>
+      <li>
+        <strong>Microsoft Azure:</strong> Frontend, orquestación, LLM y
+        observabilidad.
+      </li>
+      <li>
+        <strong>Amazon Web Services (AWS):</strong> Ingesta y almacenamiento de
+        documentos.
+      </li>
+      <li>
+        <strong>Google Cloud Platform (GCP):</strong> Procesamiento de texto,
+        búsqueda vectorial y base de datos.
+      </li>
+    </ul>
+    <p>
+      El sistema implementa el patrón de diseño
+      <strong>RAG Básico + Self-Query Retriever</strong>, combinando búsqueda
+      semántica con filtros por metadatos, alcanzando una
+      <strong>precisión del 100%</strong> en las pruebas de validación y un
+      costo mensual optimizado de <strong>~$111.75 USD</strong>.
+    </p>
+    <hr />
+    <h2 id="introducción-y-caso-de-uso">2. Introducción y Caso de Uso</h2>
+    <h3 id="contexto-del-problema">2.1 Contexto del Problema</h3>
+    <p>
+      En Perú, el proceso de pensión de alimentos es un tema jurídico complejo
+      que involucra múltiples normas legales (Código Civil, Código de los Niños
+      y Adolescentes, leyes específicas, decretos, resoluciones). Los ciudadanos
+      que necesitan información sobre este tema enfrentan varias dificultades:
+    </p>
+    <ul>
+      <li>
+        <strong>Acceso limitado a la información legal:</strong> Las normas
+        están dispersas en diferentes documentos y portales.
+      </li>
+      <li>
+        <strong>Lenguaje jurídico complejo:</strong> Los textos legales son
+        difíciles de entender para el ciudadano promedio.
+      </li>
+      <li>
+        <strong>Actualización constante:</strong> Las normas cambian y es
+        difícil mantenerse al día.
+      </li>
+      <li>
+        <strong>Falta de herramientas accesibles:</strong> No existen
+        plataformas gratuitas y fáciles de usar para consultar este tipo de
+        información.
+      </li>
+    </ul>
+    <h3 id="solución-propuesta">2.2 Solución Propuesta</h3>
+    <p><strong>CODEA RAG</strong> resuelve estos problemas mediante:</p>
+    <ol type="1">
+      <li>
+        <strong>Centralización</strong> de las normas legales en una base de
+        datos vectorial.
+      </li>
+      <li>
+        <strong>Consultas en lenguaje natural</strong>, sin necesidad de
+        tecnicismos legales.
+      </li>
+      <li>
+        <strong>Respuestas con citas textuales</strong> de las fuentes
+        originales.
+      </li>
+      <li>
+        <strong>Automatización de la ingesta</strong> de nuevos documentos.
+      </li>
+    </ol>
+    <h3 id="kpis-definidos">2.3 KPIs Definidos</h3>
+    <table>
+      <colgroup>
+        <col style="width: 14%" />
+        <col style="width: 37%" />
+        <col style="width: 48%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>KPI</th>
+          <th>Descripción</th>
+          <th>Valor Alcanzado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Latencia total del flujo</strong></td>
+          <td>Tiempo desde la consulta hasta la respuesta final.</td>
+          <td>~3.25 segundos</td>
+        </tr>
+        <tr>
+          <td><strong>Tokens/s en inferencia</strong></td>
+          <td>Rendimiento del modelo LLM (Azure OpenAI).</td>
+          <td>15 tokens/s</td>
+        </tr>
+        <tr>
+          <td><strong>Costo por 1k tokens</strong></td>
+          <td>Costo de operación del LLM y embeddings.</td>
+          <td>$0.60</td>
+        </tr>
+        <tr>
+          <td><strong>Tasa de aciertos RAG</strong></td>
+          <td>Precisión del sistema de recuperación y generación.</td>
+          <td>100% (validación)</td>
+        </tr>
+        <tr>
+          <td><strong>Cloud egress cost</strong></td>
+          <td>Costos de transferencia de datos entre nubes.</td>
+          <td>Optimizado con caching</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2 id="arquitectura-del-sistema">3. Arquitectura del Sistema</h2>
+    <h3 id="visión-general">3.1 Visión General</h3>
+    <p>
+      CODEA RAG es una plataforma serverless multi‑cloud compuesta por los
+      siguientes componentes:
+    </p>
+    <table>
+      <colgroup>
+        <col style="width: 33%" />
+        <col style="width: 66%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Proveedor</th>
+          <th>Servicios utilizados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Azure</strong></td>
+          <td>
+            Azure Functions (orquestador), Azure OpenAI (embeddings y chat),
+            Azure Static Web Apps (frontend)
+          </td>
+        </tr>
+        <tr>
+          <td><strong>AWS</strong></td>
+          <td>S3 (almacenamiento de PDFs), Lambda (ingesta automática)</td>
+        </tr>
+        <tr>
+          <td><strong>GCP</strong></td>
+          <td>
+            AlloyDB + pgvector (base de datos vectorial), Cloud Run (chunking y
+            retrieval)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="diagrama-de-arquitectura">3.2 Diagrama de Arquitectura</h3>
+    <div class="mermaid">
+      graph TB subgraph &quot;👤 Usuario&quot; U[Usuario Final] A[Administrador]
+      end subgraph &quot;☁️ Microsoft Azure&quot; direction TB FE[Azure Static
+      Web Apps&lt;br/&gt;Frontend React] ORCH[Azure
+      Functions&lt;br/&gt;Orquestador RAG] LLM[Azure OpenAI&lt;br/&gt;GPT-4o +
+      Embeddings] AI[Application Insights&lt;br/&gt;Observabilidad] FE --&gt;
+      ORCH ORCH --&gt; LLM ORCH --&gt; AI end subgraph &quot;☁️ Amazon Web
+      Services&quot; direction TB S3[AWS S3&lt;br/&gt;Almacenamiento de PDFs]
+      LAMBDA[AWS Lambda&lt;br/&gt;Ingesta Automática] A --&gt;|Sube PDF| S3 S3
+      --&gt;|Evento| LAMBDA end subgraph &quot;☁️ Google Cloud Platform&quot;
+      direction TB CHUNK[Cloud Run&lt;br/&gt;Chunking Service] RETRIEVAL[Cloud
+      Run&lt;br/&gt;Retrieval Service] VDB[(AlloyDB + pgvector&lt;br/&gt;Base de
+      Datos Vectorial)] LOGS[Cloud Logging &amp;
+      Monitoring&lt;br/&gt;Observabilidad] CHUNK --&gt; VDB RETRIEVAL --&gt; VDB
+      RETRIEVAL --&gt; LOGS end subgraph &quot;🔀 Flujos de Datos&quot;
+      direction LR F1[Consulta del Usuario] F2[Ingesta de Documentos]
+      F3[Respuesta Generada] end U --&gt;|Pregunta| FE FE --&gt;|&quot;1. POST
+      /ask&quot;| ORCH ORCH --&gt;|&quot;2. Embedding&quot;| LLM LLM
+      --&gt;|Vector| ORCH ORCH --&gt;|&quot;3. POST /retrieve (vector y
+      filtros)&quot;| RETRIEVAL RETRIEVAL --&gt;|&quot;4. Consulta SQL&quot;|
+      VDB VDB --&gt;|Chunks| RETRIEVAL RETRIEVAL --&gt;|Chunks| ORCH ORCH
+      --&gt;|&quot;5. Prompt + Chunks&quot;| LLM LLM --&gt;|&quot;6.
+      Respuesta&quot;| ORCH ORCH --&gt;|&quot;7. Respuesta&quot;| FE FE
+      --&gt;|&quot;8. Respuesta&quot;| U LAMBDA --&gt;|&quot;POST /chunk (PDF y
+      metadatos)&quot;| CHUNK CHUNK --&gt;|&quot;Chunks + embeddings&quot;| VDB
+    </div>
+    <h3 id="flujo-de-datos-pipeline-rag-distribuido">
+       3.3 Flujo de Datos (Pipeline RAG Distribuido)
+    </h3>
+    <ol type="1">
+      <li>
+        <p>
+          <strong>Ingesta de Documentos:</strong> Un administrador sube un PDF
+          al bucket S3 de AWS con metadatos
+          (<code>hash</code>, <code>title</code>, <code>norm_code</code>).
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Procesamiento (AWS Lambda):</strong> Lambda se activa, valida
+          el hash (evita duplicados) y envía el PDF al <em>Chunking Service</em
+          > en GCP.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Chunking (GCP Cloud Run):</strong> El servicio extrae el
+          texto, lo fragmenta en chunks, genera embeddings (Azure OpenAI) y los
+          almacena en AlloyDB.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Consulta de Usuario:</strong> El usuario escribe una pregunta
+          desde el frontend (Azure Static Web Apps).
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Self-Query:</strong> La Azure Function extrae filtros
+          (<code>norm_code</code>, <code>title</code>) de la pregunta usando
+          expresiones regulares.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Orquestación:</strong> La Azure Function genera un embedding
+          de la pregunta y envía el vector + filtros al <em
+            >Retrieval Service</em
+          >.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Retrieval (GCP Cloud Run):</strong> Realiza una búsqueda por
+          similitud coseno en AlloyDB aplicando los filtros, devolviendo los
+          chunks más relevantes.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Generación:</strong> La Azure Function construye un prompt con
+          los chunks recuperados y la pregunta original, y lo envía a Azure
+          OpenAI (GPT-4o).
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Respuesta:</strong> El LLM genera la respuesta final con
+          citas <code>[Ley 27337, Art. 164]</code> y el frontend la muestra al
+          usuario.
+        </p>
+      </li>
+    </ol>
+    <hr />
+    <h2 id="patrón-de-diseño-llm-implementado">
+      4. Patrón de Diseño LLM Implementado
+    </h2>
+    <h3 id="patrón-seleccionado">4.1 Patrón Seleccionado</h3>
+    <p>
+      <strong>Patrón principal:</strong> <em
+        >RAG Básico + Self-Query Retriever</em
+      ><br />
+      <strong>Patrón secundario:</strong> <em>Guardrail de Ingesta</em> (control
+      de duplicados y validación de documentos)
+    </p>
+    <h3 id="justificación-técnica">4.2 Justificación Técnica</h3>
+    <table>
+      <colgroup>
+        <col style="width: 50%" />
+        <col style="width: 50%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Criterio</th>
+          <th>Evaluación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Latencia</strong></td>
+          <td>
+            El Self-Query Retriever añade un paso de extracción de filtros
+            (regex, &lt; 5ms) y una cláusula <code>WHERE</code> en la consulta
+            SQL. Impacto mínimo (~+10% en tiempo de retrieval).
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Costo</strong></td>
+          <td>
+            No se invoca un LLM para extraer filtros, por lo que el costo
+            adicional es nulo.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Calidad</strong></td>
+          <td>
+            El filtrado por metadatos elimina chunks irrelevantes, mejorando la
+            precisión. Resultado: 100% de precisión en validación.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Seguridad</strong></td>
+          <td>
+            El guardrail de ingesta previene la subida de documentos corruptos o
+            duplicados.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Complejidad</strong></td>
+          <td>
+            Implementación simple: regex para extracción y filtros SQL. No
+            requiere infraestructura adicional.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="diagrama-del-patrón-en-el-pipeline">
+      4.3 Diagrama del Patrón en el Pipeline
+    </h3>
+    <div class="mermaid">
+      sequenceDiagram participant User as Usuario participant Frontend as
+      Frontend (Azure) participant Orchestrator as Orquestador (Azure Functions)
+      participant Retrieval as Retrieval Service (GCP Cloud Run) participant
+      VectorDB as AlloyDB (pgvector) participant LLM as Azure OpenAI
+      User-&gt;&gt;Frontend: Pregunta en lenguaje natural
+      Frontend-&gt;&gt;Orchestrator: POST /ask {question} Note over
+      Orchestrator: Self-Query Retriever Orchestrator-&gt;&gt;Orchestrator:
+      extraer_filtros(question) Orchestrator-&gt;&gt;Orchestrator:
+      generate_embedding(question) Orchestrator-&gt;&gt;Retrieval: POST
+      /retrieve {vector, filtros} Retrieval-&gt;&gt;VectorDB: SELECT ... WHERE
+      norm_code ILIKE &#39;%LEY 27337%&#39; VectorDB--&gt;&gt;Retrieval: Chunks
+      filtrados Retrieval--&gt;&gt;Orchestrator: {chunks}
+      Orchestrator-&gt;&gt;Orchestrator: build_prompt(question, chunks)
+      Orchestrator-&gt;&gt;LLM: chat_completion(prompt)
+      LLM--&gt;&gt;Orchestrator: Respuesta generada
+      Orchestrator--&gt;&gt;Frontend: {answer} Frontend--&gt;&gt;User: Respuesta
+      con citas
+    </div>
+    <h3 id="código-de-referencia-extracción-de-filtros">
+      4.4 Código de Referencia (Extracción de Filtros)
+    </h3>
+    <div class="sourceCode" id="cb3">
+      <pre
+        class="sourceCode python"
+      ><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> extraer_filtros(pregunta: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    filtros <span class="op">=</span> {}</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    match <span class="op">=</span> re.search(</span>
@@ -1271,60 +1922,75 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> tipo <span class="op">==</span> <span class="st">&quot;DECRETO LEGISLATIVO&quot;</span>:</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            filtros[<span class="st">&quot;norm_code&quot;</span>] <span class="op">=</span> <span class="ss">f&quot;DECRETO LEGISLATIVO </span><span class="sc">{</span>numero<span class="sc">}</span><span class="ss">&quot;</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ... otros casos</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> filtros</span></code></pre></div>
-<hr />
-<h2 id="contenerización-con-docker">5. Contenerización con Docker</h2>
-<h3 id="componentes-contenerizados">5.1 Componentes Contenerizados</h3>
-<p>La rúbrica exige Docker para los microservicios internos. CODEA RAG
-incluye dos servicios contenerizados en GCP Cloud Run:</p>
-<table>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr>
-<th>Componente</th>
-<th>Dockerfile</th>
-<th>Imagen Base</th>
-<th>Buenas Prácticas</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chunking Service</strong></td>
-<td><code>gcp-services/chunking-service/Dockerfile</code></td>
-<td><code>python:3.10-slim</code></td>
-<td>Multi-stage, usuario no root, variables como secrets</td>
-</tr>
-<tr>
-<td><strong>Retrieval Service</strong></td>
-<td><code>gcp-services/retrieval-service/Dockerfile</code></td>
-<td><code>python:3.10-slim</code></td>
-<td>Multi-stage, usuario no root, variables como secrets</td>
-</tr>
-</tbody>
-</table>
-<h3 id="buenas-prácticas-aplicadas">5.2 Buenas Prácticas Aplicadas</h3>
-<ul>
-<li><strong>Multi‑stage build:</strong> Reduce el tamaño de la imagen
-final.</li>
-<li><strong>Imagen base
-ligera:</strong> <code>python:3.10-slim</code> (≈ 50 MB).</li>
-<li><strong>Usuario no root:</strong> Se crea un
-usuario <code>appuser</code> para ejecutar el servicio.</li>
-<li><strong>Variables de entorno como
-Secrets:</strong> <code>DB_PASSWORD</code>, <code>AZURE_OPENAI_KEY</code> se
-inyectan en tiempo de ejecución.</li>
-<li><strong>Escaneo de seguridad:</strong> Se recomienda el uso
-de <code>Trivy</code> para análisis de vulnerabilidades.</li>
-</ul>
-<h3 id="ejemplo-de-dockerfile-retrieval-service">5.3 Ejemplo de
-Dockerfile (Retrieval Service)</h3>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multi-stage build</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> filtros</span></code></pre>
+    </div>
+    <hr />
+    <h2 id="contenerización-con-docker">5. Contenerización con Docker</h2>
+    <h3 id="componentes-contenerizados">5.1 Componentes Contenerizados</h3>
+    <p>
+      La rúbrica exige Docker para los microservicios internos. CODEA RAG
+      incluye dos servicios contenerizados en GCP Cloud Run:
+    </p>
+    <table>
+      <colgroup>
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+        <col style="width: 25%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Dockerfile</th>
+          <th>Imagen Base</th>
+          <th>Buenas Prácticas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Chunking Service</strong></td>
+          <td><code>gcp-services/chunking-service/Dockerfile</code></td>
+          <td><code>python:3.10-slim</code></td>
+          <td>Multi-stage, usuario no root, variables como secrets</td>
+        </tr>
+        <tr>
+          <td><strong>Retrieval Service</strong></td>
+          <td><code>gcp-services/retrieval-service/Dockerfile</code></td>
+          <td><code>python:3.10-slim</code></td>
+          <td>Multi-stage, usuario no root, variables como secrets</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="buenas-prácticas-aplicadas">5.2 Buenas Prácticas Aplicadas</h3>
+    <ul>
+      <li>
+        <strong>Multi‑stage build:</strong> Reduce el tamaño de la imagen final.
+      </li>
+      <li>
+        <strong>Imagen base ligera:</strong> <code>python:3.10-slim</code> (≈ 50
+        MB).
+      </li>
+      <li>
+        <strong>Usuario no root:</strong> Se crea un
+        usuario <code>appuser</code> para ejecutar el servicio.
+      </li>
+      <li>
+        <strong>Variables de entorno como Secrets:</strong
+        > <code>DB_PASSWORD</code>, <code>AZURE_OPENAI_KEY</code> se inyectan en
+        tiempo de ejecución.
+      </li>
+      <li>
+        <strong>Escaneo de seguridad:</strong> Se recomienda el uso
+        de <code>Trivy</code> para análisis de vulnerabilidades.
+      </li>
+    </ul>
+    <h3 id="ejemplo-de-dockerfile-retrieval-service">
+      5.3 Ejemplo de Dockerfile (Retrieval Service)
+    </h3>
+    <div class="sourceCode" id="cb4">
+      <pre
+        class="sourceCode dockerfile"
+      ><code class="sourceCode dockerfile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multi-stage build</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.10-slim <span class="kw">AS</span> builder</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> requirements.txt .</span>
@@ -1336,66 +2002,75 @@ class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb4-
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> app/ ./app/</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">useradd</span> <span class="at">-m</span> <span class="at">-u</span> 1000 appuser <span class="kw">&amp;&amp;</span> <span class="fu">chown</span> <span class="at">-R</span> appuser /app</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">USER</span> appuser</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">&quot;uvicorn&quot;</span>, <span class="st">&quot;app.main:app&quot;</span>, <span class="st">&quot;--host&quot;</span>, <span class="st">&quot;0.0.0.0&quot;</span>, <span class="st">&quot;--port&quot;</span>, <span class="st">&quot;8080&quot;</span>]</span></code></pre></div>
-<h3 id="despliegue-en-cloud-run">5.4 Despliegue en Cloud Run</h3>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> gcr.io/PROJECT_ID/retrieval-service .</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">&quot;uvicorn&quot;</span>, <span class="st">&quot;app.main:app&quot;</span>, <span class="st">&quot;--host&quot;</span>, <span class="st">&quot;0.0.0.0&quot;</span>, <span class="st">&quot;--port&quot;</span>, <span class="st">&quot;8080&quot;</span>]</span></code></pre>
+    </div>
+    <h3 id="despliegue-en-cloud-run">5.4 Despliegue en Cloud Run</h3>
+    <div class="sourceCode" id="cb5">
+      <pre
+        class="sourceCode bash"
+      ><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> gcr.io/PROJECT_ID/retrieval-service .</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> push gcr.io/PROJECT_ID/retrieval-service</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gcloud</span> run deploy retrieval-service <span class="dt">\</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--image</span> gcr.io/PROJECT_ID/retrieval-service <span class="dt">\</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--platform</span> managed <span class="dt">\</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--region</span> us-central1 <span class="dt">\</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">--allow-unauthenticated</span> <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">--set-env-vars</span> <span class="st">&quot;DB_HOST=...,DB_PASSWORD=...&quot;</span></span></code></pre></div>
-<hr />
-<h2 id="cicd-multinube">6. CI/CD Multinube</h2>
-<h3 id="estado-actual">6.1 Estado Actual</h3>
-<p>Cada componente se despliega mediante scripts de automatización:</p>
-<table>
-<thead>
-<tr>
-<th>Componente</th>
-<th>Script</th>
-<th>Ubicación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Azure Function</strong></td>
-<td><code>deploy-azure-function.sh</code></td>
-<td><code>azure-function/</code></td>
-</tr>
-<tr>
-<td><strong>AWS Lambda</strong></td>
-<td><code>deploy-aws-ingesta.sh</code></td>
-<td><code>aws-lambda-ingesta/</code></td>
-</tr>
-<tr>
-<td><strong>Frontend</strong></td>
-<td><code>deploy.sh</code></td>
-<td><code>frontend/</code></td>
-</tr>
-<tr>
-<td><strong>GCP Services</strong></td>
-<td>Comandos <code>gcloud</code> documentados</td>
-<td><code>gcp-services/</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="propuesta-de-integración-con-github-actions">6.2 Propuesta de
-Integración con GitHub Actions</h3>
-<p>Se propone un pipeline que ejecute los siguientes jobs:</p>
-<ol type="1">
-<li>Build: Construir y subir imágenes Docker a Google Artifact
-Registry.</li>
-<li>Deploy a GCP: Desplegar las imágenes en Cloud Run.</li>
-<li>Deploy a Azure: Publicar la Function App y el frontend.</li>
-<li>Deploy a AWS: Actualizar la Lambda y configurar el bucket S3.</li>
-</ol>
-<h3 id="ejemplo-de-workflow-fragmento">6.3 Ejemplo de Workflow
-(Fragmento)</h3>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">--set-env-vars</span> <span class="st">&quot;DB_HOST=...,DB_PASSWORD=...&quot;</span></span></code></pre>
+    </div>
+    <hr />
+    <h2 id="cicd-multinube">6. CI/CD Multinube</h2>
+    <h3 id="estado-actual">6.1 Estado Actual</h3>
+    <p>Cada componente se despliega mediante scripts de automatización:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Componente</th>
+          <th>Script</th>
+          <th>Ubicación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Azure Function</strong></td>
+          <td><code>deploy-azure-function.sh</code></td>
+          <td><code>azure-function/</code></td>
+        </tr>
+        <tr>
+          <td><strong>AWS Lambda</strong></td>
+          <td><code>deploy-aws-ingesta.sh</code></td>
+          <td><code>aws-lambda-ingesta/</code></td>
+        </tr>
+        <tr>
+          <td><strong>Frontend</strong></td>
+          <td><code>deploy.sh</code></td>
+          <td><code>frontend/</code></td>
+        </tr>
+        <tr>
+          <td><strong>GCP Services</strong></td>
+          <td>Comandos <code>gcloud</code> documentados</td>
+          <td><code>gcp-services/</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="propuesta-de-integración-con-github-actions">
+      6.2 Propuesta de Integración con GitHub Actions
+    </h3>
+    <p>Se propone un pipeline que ejecute los siguientes jobs:</p>
+    <ol type="1">
+      <li>
+        Build: Construir y subir imágenes Docker a Google Artifact Registry.
+      </li>
+      <li>Deploy a GCP: Desplegar las imágenes en Cloud Run.</li>
+      <li>Deploy a Azure: Publicar la Function App y el frontend.</li>
+      <li>Deploy a AWS: Actualizar la Lambda y configurar el bucket S3.</li>
+    </ol>
+    <h3 id="ejemplo-de-workflow-fragmento">
+      6.3 Ejemplo de Workflow (Fragmento)
+    </h3>
+    <div class="sourceCode" id="cb6">
+      <pre
+        class="sourceCode yaml"
+      ><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
@@ -1405,12 +2080,18 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">context</span><span class="kw">:</span><span class="at"> ./gcp-services/retrieval-service</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">push</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">tags</span><span class="kw">:</span><span class="at"> us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/codea/retrieval-service:latest</span></span></code></pre></div>
-<h3 id="infraestructura-como-código-terraform">6.4 Infraestructura como
-Código (Terraform)</h3>
-<p>Se propone migrar la gestión de recursos base a Terraform para
-garantizar reproducibilidad:</p>
-<pre class="hcl"><code>resource &quot;google_alloydb_cluster&quot; &quot;codea&quot; {
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">tags</span><span class="kw">:</span><span class="at"> us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/codea/retrieval-service:latest</span></span></code></pre>
+    </div>
+    <h3 id="infraestructura-como-código-terraform">
+      6.4 Infraestructura como Código (Terraform)
+    </h3>
+    <p>
+      Se propone migrar la gestión de recursos base a Terraform para garantizar
+      reproducibilidad:
+    </p>
+    <pre
+      class="hcl"
+    ><code>resource &quot;google_alloydb_cluster&quot; &quot;codea&quot; {
   cluster_id   = &quot;codea-cluster&quot;
   location     = &quot;us-central1&quot;
   network      = &quot;projects/${var.project_id}/global/networks/default&quot;
@@ -1419,444 +2100,552 @@ garantizar reproducibilidad:</p>
     password = var.db_password
   }
 }</code></pre>
-<hr />
-<h2 id="optimización-de-costos-finops">7. Optimización de Costos
-(FinOps)</h2>
-<h3 id="costo-mensual-estimado-sin-optimizar">7.1 Costo Mensual Estimado
-(Sin Optimizar)</h3>
-<table>
-<thead>
-<tr>
-<th>Proveedor</th>
-<th>Servicio</th>
-<th>Costo Mensual</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Azure</strong></td>
-<td>OpenAI (GPT-4o + Embeddings)</td>
-<td>$4.76</td>
-</tr>
-<tr>
-<td><strong>Azure</strong></td>
-<td>Functions + Storage</td>
-<td>$0.22</td>
-</tr>
-<tr>
-<td><strong>AWS</strong></td>
-<td>Lambda + S3</td>
-<td>$5.12</td>
-</tr>
-<tr>
-<td><strong>GCP</strong></td>
-<td>AlloyDB (2 vCPU, 8 GB)</td>
-<td>$360.00</td>
-</tr>
-<tr>
-<td><strong>GCP</strong></td>
-<td>Cloud Run + Egress</td>
-<td>$0.03</td>
-</tr>
-<tr>
-<td><strong>Total</strong></td>
-<td></td>
-<td>$370.13</td>
-</tr>
-</tbody>
-</table>
-<h3 id="estrategias-de-optimización">7.2 Estrategias de
-Optimización</h3>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th>Estrategia</th>
-<th>Ahorro Estimado</th>
-<th>Implementación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Migrar a Cloud SQL (1 vCPU, 4 GB)</strong></td>
-<td>$252/mes</td>
-<td>Reemplazar AlloyDB por Cloud SQL + pgvector</td>
-</tr>
-<tr>
-<td><strong>Usar GPT-4o Mini para preguntas simples</strong></td>
-<td>$3.26/mes</td>
-<td>Implementar routing de modelos</td>
-</tr>
-<tr>
-<td><strong>Caching de respuestas frecuentes</strong></td>
-<td>Hasta 80% de llamadas</td>
-<td>Usar Azure Redis Cache</td>
-</tr>
-<tr>
-<td><strong>Reducir memoria de Lambda a 256 MB</strong></td>
-<td>$3.12/mes</td>
-<td>Ajustar <code>--memory-size</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="costo-optimizado">7.3 Costo Optimizado</h3>
-<table>
-<thead>
-<tr>
-<th>Proveedor</th>
-<th>Costo Optimizado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Azure</strong></td>
-<td>$1.50</td>
-</tr>
-<tr>
-<td><strong>AWS</strong></td>
-<td>$2.00</td>
-</tr>
-<tr>
-<td><strong>GCP</strong></td>
-<td>$108.25</td>
-</tr>
-<tr>
-<td><strong>Total</strong></td>
-<td>~$111.75</td>
-</tr>
-</tbody>
-</table>
-<p>Ahorro total: $258.38/mes (70% de reducción).</p>
-<hr />
-<h2 id="observabilidad-crosscloud">8. Observabilidad Cross‑Cloud</h2>
-<h3 id="herramientas-por-proveedor">8.1 Herramientas por Proveedor</h3>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th>Proveedor</th>
-<th>Herramienta</th>
-<th>Componente Monitoreado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Azure</td>
-<td>Application Insights</td>
-<td>Azure Functions (duración, errores, dependencias)</td>
-</tr>
-<tr>
-<td>Azure</td>
-<td>Azure Monitor</td>
-<td>Static Web Apps (rendimiento, solicitudes)</td>
-</tr>
-<tr>
-<td>AWS</td>
-<td>CloudWatch</td>
-<td>Lambda (invocaciones, errores, duración)</td>
-</tr>
-<tr>
-<td>AWS</td>
-<td>CloudTrail</td>
-<td>Auditoría de acciones en S3 y Lambda</td>
-</tr>
-<tr>
-<td>GCP</td>
-<td>Cloud Logging</td>
-<td>Cloud Run (logs de contenedores)</td>
-</tr>
-<tr>
-<td>GCP</td>
-<td>Cloud Monitoring</td>
-<td>AlloyDB (CPU, memoria, consultas)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="métricas-clave">8.2 Métricas Clave</h3>
-<table>
-<thead>
-<tr>
-<th>Métrica</th>
-<th>Umbral de Alerta</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Latencia de Azure Function</strong></td>
-<td>&gt; 5 segundos</td>
-</tr>
-<tr>
-<td><strong>Errores en Lambda</strong></td>
-<td>&gt; 5 por hora</td>
-</tr>
-<tr>
-<td><strong>CPU en Cloud Run</strong></td>
-<td>&gt; 80%</td>
-</tr>
-<tr>
-<td><strong>Consultas lentas en AlloyDB</strong></td>
-<td>&gt; 1 segundo</td>
-</tr>
-</tbody>
-</table>
-<h3 id="trazabilidad-del-flujo">8.3 Trazabilidad del Flujo</h3>
-<p>Se utiliza un correlation ID generado en el frontend y propagado a
-través de todos los servicios, permitiendo un seguimiento completo de
-cada solicitud.</p>
-<div class="mermaid">
-sequenceDiagram
-    participant F as Frontend
-    participant AF as Azure Function
-    participant RS as Retrieval Service
-    participant DB as AlloyDB
-    participant AO as Azure OpenAI
-
-    F-&gt;&gt;AF: POST /ask {question, correlationId}
-    AF-&gt;&gt;AO: Embedding (correlationId)
-    AO--&gt;&gt;AF: vector
-    AF-&gt;&gt;RS: /retrieve (correlationId)
-    RS-&gt;&gt;DB: SQL (correlationId)
-    DB--&gt;&gt;RS: chunks
-    RS--&gt;&gt;AF: chunks
-    AF-&gt;&gt;AO: Chat (correlationId)
-    AO--&gt;&gt;AF: answer
-    AF--&gt;&gt;F: answer
-</div>
-<hr />
-<h2 id="evaluación-y-resultados">9. Evaluación y Resultados</h2>
-<h3 id="metodología-de-prueba">9.1 Metodología de Prueba</h3>
-<p>Se evaluaron 20 preguntas del dominio legal de pensión de alimentos
-utilizando un método de coincidencia de palabras clave (proxy de RAGAS).
-El sistema se considera aprobado si la respuesta generada contiene al
-menos el 25% de las palabras clave de la respuesta esperada.</p>
-<h3 id="resultados">9.2 Resultados</h3>
-<table>
-<thead>
-<tr>
-<th>Métrica</th>
-<th>Valor</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Preguntas evaluadas</strong></td>
-<td>20</td>
-</tr>
-<tr>
-<td><strong>Preguntas aprobadas</strong></td>
-<td>20</td>
-</tr>
-<tr>
-<td><strong>Precisión</strong></td>
-<td>100.00%</td>
-</tr>
-<tr>
-<td><strong>Método</strong></td>
-<td><code>simple_keyword_match</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="detalle-por-pregunta-muestra">9.3 Detalle por Pregunta
-(Muestra)</h3>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr>
-<th>#</th>
-<th>Pregunta</th>
-<th>¿Aprobada?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>¿Qué comprende la definición de alimentos en el Código Civil?</td>
-<td>✅ Sí</td>
-</tr>
-<tr>
-<td>2</td>
-<td>¿Se agrava la pena si el obligado renuncia o abandona maliciosamente
-su trabajo?</td>
-<td>✅ Sí</td>
-</tr>
-<tr>
-<td>3</td>
-<td>¿Qué institución recibe mensualmente la lista de deudores para
-registrarla en la Central de Riesgos?</td>
-<td>✅ Sí</td>
-</tr>
-<tr>
-<td>4</td>
-<td>¿La pensión de alimentos fijada en sentencia se ejecuta aunque haya
-apelación?</td>
-<td>✅ Sí</td>
-</tr>
-<tr>
-<td>5</td>
-<td>¿La pensión alimenticia se incrementa o reduce automáticamente?</td>
-<td>✅ Sí</td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr>
-<td>20</td>
-<td>¿La conciliación extrajudicial es requisito previo para demandar
-alimentos?</td>
-<td>✅ Sí</td>
-</tr>
-</tbody>
-</table>
-<h3 id="análisis-de-fortalezas">9.4 Análisis de Fortalezas</h3>
-<ul>
-<li><p><strong>Precisión perfecta:</strong> El 100% de las preguntas
-fueron respondidas correctamente.</p></li>
-<li><p><strong>Cobertura temática:</strong> Las preguntas abarcan
-múltiples dominios (definiciones, plazos, procedimientos,
-sanciones).</p></li>
-<li><p><strong>Calidad de las respuestas:</strong> Incluyen citas a los
-artículos específicos de las leyes.</p></li>
-</ul>
-<h3 id="limitaciones-del-método">9.5 Limitaciones del Método</h3>
-<ul>
-<li><p><strong>No es RAGAS formal:</strong> No
-mide <code>context_relevancy</code>, <code>answer_relevancy</code> ni <code>faithfulness</code>.</p></li>
-<li><p><strong>Umbral del 25%:</strong> Es conservador; podría aprobar
-respuestas con solo algunas palabras clave.</p></li>
-<li><p><strong>Dependencia de la normalización:</strong> La eliminación
-de tildes puede alterar el significado.</p></li>
-</ul>
-<h3 id="mejoras-futuras">9.6 Mejoras Futuras</h3>
-<ul>
-<li><p>Implementar RAGAS formal con métricas estandarizadas.</p></li>
-<li><p>Ampliar el conjunto de preguntas a más de 100.</p></li>
-<li><p>Incorporar reranking (cross-encoder) para mejorar la
-relevancia.</p></li>
-</ul>
-<hr />
-<h2 id="conclusiones-y-próximos-pasos">10. Conclusiones y Próximos
-Pasos</h2>
-<h3 id="conclusiones">10.1 Conclusiones</h3>
-<ul>
-<li><p>CODEA RAG ha demostrado ser una plataforma funcional y
-eficiente para responder preguntas sobre pensión de alimentos en
-Perú.</p></li>
-<li><p>La arquitectura multi‑cloud combina las fortalezas de Azure, AWS
-y GCP, logrando baja latencia (~3.25 segundos) y alta precisión
-(100%).</p></li>
-<li><p>El patrón Self-Query Retriever ha sido clave para mejorar la
-precisión sin añadir costos significativos.</p></li>
-<li><p>Las estrategias de optimización FinOps permiten reducir el costo
-mensual de $370 a ~$112 (70% de ahorro).</p></li>
-<li><p>El sistema cumple con todos los requisitos de la rúbrica,
-incluyendo contenerización, CI/CD, observabilidad y evaluación.</p></li>
-</ul>
-<h3 id="próximos-pasos">10.2 Próximos Pasos</h3>
-<ol type="1">
-<li><p>Implementar RAGAS formal para métricas estandarizadas.</p></li>
-<li><p>Añadir reranking para mejorar aún más la relevancia de los
-chunks.</p></li>
-<li><p>Automatizar el pipeline CI/CD con GitHub Actions y
-Terraform.</p></li>
-<li><p>Escalar el sistema para soportar más documentos y
-consultas.</p></li>
-<li><p>Explorar la integración con otros modelos (ej. AWS Bedrock) para
-comparar rendimiento y costos.</p></li>
-</ol>
-<hr />
-<h2 id="anexos">11. Anexos</h2>
-<h3 id="enlaces-a-documentación-completa">11.1 Enlaces a Documentación
-Completa</h3>
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr>
-<th>Documento</th>
-<th>Ubicación</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Guía de Usuario</strong></td>
-<td><a
-href="https://guia-usuario.md/"><code>docs/guia-usuario.md</code></a></td>
-</tr>
-<tr>
-<td><strong>Guía de Administrador</strong></td>
-<td><a
-href="https://guia-administrador.md/"><code>docs/guia-administrador.md</code></a></td>
-</tr>
-<tr>
-<td><strong>Arquitectura del Sistema</strong></td>
-<td><a
-href="https://arquitectura.md/"><code>docs/arquitectura.md</code></a></td>
-</tr>
-<tr>
-<td><strong>Patrón de Diseño LLM</strong></td>
-<td><a
-href="https://patron-diseno-llm.md/"><code>docs/patron-diseno-llm.md</code></a></td>
-</tr>
-<tr>
-<td><strong>Contenerización</strong></td>
-<td><a
-href="https://contenizacion.md/"><code>docs/contenizacion.md</code></a></td>
-</tr>
-<tr>
-<td><strong>CI/CD</strong></td>
-<td><a href="https://ci-cd.md/"><code>docs/ci-cd.md</code></a></td>
-</tr>
-<tr>
-<td><strong>Optimización de Costos</strong></td>
-<td><a href="https://costos.md/"><code>docs/costos.md</code></a></td>
-</tr>
-<tr>
-<td><strong>Observabilidad</strong></td>
-<td><a
-href="https://observabilidad.md/"><code>docs/observabilidad.md</code></a></td>
-</tr>
-<tr>
-<td><strong>Reporte RAGAS</strong></td>
-<td><a
-href="https://ragas-report.md/"><code>docs/ragas-report.md</code></a></td>
-</tr>
-</tbody>
-</table>
-<h3 id="diagrama-de-arquitectura-mermaid">11.2 Diagrama de Arquitectura
-(Mermaid)</h3>
-<p>El diagrama completo está disponible en <a
-href="https://arquitectura.mermaid/"><code>docs/arquitectura.mermaid</code></a>.</p>
-<h3 id="acceso-a-la-aplicación">11.3 Acceso a la Aplicación</h3>
-<ul>
-<li><p>Frontend: <a
-href="https://victorious-tree-02708ac0f.7.azurestaticapps.net/">https://victorious-tree-02708ac0f.7.azurestaticapps.net/</a></p></li>
-<li><p>Video de presentación: <a
-href="https://docs.google.com/presentation/d/1pbYLm9DBwf0ocX7UEz78iUbAbPO1VoSt/edit?usp=drive_link&amp;ouid=108325222194450107540&amp;rtpof=true&amp;sd=true">Enlace
-a Google Slides</a></p></li>
-<li><p>Repositorio GitHub: <a
-href="https://github.com/systemyuri/codea-rag-multinube">https://github.com/systemyuri/codea-rag-multinube</a></p></li>
-</ul>
-<hr />
-<h2 id="agradecimientos">📌 Agradecimientos</h2>
-<p>Agradezco al profesor Msc, PgP, Andrés Felipe Rojas Parra por su guía
-y enseñanzas durante el curso de Diseño de Infraestructura Escalable, y
-a la institución BSG Institute por brindar este espacio de
-aprendizaje.</p>
-</body>
+    <hr />
+    <h2 id="optimización-de-costos-finops">
+      7. Optimización de Costos (FinOps)
+    </h2>
+    <h3 id="costo-mensual-estimado-sin-optimizar">
+      7.1 Costo Mensual Estimado (Sin Optimizar)
+    </h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Proveedor</th>
+          <th>Servicio</th>
+          <th>Costo Mensual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Azure</strong></td>
+          <td>OpenAI (GPT-4o + Embeddings)</td>
+          <td>$4.76</td>
+        </tr>
+        <tr>
+          <td><strong>Azure</strong></td>
+          <td>Functions + Storage</td>
+          <td>$0.22</td>
+        </tr>
+        <tr>
+          <td><strong>AWS</strong></td>
+          <td>Lambda + S3</td>
+          <td>$5.12</td>
+        </tr>
+        <tr>
+          <td><strong>GCP</strong></td>
+          <td>AlloyDB (2 vCPU, 8 GB)</td>
+          <td>$360.00</td>
+        </tr>
+        <tr>
+          <td><strong>GCP</strong></td>
+          <td>Cloud Run + Egress</td>
+          <td>$0.03</td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td></td>
+          <td>$370.13</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="estrategias-de-optimización">7.2 Estrategias de Optimización</h3>
+    <table>
+      <colgroup>
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Estrategia</th>
+          <th>Ahorro Estimado</th>
+          <th>Implementación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Migrar a Cloud SQL (1 vCPU, 4 GB)</strong></td>
+          <td>$252/mes</td>
+          <td>Reemplazar AlloyDB por Cloud SQL + pgvector</td>
+        </tr>
+        <tr>
+          <td><strong>Usar GPT-4o Mini para preguntas simples</strong></td>
+          <td>$3.26/mes</td>
+          <td>Implementar routing de modelos</td>
+        </tr>
+        <tr>
+          <td><strong>Caching de respuestas frecuentes</strong></td>
+          <td>Hasta 80% de llamadas</td>
+          <td>Usar Azure Redis Cache</td>
+        </tr>
+        <tr>
+          <td><strong>Reducir memoria de Lambda a 256 MB</strong></td>
+          <td>$3.12/mes</td>
+          <td>Ajustar <code>--memory-size</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="costo-optimizado">7.3 Costo Optimizado</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Proveedor</th>
+          <th>Costo Optimizado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Azure</strong></td>
+          <td>$1.50</td>
+        </tr>
+        <tr>
+          <td><strong>AWS</strong></td>
+          <td>$2.00</td>
+        </tr>
+        <tr>
+          <td><strong>GCP</strong></td>
+          <td>$108.25</td>
+        </tr>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td>~$111.75</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Ahorro total: $258.38/mes (70% de reducción).</p>
+    <hr />
+    <h2 id="observabilidad-crosscloud">8. Observabilidad Cross‑Cloud</h2>
+    <h3 id="herramientas-por-proveedor">8.1 Herramientas por Proveedor</h3>
+    <table>
+      <colgroup>
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Proveedor</th>
+          <th>Herramienta</th>
+          <th>Componente Monitoreado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Azure</td>
+          <td>Application Insights</td>
+          <td>Azure Functions (duración, errores, dependencias)</td>
+        </tr>
+        <tr>
+          <td>Azure</td>
+          <td>Azure Monitor</td>
+          <td>Static Web Apps (rendimiento, solicitudes)</td>
+        </tr>
+        <tr>
+          <td>AWS</td>
+          <td>CloudWatch</td>
+          <td>Lambda (invocaciones, errores, duración)</td>
+        </tr>
+        <tr>
+          <td>AWS</td>
+          <td>CloudTrail</td>
+          <td>Auditoría de acciones en S3 y Lambda</td>
+        </tr>
+        <tr>
+          <td>GCP</td>
+          <td>Cloud Logging</td>
+          <td>Cloud Run (logs de contenedores)</td>
+        </tr>
+        <tr>
+          <td>GCP</td>
+          <td>Cloud Monitoring</td>
+          <td>AlloyDB (CPU, memoria, consultas)</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="métricas-clave">8.2 Métricas Clave</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Métrica</th>
+          <th>Umbral de Alerta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Latencia de Azure Function</strong></td>
+          <td>&gt; 5 segundos</td>
+        </tr>
+        <tr>
+          <td><strong>Errores en Lambda</strong></td>
+          <td>&gt; 5 por hora</td>
+        </tr>
+        <tr>
+          <td><strong>CPU en Cloud Run</strong></td>
+          <td>&gt; 80%</td>
+        </tr>
+        <tr>
+          <td><strong>Consultas lentas en AlloyDB</strong></td>
+          <td>&gt; 1 segundo</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="trazabilidad-del-flujo">8.3 Trazabilidad del Flujo</h3>
+    <p>
+      Se utiliza un correlation ID generado en el frontend y propagado a través
+      de todos los servicios, permitiendo un seguimiento completo de cada
+      solicitud.
+    </p>
+    <div class="mermaid">
+      sequenceDiagram participant F as Frontend participant AF as Azure Function
+      participant RS as Retrieval Service participant DB as AlloyDB participant
+      AO as Azure OpenAI F-&gt;&gt;AF: POST /ask {question, correlationId}
+      AF-&gt;&gt;AO: Embedding (correlationId) AO--&gt;&gt;AF: vector
+      AF-&gt;&gt;RS: /retrieve (correlationId) RS-&gt;&gt;DB: SQL
+      (correlationId) DB--&gt;&gt;RS: chunks RS--&gt;&gt;AF: chunks
+      AF-&gt;&gt;AO: Chat (correlationId) AO--&gt;&gt;AF: answer AF--&gt;&gt;F:
+      answer
+    </div>
+    <hr />
+    <h2 id="evaluación-y-resultados">9. Evaluación y Resultados</h2>
+    <h3 id="metodología-de-prueba">9.1 Metodología de Prueba</h3>
+    <p>
+      Se evaluaron 20 preguntas del dominio legal de pensión de alimentos
+      utilizando un método de coincidencia de palabras clave (proxy de RAGAS).
+      El sistema se considera aprobado si la respuesta generada contiene al
+      menos el 25% de las palabras clave de la respuesta esperada.
+    </p>
+    <h3 id="resultados">9.2 Resultados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Métrica</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Preguntas evaluadas</strong></td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td><strong>Preguntas aprobadas</strong></td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td><strong>Precisión</strong></td>
+          <td>100.00%</td>
+        </tr>
+        <tr>
+          <td><strong>Método</strong></td>
+          <td><code>simple_keyword_match</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="detalle-por-pregunta-muestra">
+      9.3 Detalle por Pregunta (Muestra)
+    </h3>
+    <table>
+      <colgroup>
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+        <col style="width: 33%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Pregunta</th>
+          <th>¿Aprobada?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>¿Qué comprende la definición de alimentos en el Código Civil?</td>
+          <td>✅ Sí</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>
+            ¿Se agrava la pena si el obligado renuncia o abandona maliciosamente
+            su trabajo?
+          </td>
+          <td>✅ Sí</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>
+            ¿Qué institución recibe mensualmente la lista de deudores para
+            registrarla en la Central de Riesgos?
+          </td>
+          <td>✅ Sí</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>
+            ¿La pensión de alimentos fijada en sentencia se ejecuta aunque haya
+            apelación?
+          </td>
+          <td>✅ Sí</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>
+            ¿La pensión alimenticia se incrementa o reduce automáticamente?
+          </td>
+          <td>✅ Sí</td>
+        </tr>
+        <tr>
+          <td>…</td>
+          <td>…</td>
+          <td>…</td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td>
+            ¿La conciliación extrajudicial es requisito previo para demandar
+            alimentos?
+          </td>
+          <td>✅ Sí</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="análisis-de-fortalezas">9.4 Análisis de Fortalezas</h3>
+    <ul>
+      <li>
+        <p>
+          <strong>Precisión perfecta:</strong> El 100% de las preguntas fueron
+          respondidas correctamente.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Cobertura temática:</strong> Las preguntas abarcan múltiples
+          dominios (definiciones, plazos, procedimientos, sanciones).
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Calidad de las respuestas:</strong> Incluyen citas a los
+          artículos específicos de las leyes.
+        </p>
+      </li>
+    </ul>
+    <h3 id="limitaciones-del-método">9.5 Limitaciones del Método</h3>
+    <ul>
+      <li>
+        <p>
+          <strong>No es RAGAS formal:</strong> No
+          mide <code>context_relevancy</code>, <code>answer_relevancy</code> ni <code>faithfulness</code>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Umbral del 25%:</strong> Es conservador; podría aprobar
+          respuestas con solo algunas palabras clave.
+        </p>
+      </li>
+      <li>
+        <p>
+          <strong>Dependencia de la normalización:</strong> La eliminación de
+          tildes puede alterar el significado.
+        </p>
+      </li>
+    </ul>
+    <h3 id="mejoras-futuras">9.6 Mejoras Futuras</h3>
+    <ul>
+      <li><p>Implementar RAGAS formal con métricas estandarizadas.</p></li>
+      <li><p>Ampliar el conjunto de preguntas a más de 100.</p></li>
+      <li>
+        <p>Incorporar reranking (cross-encoder) para mejorar la relevancia.</p>
+      </li>
+    </ul>
+    <hr />
+    <h2 id="conclusiones-y-próximos-pasos">
+      10. Conclusiones y Próximos Pasos
+    </h2>
+    <h3 id="conclusiones">10.1 Conclusiones</h3>
+    <ul>
+      <li>
+        <p>
+          CODEA RAG ha demostrado ser una plataforma funcional y eficiente para
+          responder preguntas sobre pensión de alimentos en Perú.
+        </p>
+      </li>
+      <li>
+        <p>
+          La arquitectura multi‑cloud combina las fortalezas de Azure, AWS y
+          GCP, logrando baja latencia (~3.25 segundos) y alta precisión (100%).
+        </p>
+      </li>
+      <li>
+        <p>
+          El patrón Self-Query Retriever ha sido clave para mejorar la precisión
+          sin añadir costos significativos.
+        </p>
+      </li>
+      <li>
+        <p>
+          Las estrategias de optimización FinOps permiten reducir el costo
+          mensual de $370 a ~$112 (70% de ahorro).
+        </p>
+      </li>
+      <li>
+        <p>
+          El sistema cumple con todos los requisitos de la rúbrica, incluyendo
+          contenerización, CI/CD, observabilidad y evaluación.
+        </p>
+      </li>
+    </ul>
+    <h3 id="próximos-pasos">10.2 Próximos Pasos</h3>
+    <ol type="1">
+      <li><p>Implementar RAGAS formal para métricas estandarizadas.</p></li>
+      <li>
+        <p>
+          Añadir reranking para mejorar aún más la relevancia de los chunks.
+        </p>
+      </li>
+      <li>
+        <p>Automatizar el pipeline CI/CD con GitHub Actions y Terraform.</p>
+      </li>
+      <li>
+        <p>Escalar el sistema para soportar más documentos y consultas.</p>
+      </li>
+      <li>
+        <p>
+          Explorar la integración con otros modelos (ej. AWS Bedrock) para
+          comparar rendimiento y costos.
+        </p>
+      </li>
+    </ol>
+    <hr />
+    <h2 id="anexos">11. Anexos</h2>
+    <h3 id="enlaces-a-documentación-completa">
+      11.1 Enlaces a Documentación Completa
+    </h3>
+    <table>
+      <colgroup>
+        <col style="width: 50%" />
+        <col style="width: 50%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Documento</th>
+          <th>Ubicación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Guía de Usuario</strong></td>
+          <td>
+            <a href="https://guia-usuario.md/"
+              ><code>docs/guia-usuario.md</code></a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Guía de Administrador</strong></td>
+          <td>
+            <a href="https://guia-administrador.md/"
+              ><code>docs/guia-administrador.md</code></a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Arquitectura del Sistema</strong></td>
+          <td>
+            <a href="https://arquitectura.md/"
+              ><code>docs/arquitectura.md</code></a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Patrón de Diseño LLM</strong></td>
+          <td>
+            <a href="https://patron-diseno-llm.md/"
+              ><code>docs/patron-diseno-llm.md</code></a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Contenerización</strong></td>
+          <td>
+            <a href="https://contenizacion.md/"
+              ><code>docs/contenizacion.md</code></a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><strong>CI/CD</strong></td>
+          <td>
+            <a href="https://ci-cd.md/"><code>docs/ci-cd.md</code></a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Optimización de Costos</strong></td>
+          <td>
+            <a href="https://costos.md/"><code>docs/costos.md</code></a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Observabilidad</strong></td>
+          <td>
+            <a href="https://observabilidad.md/"
+              ><code>docs/observabilidad.md</code></a
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Reporte RAGAS</strong></td>
+          <td>
+            <a href="https://ragas-report.md/"
+              ><code>docs/ragas-report.md</code></a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="diagrama-de-arquitectura-mermaid">
+      11.2 Diagrama de Arquitectura (Mermaid)
+    </h3>
+    <p>
+      El diagrama completo está disponible en <a
+        href="https://arquitectura.mermaid/"
+        ><code>docs/arquitectura.mermaid</code></a
+      >.
+    </p>
+    <h3 id="acceso-a-la-aplicación">11.3 Acceso a la Aplicación</h3>
+    <ul>
+      <li>
+        <p>
+          Frontend: <a
+            href="https://victorious-tree-02708ac0f.7.azurestaticapps.net/"
+            >https://victorious-tree-02708ac0f.7.azurestaticapps.net/</a
+          >
+        </p>
+      </li>
+      <li>
+        <p>
+          Presentación en PDF: <a
+            href="https://drive.google.com/file/d/1Cza5BRx7KEZBkCjPRVGT3bfByS-k0Uxl/view?usp=drive_link"
+            >Enlace de descarga PDF</a
+          >
+        </p>
+      </li>
+      <li>
+        <p>
+          Repositorio GitHub: <a
+            href="https://github.com/systemyuri/codea-rag-multinube"
+            >https://github.com/systemyuri/codea-rag-multinube</a
+          >
+        </p>
+      </li>
+    </ul>
+    <hr />
+    <h2 id="agradecimientos">📌 Agradecimientos</h2>
+    <p>
+      Agradezco al profesor Msc, PgP, Andrés Felipe Rojas Parra por su guía y
+      enseñanzas durante el curso de Diseño de Infraestructura Escalable, y a la
+      institución BSG Institute por brindar este espacio de aprendizaje.
+    </p>
+  </body>
 </html>
